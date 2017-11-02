@@ -1,0 +1,30 @@
+<div class="section-qas-header" qas-page-scroll>
+    <div class="container">
+        <nav role="navigation">
+            <a ng-class="{selected: $state.is('notifications.all')}" ui-sref="notifications.all">
+                全部消息
+            </a>
+            <a ng-class="{selected: $state.is('notifications.moment')}" ui-sref="notifications.moment">
+                圈子消息
+            </a>
+            <!-- a ng-class="{selected: $state.is('notifications.team')}" ui-sref="notifications.team">
+                小组消息
+            </a -->
+            <a ng-class="{selected: $state.is('notifications.qa')}" ui-sref="notifications.qa">
+                问答消息
+            </a>
+            <a ng-class="{selected: $state.is('notifications.ticket')}" ui-sref="notifications.ticket">
+                工单消息
+            </a>
+            <!-- a ng-class="{selected: $state.is('home.qas.my')}" ui-sref="home.qas.my" ng-click="qas_list('my')">
+                系统通知
+            </a>
+            <a ng-class="{selected: $state.is('home.qas.my')}" ui-sref="home.qas.my" ng-click="qas_list('my')">
+                私信
+            </a>
+            <a ng-class="{selected: $state.is('home.qas.my')}" ui-sref="home.qas.my" ng-click="qas_list('my')">
+                其他
+            </a -->
+        </nav>
+    </div>
+</div>

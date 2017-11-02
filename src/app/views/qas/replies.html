@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-flat-dark btn-sm" ng-click="qa_detail(qa.uuid)"><i class="fa fa-refresh m-r-8"></i>刷新</button>
+    </div>
+</div>
+<div class="row m-t-md">
+    <div class="col-xs-12 animated fadeIn">
+        <div class="details">
+            <h4 class="title"><i class="fa fa-question-circle m-r-8"></i>{{ qa.title }}</h4>
+            <div btf-markdown="qa.content"></div>
+        </div>
+        <hr class="details-hr" />
+        <div class="font-oblique small m-t-md" ng-if="!detailLoading && qa.replies.length === 0">无回复记录。</div>
+        <div class="font-oblique small m-b-md" ng-if="detailLoading">正在加载...</div>
+        <div class="replies" ng-if="!detailLoading">
+            <div class="chat-activity-list" ng-it="qa.replies.length !== 0">
+                <div class="chat-element" ng-repeat="replie in qa.replies track by $index">
+                    <a class="pull-left" ui-sref="u.homepage({username: replie.created_by.uuid})" target="_blank">
+                        <img alt="image" class="img-circle" gravatar-src="replie.created_by.gravatar">
+                    </a>
+                    <div class="media-body">
+                        <span class="fa fa-circle text-warning pull-right" style="display: none;"></span>
+                        <strong>{{ replie.created_by.nickname }}</strong>
+                        <span class="text-muted small m-l-xs">
+                            {{ replie.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}
+                            （ {{ replie.created_at | convertZone | toChinaTime }} ）
+                        </span>
+                        <div class="replie" btf-markdown="replie.content" markdown-image-preview></div>
+                    </div>
+                </div>
+            </div>
+            <div class="reply" ng-if="!qa.is_resolved && isAuthenticated() && qa.created_by.uuid === user.user.uuid">
+                <uib-tabset>
+                    <uib-tab>
+                        <uib-tab-heading>
+                            <span class="fa fa-edit"></span>回复
+                        </uib-tab-heading>
+                        <div class="write-content">
+                            <textarea class="form-control"
+                                rows="6"
+                                ng-model="reply.content"
+                                textarea-tab
+                                textarea-image="qa"></textarea>
+                            <p class="drag-and-drop">
+                                <span class="default" ng-if="!qaUploadError">通过拖放、截图粘贴（仅支持chrome）来附加图片（jpeg, png, jpg, gif）。</span>
+                                <span class="error" ng-if="qaUploadError">{{ qaUploadError }}</span>
+                            </p>
+                        </div>
+                    </uib-tab>
+                    <uib-tab select="qa_reply_preview()">
+                        <uib-tab-heading>
+                            <span class="fa fa-eye"></span>预览
+                        </uib-tab-heading>
+                        <div class="preview-content" btf-markdown="reply.content"></div>
+                    </uib-tab>
+                </uib-tabset>
+                <div class="reply-button">
+                    <button type="button" class="ladda btn btn-flat-dark" ng-click="qa_reply()" ng-disabled="!reply.content || reply.uploading" ladda="reply.loading">
+                        <span class="fa fa-reply m-r-8"></span>
+                        <span ng-if="reply.uploading">上传图片中，请等待</span>
+                        <span ng-if="!reply.uploading">回复该问题</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

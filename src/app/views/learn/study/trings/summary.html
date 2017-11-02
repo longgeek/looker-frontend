@@ -1,0 +1,33 @@
+<div class="col-xs-12 full-height no-paddings">
+    <div class="col-xs-12 col-md-4 full-height study-tring-docs__bg animated fadeIn">
+        <div class="study-tring-docs__container">
+            <div class="absolute-center full-height">
+                <div class="study-tring-docs__content">
+                    <h3 class="text-white">{{ stage.name }}</h3>
+                    <div class="study-task-docs-content" ng-bind-html="stage.description | toMarkDown | toTrusted"></div>
+                    <ul class="task-list">
+                        <li ng-repeat="task in tasks">
+                            <a ng-click="loadTask({'task': task.uuid})">{{ $index + 1 }}. {{ task.name }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 full-height tring-bg summary-workspace animated fadeIn">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 full-height">
+            <div class="summary full-height absolute-center" ng-if="!task.topic_content">
+                <div class="summer-info font-oblique font-bold text-white">这道题已创建，但是没有内容。</div>
+            </div>
+            <div class="study-tring-content__container">
+                <div class="summary full-height" ng-if="task.topic_content">
+                    <div class="summary-title font-bold text-navy">总结</div>
+                    <div class="summary-content tring-markdown" ng-bind-html="task.topic_content.content | toMarkDown | toTrusted"></div>
+                </div>
+            </div>
+        </div>
+        <div class="study-footer-btn">
+            <button type="button" class="ladda btn btn-w-m btn-primary" ng-click="gotIt(true)" ng-disabled="!task.topic_content" ladda="studyLayer">完成阅读</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ace.js"></script>
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ext-language_tools.js"></script>
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ext-modelist.js"></script>
+<script type="text/javascript" src="bower_components/jq-console/jqconsole.min.js"></script>
+<script type="text/javascript" src="bower_components/jsrepl/repl.js" id="jsrepl-script"></script>
+<script type="text/javascript" src="bower_components/jsrepl/languages.js"></script>
+
+<div class="code-workspace" ng-controller="JavaScriptController">
+    <div id="code-workspace-editor" class="code-workspace-editor full-height" resizable r-directions="['right']" r-flex="true">
+        <div class="code-editor-container">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="code-header">
+                <div class="code-header__controller">
+                    <div class="pull-left">
+                        <span>
+                            <i class="fa fa-square text-danger"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-square text-warning"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-square text-navy"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="code-header__tabs pull-left" ng-if="JavaScriptDefaultData.files.length > 0">
+                    <scrollable-tabset show-tooltips="false" scroll-by="200" drop-down-menu-class="dropdown-menu-right angular-ui-tab-scroll-menu">
+                    <uib-tabset justified="true">
+                        <uib-tab ng-repeat="file in JavaScriptDefaultData.files" select="javascriptSelectTab($index, file, JavaScriptData.files[file.filename])" scrollable-tabset-font-size>
+                            <uib-tab-heading>
+                                <a class="code-header__tabs__close" ng-click="javascriptCloseFile($index)"></a>
+                                {{ file.filename }}
+                            </uib-tab-heading>
+                            <div id="editor_{{ $index }}" ui-ace="aceOptions" ng-model="JavaScriptData.files[file.filename]"></div>
+                        </uib-tab>
+                    </uib-tabset>
+                    </scrollable-tabset>
+                </div>
+            </div>
+            <div class="absolute-center code-workspace-editor__none" ng-if="JavaScriptDefaultData.files.length === 0 && task.topic_content.files.length !== 0">
+                <button class="btn btn-w-m btn-sm btn-outline btn-primary" ng-click="javascriptReopenFiles()">重新打开文件.</button>
+            </div>
+            <div class="absolute-center code-workspace-editor__none" ng-if="!task.topic_content || task.topic_content.files.length === 0">
+                <div class="font-oblique text-gray">这道题已创建，但是没有添加代码文件。</div>
+            </div>
+        </div>
+        <div class="code-editor-footer-container">
+            <div ng-if="task.topic_content && task.topic_content.files.length" ng-include="'app/views/learn/study/study-checklist-output.html'"></div>
+            <div ng-if="task.topic_content && task.topic_content.files.length" ng-include="'app/views/learn/study/trings/will-done-code.html'"></div>
+        </div>
+    </div>
+    <div class="coding-console-container">
+        <div class="coding-console-container__layer">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="coding-console-container__output" ng-show="JavaScriptConsoleUrl">
+                <div id="javascript-console"></div>
+            </div>
+            <div class="absolute-center code-console-none" ng-show="!JavaScriptConsoleUrl">
+                <div class="text-center">
+                    <div class="m-b-sm"><img src="assets/icons/console.svg" width="50" height="50"></div>
+                    <p class="text-gray">JavaScript 输出</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="study-footer-btn animated fadeIn">
+        <div class="study-layer" ng-if="studyLayer"></div>
+        <button class="ladda-button btn btn-w-m btn-primary" ng-click="javascriptSaveCode()" ng-disabled="!task.topic_content || !task.topic_content.files.length" ladda="disabledSaveBtn">保存 & 运行</button>
+        <div class="btn-group dropup m-l-sm" uib-dropdown>
+            <a class="btn btn-w-m study-btn-reset" ng-click="javascriptResetCode()" ng-disabled="!task.topic_content || !task.topic_content.files.length || disabledSaveBtn">默认代码</a>
+            <a class="btn dropdown-toggle study-btn-reset__dropdown" uib-dropdown-toggle ng-disabled="!task.topic_content || !task.topic_content.files.length || disabledSaveBtn">
+                <span class="fa fa-angle-up"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right study-btn-reset__dropdown__menu" role="menu">
+                <li ng-click="codeReset()"><a>重置本课</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

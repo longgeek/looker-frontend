@@ -1,0 +1,108 @@
+<div class="navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-scroll" role="navigation">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- a class="navbar-brand" ng-click="backLearnCourse()">Fu<span class="text-navy">vism</span></a -->
+                    <a class="navbar-brand" ng-click="backLearnCourse()">
+                        <img src="assets/icons/logo-white.svg" height="24px">
+                    </a>
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav col-xs-12 col-sm-6">
+                    <div class="study-dot text-center">
+                        <ul class="study-dot-ul">
+                            <li class="study-dot-li" ng-repeat="task in tasks" ng-class="{'current': taskSession.source.current_task_uuid === task.uuid, 'compluted': completed_tasks.indexOf(task.uuid) !== -1}">
+                                <div class="study-layer" ng-class="{'scale': taskSession.source.current_task_uuid === task.uuid}" ng-if="studyLayer || socketLayer"></div>
+                                <a ng-click="loadTask({'task': task.uuid})"
+                                   ng-if="task.tringtype !== 'webserver' && task.tringtype !== 'console' && task.tringtype !== 'coding'"
+                                   tooltip-placement='bottom'
+                                   uib-tooltip-html="'[{{ task.tringtype }}]</br><hr><span class=\'small\'>{{ $index + 1 }}. {{ task.name }}</span>' | toTrusted">
+                                   {{ task.name }}
+                                </a>
+                                <a ng-click="loadTask({'task': task.uuid})"
+                                   ng-if="task.tringtype === 'webserver' || task.tringtype === 'console' || task.tringtype === 'coding'"
+                                   tooltip-placement='bottom'
+                                   uib-tooltip-html="'[{{ task.topic_support }}]</br><hr><span class=\'small\'>{{ $index + 1 }}. {{ task.name }}</span>' | toTrusted">
+                                   {{ task.name }}
+                                </a>
+                            </li>
+                            <li class="study-dot-progress" ng-if="tasks">
+                                <div class="study-layer" ng-if="studyLayer || socketLayer"></div>
+                                <uib-progressbar value="stageProgress" tooltip-placement='bottom' uib-tooltip="{{stageProgress}}%" ng-click="studyStatus()"></uib-progressbar>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+                <div class="col-xs-12 col-sm-3">
+                    <ul class="nav navbar-nav navbar-right pull-right m-r-xs">
+                        <li class="dropdown study-time-dropdown m-r-xs" uib-dropdown ng-mouseenter="studyTime()" ng-if="studyLearnTime">
+                            <a class="dropdown-toggle study-time" uib-dropdown-toggle>
+                                <div class="study-time-background">
+                                    <span class="fa fa-ellipsis-h text-navy" ng-class="{'text-danger': socketLayer}"></span>
+                                    <timer interval="1000" start-time="studyLearnTime.start_time" class="study-timer">{{ddays}}:{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
+                                    <span class="fa fa-angle-down text-white"></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu study-timer-dropdown animated fadeIn">
+                                <div class="p-md text-center small">
+                                    <div class="m-b">
+                                        <div class="text-left m-b-sm">会话状态:</div>
+                                        <div class="study-timer-cost small">
+                                            <span class="text-navy" ng-if="!socketLayer"><i class="fa fa-ellipsis-h m-r-8"></i>连接正常</span>
+                                            <span class="text-danger" ng-if="socketLayer"><i class="fa fa-ellipsis-h m-r-8"></i>会话丢失，已终止计费.</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-left m-b-sm">当前学习开始于:</div>
+                                    <div class="study-timer-cost small m-b-sm">
+                                        <span class="text-navy"><i class="fa fa-clock-o"></i>&nbsp;{{ studyLearnTime.start_time | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                                    </div>
+                                    <div class="study-timer-detail">
+                                        <div class="text-left m-b-sm">到目前为止学习用时:</div>
+                                        <div class="study-timer-cost small m-b-sm">
+                                            <span class="font-bold text-navy">
+                                                <i class="fa fa-clock-o"></i>&nbsp;
+                                                {{ studyLearnTime.timing }} s
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-left m-b-sm">本次消费预估:</div>
+                                    <div class="text-warning study-timer-cost small text-center m-b-sm">
+                                        课程价格为: <strong>{{ studyLearnTime.price }}/s</strong><br />
+                                        本次花费大约为 <strong>{{ studyLearnTime.timing * studyLearnTime.price | number:4 }}</strong> 元.
+                                    </div>
+                                    <button type="button" class="btn btn-block btn-sm btn-danger m-t-md" ng-click="studyQuit()" ng-if="!socketLayer">退出学习</button>
+                                    <button type="button" class="btn btn-block btn-sm btn-danger m-t-md" ng-click="backLearnCourse()" ng-if="socketLayer"><i class="fa fa-arrow-circle-o-left m-r-8"></i>返回课程详情</button>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="dropdown notifications-dropdown m-r-sm" uib-dropdown ng-if="isAuthenticated()">
+                            <a class="dropdown-toggle">
+                                <span class="fa fa-bell fa-notifications" ng-class="{'unread': notifications.total > 0}"></span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeIn notifications" role="menu">
+                                <div ng-include="'app/views/topnavbar/notifications/notifications.html'"></div>
+                            </ul>
+                        </li>
+                        <li class="m-r-sm">
+                            <a class="study-user" ng-click="studyRightbar()" ng-class="{'disabled': socketLayer}">
+                                <div class="study-user-background">
+                                    <div class="study-user-img">
+                                        <img class="img-circle" gravatar-src="user.user.gravatar" width="24" height="24">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

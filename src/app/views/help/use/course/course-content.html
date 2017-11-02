@@ -1,0 +1,24 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.use')">课程类型</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.use')"><a ui-sref="help.use.course">课程类型</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.use.course.articles({'articles_name':  'carrer-plan'})">“职业规划” 是什么？</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.course.articles({'articles_name':  'online-course'})">“在线课程” 是什么？</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.course.articles({'articles_name':  'project-practice'})">“项目实战” 是什么？</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.course.articles({'articles_name':  'labs'})">“实验室” 是什么？</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.course.articles({'articles_name':  'stage-quiz'})">“阶段测评” 是什么？</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.course.articles({'articles_name':  'exerices-bank'})">“练习题库” 是什么？</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,38 @@
+<div class="bsection one" ng-include="'app/views/learn/course/one.html'"></div>
+<section class="learn-section learn-list-section learn-course-section cyan-gray-bg" oc-lazy-load="wu.masonry">
+    <div class="container">
+        <div class="row" ng-if="!courseLoading && courses.length">
+        <div class="course-header text-center p-b-xl">
+            <div class="p-t-sm">
+                <ul class="learn-classify" ng-init="courseClassify = 'all'">
+                    <li>
+                        <a ng-click="courseClassify = 'all'" ng-class="{'active': courseClassify === 'all' || !courseClassify}">All</a>
+                    </li>
+                    <li>
+                        <a ng-click="courseClassify = 'django'" ng-class="{'active': courseClassify === 'django'}">Django</a>
+                    </li>
+                    <li>
+                        <a ng-click="courseClassify = 'python'" ng-class="{'active': courseClassify === 'python'}">Python</a>
+                    </li>
+                    <li>
+                        <a ng-click="courseClassify = 'web'" ng-class="{'active': courseClassify === 'web'}">Web</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="p-w-xl" masonry="{ gutter: 30, transitionDuration: '0.4s' }" load-images="false" preserve-order column-width="300" reload-on-resize>
+            <div class="masonry-brick" ng-repeat="course in courses" ui-sref="learn.course.detail({ ud: course.uuid })" ng-if="courseClassify === 'all' || courseClassify === course.tech">
+                <div class="course-item white-bg text-center">
+                    <img src="assets/icons/course.svg" class="m-b-md" width="120" height="120">
+                    <div class="course-name">{{ course.name }}</div>
+                    <span class="course-progress-number" ng-if="joinedCourses.joined[course.uuid]">{{ joinedCourses.joined[course.uuid].completed_percentage }}%</span>
+                    <uib-progressbar class="progress-mini m-t-xl" value="joinedCourses.joined[course.uuid].completed_percentage" ng-if="joinedCourses.joined[course.uuid]"></uib-progressbar>
+                    <div class="course-description text-left" ng-if="!joinedCourses.joined[course.uuid]">{{ course.description | limitTo:50 }}<span ng-if="course.description.length > 50">...</span></div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="font-oblique text-center" ng-if="courseLoading">正在加载...</div>
+        <div class="font-oblique text-center" ng-if="!courseLoading && !courses.length">没有找到在线课程。</div>
+    </div>
+</section>

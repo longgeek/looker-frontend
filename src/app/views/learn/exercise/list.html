@@ -1,0 +1,44 @@
+<div class="bsection one" ng-include="'app/views/learn/exercise/one.html'"></div>
+<section class="learn-list-section gray-bg">
+    <div class="container text-center p-b-xl">
+        <div class="p-t-sm">
+            <ul class="learn-classify" ng-init="courseClassify = 'all'">
+                <li>
+                    <a ng-click="courseClassify = 'all'" ng-class="{'active': courseClassify === 'all' || !courseClassify}">All</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Python'" ng-class="{'active': courseClassify === 'Python'}">Python</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Web Front(HTML, CSS, Javascript)'" ng-class="{'active': courseClassify === 'Web Front(HTML, CSS, Javascript)'}">Web Front</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="p-w-m">
+                    <div class="exercise-item gray-bg" ng-repeat="exercise in exercises" ui-sref="learn.exercise.detail({ ud: exercise.uuid })">
+                        <div class="row">
+                            <div class="col-md-2 no-paddings text-center">
+                                <img src="assets/icons/exercise.svg" class="img-square exercise-icon">
+                            </div>
+                            <div class="col-md-5">
+                                <a class="exercise-title">{{ exercise.name }}</a>
+                                <small>{{ exercise.description }}</small>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="text-navy pull-right m-l-md m-t-xs" ng-if="joinedExercises.joined[exercise.uuid]"><i class="fa fa-level-up"></i> {{ joinedExercises.joined[exercise.uuid].completed_percentage }}%</span>
+                                <uib-progressbar class="progress-mini m-t-sm" value="joinedExercises.joined[exercise.uuid].completed_percentage"></uib-progressbar>
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <span class="exercise-tag-item gray-bg">{{ exercise.tech }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

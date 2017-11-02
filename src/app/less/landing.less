@@ -1,0 +1,376 @@
+.landing-page {
+    /*------------------------------
+        NAVBAR START
+    ------------------------------*/
+    .navbar-default {
+        margin: 0;
+        background-color: #FFF;
+        border-bottom: 1px solid @cyan-gray;
+        border-radius: 0;
+        height: 60px;
+    }
+
+    .navbar-default .navbar-brand {
+        padding: 15px 20px;
+        color: @flat-color;
+        transition-duration: 0.7s;
+        height: 100%;
+        letter-spacing: 0.050em;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .navbar-logo {
+        padding: 12px 0;
+        width: 45px;
+    }
+
+    .navbar-default .navbar-brand:hover {
+        color: @navy;
+    }
+
+    .navbar-default .navbar-nav > li > a.white {
+        color: #FFF;
+    }
+    .navbar-default .navbar-nav > li > a {
+        color: @flat-color;
+        font-size: 16px;
+        font-weight: 500;
+        border-top: 3px solid transparent;
+        transition-duration: 0.7s;
+        padding-top: 11px;
+        padding-bottom: 12px;
+        line-height: 32px;
+        outline: 0;
+    }
+
+    .navbar-default .navbar-nav > li.current > a {
+        color: @navy;
+        border-top: 3px solid @navy;
+    }
+
+    .navbar-default .navbar-nav > li > a:hover {
+        color: @navy;
+    }
+
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:hover,
+    .navbar-default .navbar-nav > .open > a:focus {
+        background-color: transparent;
+        color: inherit;
+    }
+
+    .navbar-collapse {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .navbar-collapse.in {
+        overflow-y: auto;
+        padding: 0;
+    }
+
+    .navbar-collapse.in .navbar-nav {
+        margin: 0;
+    }
+
+    .navbar-default .navbar-nav > li > .user-img {
+        padding: 7px 15px;
+        border: none;
+    }
+    .navbar-default .navbar-nav > li > .user-img > .user-img-background {
+        height: 46px;
+        width: 46px;
+        border-radius: 50%;
+    }
+    .navbar-default .navbar-nav > li > .user-img:hover .user-img-background {
+        background: @cyan-gray;
+    }
+    .navbar-default .navbar-nav > li > .user-img .default-user-img {
+        background: url('/assets/images/user-28.png') center 9px no-repeat;
+    }
+    .navbar-default .navbar-nav > li > .user-img .default-user-img > .img-circle {
+        width: 28px;
+        height: 28px;
+        margin-top: 9px;
+    }
+    .navbar-default .navbar-nav > li a.signin > button,
+    .navbar-default .navbar-nav > li a.signup > button {
+        min-width: 100px;
+    }
+    .navbar-default .navbar-nav > li a.signin {
+        padding: 12px 10px;
+        border: none;
+    }
+    .navbar-default .navbar-nav > li a.signup {
+        padding: 12px 0;
+        border: none;
+    }
+    .learn-type-dropdown__menu {
+        min-width: 200px !important;
+        margin-top: 0px !important;
+    }
+    .user-profile-dropdown__menu {
+        margin-top: 0px !important;
+        min-width: 255px;
+    }
+    .learn-type-dropdown__menu,
+    .user-profile-dropdown__menu {
+        font-size: 14px;
+        border-radius: 0;
+        box-shadow: none;
+        border-color: @cyan-gray;
+        border-width: 0 1px 1px 1px;
+        border-style: solid;
+        box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+        padding: 0;
+    }
+    .learn-type-dropdown__menu .divider,
+    .user-profile-dropdown__menu .divider {
+        background-color: @cyan-gray;
+        margin: 0;
+    }
+    .learn-type-dropdown__menu > li > a,
+    .user-profile-dropdown__menu > li > a {
+        margin: 0;
+        border-radius: 0;
+        color: @flat-color;
+        padding: 15px 25px;
+    }
+    .learn-type-dropdown__menu > li > a > span,
+    .user-profile-dropdown__menu > li > a > span {
+        margin-top: 4px;
+        border-radius: 4px;
+        padding: 4px 8px 3px 8px;
+    }
+    .user-profile-dropdown__menu > li > a > i {
+        width: 20px;
+        text-align: left;
+    }
+    .remind-dropdown.open .dropdown-menu,
+    .learn-type-dropdown.open .dropdown-menu,
+    .user-profile-dropdown.open .dropdown-menu {
+        display: none;
+    }
+    .remind-dropdown:hover .dropdown-menu,
+    .learn-type-dropdown:hover .dropdown-menu,
+    .user-profile-dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+    .learn-type-dropdown__menu > li > a:hover,
+    .user-profile-dropdown__menu > li > a:hover {
+        background-color: @cyan-gray;
+    }
+    .learn-type-dropdown__menu > li > a:focus,
+    .user-profile-dropdown__menu > li > a:focus {
+        background-color: @cyan-gray;
+    }
+
+    .user-profile-img {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-left: -8px;
+        background: @cyan-gray;
+        border: 10px solid #FFF;
+    }
+    .user-profile-img:hover {
+        border: 10px solid @cyan-gray;
+    }
+    .user-profile-link {
+        font-size: 14px;
+        color: @flat-color;
+    }
+    .user-profile-link:hover {
+        cursor: pointer;
+        color: @navy;
+    }
+    .user-profile-balance {
+        font-size: 18px;
+    }
+
+    .remind-learn {
+        width: 30px;
+        height: 100%;
+    }
+    .remind-animated {
+        position: absolute;
+        top: 16px;
+        width: 28px;
+        height: 28px;
+        background-color: @navy;
+        border-radius: 100%;
+        -webkit-animation: sk-pulseScaleOut 2s infinite ease-in-out;
+        animation: sk-pulseScaleOut 2s infinite ease-in-out;
+    }
+    .remind-animated-dot {
+        position: absolute;
+        top: 25px;
+        left: 24px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        background: #00bfa5;
+        box-shadow: 0px 0px 5px #00bfa5;
+    }
+    .remind-dropdown > a {
+        height: 60px;
+    }
+    .remind-dropdown__menu {
+        min-width: 250px;
+        font-size: 14px;
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #e9e9e9;
+        border-width: 0 1px 1px 1px;
+        border-style: solid;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+        padding: 0;
+    }
+    .remind-learn.none {
+        .remind-animated {
+            background: @light-gray;
+            -webkit-animation: none;
+            animation: none;
+        }
+        .remind-animated-dot {
+            background: @dark-gray;
+            box-shadow: 0 0 5px @dark-gray;
+        }
+    }
+    .remind-learn.quit {
+        .remind-animated {
+            background: @red;
+        }
+        .remind-animated-dot {
+            background: @red;
+            box-shadow: 0 0 5px @red;
+        }
+    }
+    .remind-dropdown > a:hover {
+        .remind-learn {
+            .remind-animated {
+                background: fadeout(@navy, 50%);
+                -webkit-animation: none;
+                animation: none;
+            }
+            .remind-animated-dot {
+                background: @navy;
+                box-shadow: 0 0 5px @navy;
+            }
+        }
+        .remind-learn.none {
+            .remind-animated {
+                background: @gray;
+            }
+            .remind-animated-dot {
+                background: @dark-gray;
+                box-shadow: 0 0 5px @dark-gray;
+            }
+        }
+        .remind-learn.quit {
+            .remind-animated {
+                background: fadeout(@red, 50%);
+            }
+            .remind-animated-dot {
+                background: @red;
+                box-shadow: 0 0 5px @red;
+            }
+        }
+    }
+
+
+    /*------------------------------
+        EXTRA SMALL DEVICES
+    ------------------------------*/
+    @media (max-width: 767px) {
+        .navbar-header {
+            margin: 0;
+            display: block;
+            float: none;
+            height: 50px;
+        }
+        .navbar-collapse {
+            box-shadow: none;
+        }
+        .navbar-default {
+            height: 50px;
+            padding-top: 0;
+        }
+        .navbar-logo {
+            padding: 5px 0 0 15px;
+            width: 55px;
+        }
+        .navbar-default .navbar-toggle {
+            margin: 0;
+            background-color: @navy;
+            border: 0;
+            border-radius: 0;
+            height: 50px;
+            width: 50px;
+            color: #FFFFFF;
+            font-size: 24px;
+        }
+        .navbar-default .navbar-toggle:hover,
+        .navbar-default .navbar-toggle:focus {
+            background-color: @navy;
+        }
+        .navbar-brand{
+            top: -9px;
+            position: relative;
+        }
+        .navbar-default .navbar-nav > li > .user-img {
+            margin: 0;
+        }
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+            color: #FFF;
+        }
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+            color: @navy;
+        }
+        .navbar-default .navbar-nav > li a.signup {
+            padding: 6px 10px;
+        }
+        .remind-dropdown.open .dropdown-menu,
+        .learn-type-dropdown.open .dropdown-menu,
+        .user-profile-dropdown.open .dropdown-menu {
+            display: block;
+        }
+        .remind-dropdown:hover .dropdown-menu,
+        .learn-type-dropdown:hover .dropdown-menu,
+        .user-profile-dropdown:hover .dropdown-menu {
+            display: block;
+            position: static;
+            float: none;
+            width: auto;
+            background-color: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+    }
+
+    @media (max-width:767px) {
+        .navbar-default > .container {
+            padding: 0;
+        }
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+            color: @text-color;
+        }
+        .navbar-collapse.in {
+            background: #FFF;
+        }
+    }
+    @media (min-width: 1200px) {
+    }
+    @media (min-width: 992px) {
+    }
+    /*------------------------------
+        NAVBAR END
+    ------------------------------*/
+}

@@ -1,0 +1,126 @@
+<section class="p-h-llg">
+    <div class="container">
+        <form role="form" name="recharge_form" class="white-bg p-lg account-recharge-form" action="/api/v1/views/pay/submit" method="post" target="_blank" novalidate>
+            <div class="account-recharge">
+                <div class="alert alert-success">
+                    <div class="m-b-sm">充值有优惠：活动期间（2017-10-01 前），充 100 送 100。</div>
+                    <div>邀请享返现：邀请好友，享优惠学习。<a class="alert-link" ui-sref="home.invite">查看更多详情。</a></div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-xs-12 col-md-1 control-label recharge-value-label">充值金额</label>
+                        <div class="col-xs-12 col-sm-4 col-md-2">
+                            <input type="number" step="1" min="2" class="form-control" name="amount" autocomplete="off" ng-model="recharge.amount" required>
+                            <input type="text" style="display: none;">
+                        </div>
+                        <div class="col-xs-12 col-md-9" ng-if="rechargeValueError">
+                            <p class="recharge-err-text">单笔充值金额最少 2 元，最大充值金额 1500 元。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="col-xs-12 col-md-1 control-label recharge.bankcode-label">支付方式</label>
+                    <div class="col-xs-12 col-md-11">
+                        <ul class="recharge-ul">
+                            <li>
+                                <input type="radio" id="alipay" value="alipay" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon alipay" for="alipay"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="wechat" value="wxpay" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon wechat" for="wechat"></label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- div class="row p-t-sm">
+                    <div class="col-xs-11 col-xs-offset-1">
+                        <ul class="recharge-ul">
+                            <li>
+                                <input type="radio" id="CMB" value="CMB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon CMB" for="CMB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="BOC" value="BOC" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon BOC" for="BOC"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="ICBC" value="ICBC" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon ICBC" for="ICBC"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="CCB" value="CCB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon CCB" for="CCB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="ABC" value="ABC" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon ABC" for="ABC"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="PSBC" value="PSBC" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon PSBC" for="PSBC"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="COMM" value="COMM" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon COMM" for="COMM"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="SPD" value="SPD" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon SPD" for="SPD"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="CEB" value="CEB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon CEB" for="CEB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="CITIC" value="CITIC" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon CITIC" for="CITIC"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="PAB" value="PAB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon PAB" for="PAB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="CMBC" value="CMBC" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon CMBC" for="CMBC"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="CGB" value="CGB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon CGB" for="CGB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="CIB" value="CIB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon CIB" for="CIB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="BOB" value="BOB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon BOB" for="BOB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="BJRCB" value="BJRCB" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon BJRCB" for="BJRCB"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="SHBACK" value="SHBACK" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon SHBACK" for="SHBACK"></label>
+                            </li>
+                            <li>
+                                <input type="radio" id="HZBACK" value="HZBACK" name="bankcode" ng-model="recharge.bankcode">
+                                <label class="banks-icon HZBACK" for="HZBACK"></label>
+                            </li>
+                        </ul>
+                    </div>
+                </div !-->
+                <div class="recharge-submit-box">
+                    <div class="row">
+                        <div class="col-xs-11 col-xs-offset-1">
+                            <button type="button" class="btn btn-w-m btn-primary" ng-click="rechargeForm()">充值</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+

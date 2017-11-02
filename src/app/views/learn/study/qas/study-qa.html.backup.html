@@ -1,0 +1,138 @@
+<div ng-controller="StudyQaController" class="study-qa-container animated fadeInLeft" data-drag="true" jqyoui-draggable data-jqyoui-options="{containment: '.study', handle: '.code-label', cursor: 'move'}" ng-if="showStudyQa">
+    <div class="code-header">
+        <div class="code-header__controller">
+            <span class="pull-left">
+                <span class="study-console-close" ng-click="showStudyQaBox()"><i class="fa fa-square text-danger"></i></span>
+            </span>
+            <div class="code-label"><span>&nbsp; Q & A</span></div>
+        </div>
+    </div>
+    <div class="study-qa-list">
+        <h3 class="m-t-none">在学习中遇到问题?</h3>
+        <p>请在已有的问答列表中检索相近提问，快速获取答案。也可提交新的问题，系统将自动派发给专业相符的老师实时作答。</p>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="在这里输入你所遇到的问题." ng-model="newQa.title" required>
+        </div>
+        <div class="form-group" ng-if="newQa.title">
+            <summernote height="50" ng-model="newQa.content" placeholder="问题详情." on-paste="summernotePaste(evt)" config="summernoteConfig"></summernote>
+        </div>
+        <div class="text-center p-b-m" ng-if="newQa.title">
+            <button type="submit" class="btn btn-sm btn-block btn-primary" ng-model="newQa.content" ng-disabled="!newQa.content || !newQa.title" ng-click="submitNewQa()">提交问题</button>
+        </div>
+        <div class="p-lg text-center" ng-if="stageQas.length === 0 && MyAllMessages.qa.count === 0">
+            <p class="p-w-md font-oblique">本节没有找到 QA 记录</p>
+        </div>
+        <div class="text-center p-b-md p-t-m" ng-show="stageQas.length !== 0 || MyAllMessages.qa.count !== 0">
+            <ul class="learn-classify small">
+                <li>
+                    <a ng-click="qasClassify = 'all'" ng-class="{'active': qasClassify === 'all'}">ALL</a>
+                </li>
+                <li>
+                    <a ng-click="qasClassify = MyAllMessages" ng-class="{'active': qasClassify === MyAllMessages}">NEW <span ng-class="{'text-warning': MyAllMessages.qa.count > 0}">({{ MyAllMessages.qa.count }})</span></a>
+                </li>
+                <li>
+                    <a ng-click="qasClassify = user.user.uuid" ng-class="{'active': qasClassify === user.user.uuid}">MY</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="study-qa-list__ul" ng-if="stageQas.length !== 0 || MyAllMessages.qa.count !== 0">
+            <li ng-repeat="stageQa in stageQas" ng-click="getQaDetail(stageQa.uuid)" ng-class="{'active': currentQaDetail.uuid === stageQa.uuid}" ng-if="qasClassify === 'all' || stageQa.user_uuid === qasClassify || qasClassify.qa['100'].hasOwnProperty(stageQa.uuid) || qasClassify.qa['101'].hasOwnProperty(stageQa.uuid)">
+                <a>
+                    <div class="pull-right">
+                        <span class="fa fa-circle text-gray" ng-if="stageQa.is_resolved"></span>
+                        <span class="fa fa-circle text-navy" ng-if="!stageQa.is_resolved && !MyAllMessages.qa['100'].hasOwnProperty(stageQa.uuid) && !MyAllMessages.qa['101'].hasOwnProperty(stageQa.uuid)"></span>
+                        <span class="fa fa-circle text-warning" ng-if="!stageQa.is_resoved && MyAllMessages.qa['100'].hasOwnProperty(stageQa.uuid) || MyAllMessages.qa['101'].hasOwnProperty(stageQa.uuid)"></span>
+                    </div>
+                    <!-- p class="ticket-content-text no-margins child-p-no-margins" ng-bind-html="stageQa.content | limitTo: 40 | toTrusted"><span ng-if="stageQa.content.length > 30">...</span></p -->
+                    <p class="ticket-content-text no-margins child-p-no-margins">{{ stageQa.title }} </p>
+                </a>
+            </li>
+        </ul>
+        <ul class="study-qa-list__ul" ng-if="otherStageLists.length !== 0 && qasClassify === MyAllMessages">
+            <li ng-repeat="stageQa in otherStageLists" ng-click="getQaDetail(stageQa.uuid)">
+                <a>
+                    <div class="pull-right">
+                        <span class="fa fa-circle text-warning"></span>
+                    </div>
+                    <!-- p class="ticket-content-text no-margins child-p-no-margins" ng-bind-html="stageQa.content | limitTo: 40 | toTrusted"><span ng-if="stageQa.content.length > 30">...</span></p -->
+                    <p class="ticket-content-text no-margins child-p-no-margins">{{ stageQa.title }} </p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="study-qa-content" scroll-glue-bottom>
+        <div class="absolute-center position-absolute" ng-if="!showQaWindow && currentQaDetail">
+            <div class="study-quit-load sk-spinner sk-spinner-three-bounce p-b-md m-t-n-lg">
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+            </div>
+        </div>
+        <div class="absolute-center position-absolute" ng-if="!showQaWindow && !currentQaDetail">
+            <div class="text-center">
+                <div class="m-b-sm"><img src="assets/icons/qa.svg" weight="50" height="50"></div>
+                <p class="text-muted">QA 问答</p>
+            </div>
+        </div>
+        <div class="animated fadeIn" ng-if="showQaWindow">
+            <div class="study-qa-title text-right">
+                <div class="chat-element p-b-none m-t-md right">
+                    <a class="no-margins pull-right">
+                        <img gravatar-src="currentQaDetail.created_by.gravatar" class="img-circle" width="24" height="24">
+                    </a>
+                    <div class="small text-muted font-oblique m-t-xs m-r-lg m-b-xs">
+                        <a class="m-t-n-xs border-radius-2 pull-left btn btn-xs btn-primary" ng-if="!currentQaDetail.is_resolved && currentQaDetail.created_by.uuid === user.user.uuid" ng-click="studyQaMakeResolved(currentQaDetail.uuid)">标记为已解决</a>
+                        <a class="m-t-n-xs border-radius-2 pull-left btn btn-xs btn-default font-oblique" ng-if="currentQaDetail.is_resolved" disabled="disabled">已解决</a>
+                        <span>{{ currentQaDetail.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }} - {{ currentQaDetail.created_by.nickname }}</span>
+                    </div>
+                    <div class="media-body m-r-lg p-xs text-left border-radius-6 m-t" style="background: #eff7f3;">
+                        <h4 class="m-t-none m-b-sm">{{ currentQaDetail.title }}</h4>
+                        <div class="m-b-xs m-t-xs child-p-no-margins" ng-if="!currentQaDetail.content"></div>
+                        <div class="m-b-xs m-t-xs child-p-no-margins" ng-if="currentQaDetail.content" bind-html-compile="currentQaDetail.content | summernoteImage"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-element p-b-none m-t-md animated fadeIn">
+                <div class="media-body gray-bg p-sm border-radius-6">
+                    <div class="small text-muted font-oblique m-b-xs"><i class="fa fa-bullhorn"></i> 系统通知:</div>
+                    <div class="small text-warning m-b-xs font-oblique m-b-xs m-l-xs">- 系统已收到 [{{ currentQaDetail.created_by.nickname }}] 的问题, 正在派送问题到相关老师, 请等待.</div>
+                    <div class="small text-warning m-b-xs font-oblique m-b-xs m-l-xs" ng-if="currentQaDetail.teacher.uuid">- [{{ currentQaDetail.created_by.nickname }}] 的问题已被 [{{ currentQaDetail.teacher.nickname }}] 老师接受.</div>
+                    <div class="small text-warning m-b-xs font-oblique m-b-xs m-l-xs" ng-if="currentQaDetail.is_resolved">- 当前问题已被关闭.</div>
+                </div>
+            </div>
+            <div class="chat-element p-b-none m-t-md animated fadeIn" ng-repeat="replie in currentQaDetail.replies track by $index" ng-class="{true: 'right'}[replie.created_by.uuid === user.user.uuid]">
+                <a class="no-margins" ng-class="{true: 'pull-left', false: 'pull-right'}[replie.is_teacher]">
+                    <img gravatar-src="replie.created_by.gravatar" class="img-circle" width="24" height="24">
+                </a>
+                <div class="small text-muted text-right font-oblique m-t-xs m-r-lg m-b-xs" ng-if="!replie.is_teacher">{{ replie.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }} - {{ replie.created_by.nickname }}</div>
+                <div class="small text-muted text-left font-oblique m-t-xs m-l-lg m-b-xs" ng-if="replie.is_teacher">{{ replie.created_by.nickname }} - {{ replie.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</div>
+                <div class="media-body m-l-lg m-r-lg text-left" style="word-wrap: break-word;">
+                    <div class="font-bold gray-bg p-xs border-radius-6 child-p-no-margins" ng-class="{true: 'pull-left', false: 'pull-right'}[replie.is_teacher]" bind-html-compile="replie.content | summernoteImage"></div>
+                </div>
+            </div>
+            <div class="study-qa-reply" ng-if="!currentQaDetail.is_resolved && currentQaDetail.created_by.uuid === user.user.uuid">
+                <div class="form-group">
+                    <summernote focus height="100" ng-model="replyMsg.content" placeholder="请输入回复内容." on-paste="summernotePaste(evt)" config="summernoteConfig"></summernote>
+                </div>
+                <button type="button" class="btn btn-block btn-primary btn-w-m m-t-n-xs" ng-click="replyQaContent()" ng-model="replyMsg.content" ng-disabled="!replyMsg.content"><span class="fa fa-reply"></span> 回复</button>
+            </div>
+            <div class="study-qa-reply" ng-if="currentQaDetail.is_resolved && currentQaDetail.created_by.uuid === user.user.uuid">
+                <div class="form-group">
+                    <textarea class="form-control resize-none" placeholder="标记为'已解决'的问题无法继续回复, 如有需要请提交新的问题." name="reply_msg" rows="3" wrap="physical" autocomplete="off" disabled></textarea>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-block btn-primary btn-w-m m-t-n-xs" disabled><strong><span class="fa fa-send"> </span> 回复</strong></button>
+                </div>
+            </div>
+            <div class="study-qa-reply" ng-if="currentQaDetail.created_by.uuid !== user.user.uuid">
+                <div class="form-group">
+                    <textarea class="form-control resize-none" placeholder="当前问题由其他用户提交, 无法回复. 如果你在学习遇到问题, 请提交相关问题给我们." name="reply_msg" rows="3" wrap="physical" autocomplete="off" disabled></textarea>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-block btn-primary btn-w-m m-t-n-xs" disabled><strong><span class="fa fa-send"> </span> 回复</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

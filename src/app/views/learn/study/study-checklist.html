@@ -1,0 +1,22 @@
+<ul class="study-check-list">
+    <li id="study-check-list__{{ $index }}" ng-repeat="check_list in task.check_lists" ng-class="{'active': currentCheckList.index === $index && currentCheckList.index !== task.check_lists.length - 1 || currentCheckList.uuid === check_list.uuid && completeCheckList !== currentCheckList.uuid, 'success': currentCheckList.index > $index || currentCheckList.index === task.check_lists.length - 1 && completeCheckList === currentCheckList.uuid, 'lock': currentCheckList.index < $index}" ng-if="completed_tasks.indexOf(taskSession.source.current_task_uuid) === -1" ng-click="toStudyCheckList('study-check-list__' + $index)">
+        <div class="study-check-list__number">
+            <span class="font-bold">{{ $index + 1 }}.</span>
+        </div>
+        <div class="study-check-list__mark">
+            <span class="fa fa-dot-circle-o" ng-if="check_list.check_required" tooltip-placement="left" uib-tooltip="必做任务" tooltip-class="tooltip-dark"></span>
+            <span class="fa fa-circle-o" ng-if="!check_list.check_required" tooltip-placement="left" uib-tooltip="可选任务" tooltip-class="tooltip-dark"></span>
+        </div>
+        <div class="study-check-list__content" ng-bind-html="check_list.content | userUrl | toMarkDown | toTrusted"></div>
+    </li>
+    <li class="success" id="study-check-list__{{ $index }}" ng-repeat="check_list in task.check_lists" ng-if="completed_tasks.indexOf(taskSession.source.current_task_uuid) !== -1" ng-click="toStudyCheckList('study-check-list__' + $index)">
+        <div class="study-check-list__number">
+            <span class="font-bold">{{ $index + 1 }}.</span>
+        </div>
+        <div class="study-check-list__mark">
+            <span class="fa fa-dot-circle-o" ng-if="check_list.check_required" tooltip-placement="left" uib-tooltip="必做任务" tooltip-class="tooltip-dark"></span>
+            <span class="fa fa-circle-o" ng-if="!check_list.check_required" tooltip-placement="left" uib-tooltip="可选任务" tooltip-class="tooltip-dark"></span>
+        </div>
+        <div class="study-check-list__content" ng-bind-html="check_list.content | userUrl | toMarkDown | toTrusted"></div>
+    </li>
+</ul>

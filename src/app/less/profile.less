@@ -1,0 +1,132 @@
+.page-submit-btn,
+.profile-submit-btn {
+    border-radius: 0;
+    font-size: 14px;
+    outline: 0;
+}
+
+.page-form-control,
+.profile-form-control {
+    height: 40px;
+    padding: 8px 36px 8px 12px;
+    line-height: 1.467;
+    color: #34495e;
+    border-radius: 0;
+    font-size: 14px;
+    text-indent: 3px;
+    border-color: @cyan-gray;
+}
+
+.profile-box {
+    .tags {
+        height: 40px;
+        padding: 8px 36px 8px 12px;
+        line-height: 1.467;
+        color: #34495e;
+        border-radius: 0;
+        font-size: 14px;
+        text-indent: 3px;
+        border-color: #edeff1;
+        box-shadow: none;
+
+        input {
+            margin: 0 2px;
+            height: 24px;
+        }
+        .tag-list {
+            .tag-item {
+                height: 24px;
+                margin: 0 2px;
+                line-height: 23px;
+                background: @navy;
+                color: #fff;
+                border: 1px solid #fff;
+
+            }
+            .remove-button {
+                color: #fff;
+                display: inline-block;
+            }
+        }
+    }
+    .tags.focused {
+        box-shadow: none;
+        border: 1px solid @navy;
+    }
+    tags-input.ng-invalid .tags {
+        box-shadow: none;
+    }
+
+}
+.profile-box .form-group label {
+    position: absolute;
+    margin-top: -25px;
+    right: 40px;
+    color: #bfc9ca;
+}
+.profile-box .form-group > input:focus ~ label {
+    color: @navy;
+}
+.profile-box .form-control {
+    border-width: 1px;
+}
+.profile-box.active:hover {
+    cursor: pointer;
+    background: #19B293;
+}
+.profile-box.active:hover > h3 {
+    color: #FFF;
+}
+.profile-user-img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    background: url('/assets/images/user-120.png') center 0 no-repeat;
+}
+.profile-user-img > .img-circle {
+    width: 120px;
+    height: 120px;
+}
+.profile-box .ladda-button {
+    padding: 10px 16px;
+    font-size: 14px;
+    -webkit-font-smoothing: inherit;
+}
+.profile-select {
+    background: #FFF;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+}
+.profile-select > li {
+    margin: 2px 0;
+    padding: 8px 20px;
+    display: block;
+    cursor: pointer;
+}
+.profile-select > li.active {
+    background: @cyan-gray;
+}
+.profile-select > li.active:hover {
+    background: @cyan-gray;
+}
+.profile-select > li > a {
+    font-size: 16px;
+    line-height: 24px;
+    color: @flat-color;
+}
+.profile-select > li:hover {
+    background: @cyan-gray;
+}
+.profile-box {
+    .vertical-timeline-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .vertical-timeline-icon i {
+        margin-left: -12px;
+        margin-top: -8px;
+    }
+    .vertical-timeline-block {
+        margin: 2em 0 0 5px;
+    }
+}

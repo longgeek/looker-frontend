@@ -1,0 +1,12 @@
+<div class="inmodal">
+    <div class="modal-header">
+        {{ imagePreviewInfo.name }}
+        <a class="close" ng-click="close()">×</a>
+    </div>
+    <div class="modal-body white-bg">
+        <img ng-src="{{ imagePreviewInfo.link }}">
+        <a class="zoom" title="查看原图" href="{{ imagePreviewInfo.link }}" target="_blank">
+            <span class="fa fa-search"></span>
+        </a>
+    </div>
+</div>

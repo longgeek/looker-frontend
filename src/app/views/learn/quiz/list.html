@@ -1,0 +1,43 @@
+<div class="bsection one" ng-include="'app/views/learn/quiz/one.html'"></div>
+<section class="learn-list-section quiz-section gray-bg" oc-lazy-load="wu.masonry">
+    <div class="container text-center p-b-xl">
+        <div class="p-t-sm">
+            <ul class="learn-classify" ng-init="courseClassify = 'all'">
+                <li>
+                    <a ng-click="courseClassify = 'all'" ng-class="{'active': courseClassify === 'all' || !courseClassify}">All</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Python'" ng-class="{'active': courseClassify === 'Python'}">Python</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Web Front(HTML, CSS, Javascript)'" ng-class="{'active': courseClassify === 'Web Front(HTML, CSS, Javascript)'}">Web Front</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-w-m" masonry="{ gutter: 30 }" load-images="false" preserve-order column-width="525" reload-on-resize>
+                    <div class="masonry-brick quiz-item white-bg" ng-repeat="quiz in quizs" ui-sref="learn.quiz.detail({ ud: quiz.uuid })">
+                        <div class="col-xs-2 no-paddings text-center">
+                            <img src="assets/icons/quiz.svg" class="img-square quiz-icon">
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="quiz-title m-b-xs">
+                                {{ quiz.name }}
+                            </div>
+                            <div class="quiz-desc">
+                                {{ quiz.description }}
+                            </div>
+                            <div class="m-t" ng-if="joinedQuizs.joined[quiz.uuid]">
+                                <span class="text-navy pull-right m-l-md m-t-n-xs"><i class="fa fa-level-up"></i> {{ joinedQuizs.joined[quiz.uuid].completed_percentage }}%</span>
+                                <uib-progressbar class="progress-mini" value="joinedQuizs.joined[quiz.uuid].completed_percentage"></uib-progressbar>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

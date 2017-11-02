@@ -1,0 +1,50 @@
+<div id="wrapper">
+    <div ng-include="'app/views/topnavbar/topnavbar.html'"></div>
+    <div class="wrapper wrapper-content no-paddings">
+        <div ui-view autoscroll="true">
+            <section class="help-header p-h-xl">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <h1>欢迎来到未来图谱在线学习平台!</h1>
+                            <p>
+                                <strong>未来图谱是什么？</strong>
+                                未来图谱(Fuvism)，一款全新打造的，基于云计算和大数据技术构建，采用沉浸式编程学习模式和任务通关激励机制，面向就业的工程师培养规划，专注于编程学习的平台。
+                            </p>
+                            <hr>
+                            <h2>开始崭新的学习体验</h2>
+                            <div class="col-sm-4 p-l-none m-b-sm">
+                                <a class="btn btn-success btn-block btn-lg" ui-sref="help.use.start">
+                                    新手上路
+                                    <i class="fa fa-arrow-circle-o-right"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 p-l-none m-b-sm">
+                                <a class="btn btn-success btn-block btn-lg" ui-sref="help.use.how-to">
+                                    如何选课
+                                    <i class="fa fa-arrow-circle-o-right"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 p-l-none m-b-sm">
+                                <a class="btn btn-success btn-block btn-lg" ui-sref="learn.plan">
+                                    职业规划
+                                    <i class="fa fa-arrow-circle-o-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="text-center">
+                                <img src="assets/images/help.svg" width="100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-arrow section-bottom-arrow animated fadeInDown"></div>
+            </section>
+            <div class="p-h-xl">
+                <div ng-include="'app/views/help/use/use-content.html'"></div>
+                <div ng-include="'app/views/help/faq/faq-content.html'"></div>
+            </div>
+        </div><!-- ui-view -->
+    </div>
+</div>

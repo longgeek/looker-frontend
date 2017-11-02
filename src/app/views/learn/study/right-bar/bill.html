@@ -1,0 +1,30 @@
+<div class="m-md">
+    <h4 class="text-white">交易</h4>
+    <small class="font-oblique">消费与充值记录.</small>
+</div>
+
+<div class="study-right-bill__timeline vertical-container dark-timeline" ng-if="studyRightBills.length !== 0">
+    <div class="vertical-timeline-block" ng-repeat="bill in studyRightBills">
+        <div class="vertical-timeline-icon study-bg text-navy" ng-class="{'text-warning': bill.ctype === 'outgoing'}">
+            <span class="fa fa-circle"></span>
+        </div>
+        <div class="vertical-timeline-content" ng-if="bill.ctype === 'outgoing'">
+            <h5 class="text-white m-t-none m-b-xs">
+                花费 {{ bill.amount }} 元
+                <div class="text-navy pull-right" tooltip-placement='left' uib-tooltip-html="('<span class=\'small text-navy\'>开始时间:</br>' + '{{ bill.start_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}' + '</br>结束时间:</br>' + '{{ bill.end_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}' + '</span>') | toTrusted">{{ bill.timing }}s</div>
+            </h5>
+            <span>
+                <small>课程单价: <i class="fa fa-rmb"></i> {{ bill.price }}</small>
+            </span>
+        </div>
+        <div class="vertical-timeline-content" ng-if="bill.ctype === 'incoming'">
+            <h5 class="text-white no-margins">
+                充值 {{ bill.amount }} 元
+                <div class="text-navy pull-right" tooltip-placement='left' uib-tooltip-html="('<span class=\'small text-navy\'>充值前余额:\&nbsp;' + '<span class=\'text-navy\'>{{ bill.balance_before }}</span>' + '</br>充值后余额:\&nbsp;' + '<span class=\'text-navy\'>{{ bill.balance_after }}</span>' + '</br><span> <i class=\'fa fa-clock-o\'>\&nbsp;{{ bill.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}'  +'</span>') | toTrusted"><i class="fa fa-ellipsis-h"></i></div>
+            </h5>
+        </div>
+    </div>
+</div>
+<div class="study-right-bill__none" ng-if="studyRightBills.length === 0">
+    <small class="font-oblique">没有找到记录.</small>
+</div>

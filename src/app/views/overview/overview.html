@@ -1,0 +1,141 @@
+<section class="p-h-xxl text-center white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="m-t-none">总览</h1>
+                <div class="section-text">最近学习过的课程</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-h-llg cyan-gray-bg">
+    <div class="container">
+        <div class="text-center font-oblique" ng-if="learnLoading">正在加载... </div>
+        <div class="p-lg text-center font-oblique" ng-if="!lastLearn && !learnLoading">
+            <h4>暂无记录, 你还没有开始任何课程的学习.</h4>
+        </div>
+        <div class="row" ng-if="lastLearn && !learnLoading">
+            <!-- div class="col-xs-12">
+                <calendar-heatmap data="example_data" color="color" overview="overview" handler="print" style="overflow: auto; background: #FFF;"></calendar-heatmap>
+            </div -->
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <div class="text-center font-oblique">
+                    <h4 class="m-t-none" ng-if="lastLearn">上次学习的课程</h4>
+                </div>
+                <ul class="overview-list" ng-if="lastLearn && !learnLoading">
+                    <li ng-repeat="learn in lastLearn.joined_sort track by $index" ng-click="goLastSubcourse(lastLearn.joined[learn].ctype, learn)" ng-if="$index === 0">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div ng-if="lastLearn.joined[learn].ctype === 'plan'">
+                                    <span class="title">
+                                        <span class="text-gray">Plan: </span>
+                                        {{ lastLearn.joined[learn].plan.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'course'">
+                                    <span class="title">
+                                        <span class="text-gray">在线课程: </span>
+                                        {{ lastLearn.joined[learn].course.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'project'">
+                                    <span class="title">
+                                        <span class="text-gray">项目实战: </span>
+                                        {{ lastLearn.joined[learn].project.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'lab'">
+                                    <span class="title">
+                                        <span class="text-gray">实验室: </span>
+                                        {{ lastLearn.joined[learn].lab.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'quiz'">
+                                    <span class="title">
+                                        <span class="text-gray">阶段测评: </span>
+                                        {{ lastLearn.joined[learn].quiz.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'exercise'">
+                                    <span class="title">
+                                        <span class="text-gray">练习题库: </span>
+                                        {{ lastLearn.joined[learn].exercise.name }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 m-t-xs">
+                                <span class="pull-right text-navy m-l">{{ lastLearn.joined[learn].completed_percentage }} %</span>
+                                <uib-progressbar class="progress-mini" value="lastLearn.joined[learn].completed_percentage"></uib-progressbar>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="pull-right">
+                                    <span class="fa fa-angle-right text-gray"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <div class="text-center font-oblique" ng-if="lastLearn && !learnLoading">
+                    <h4 ng-if="lastLearn">最近学习过的课程</h4>
+                </div>
+                <ul class="overview-list" ng-if="lastLearn && !learnLoading">
+                    <li ng-repeat="learn in lastLearn.joined_sort track by $index" ng-click="goLastSubcourse(lastLearn.joined[learn].ctype, learn)" ng-if="$index !== 0">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div ng-if="lastLearn.joined[learn].ctype === 'plan'">
+                                    <span class="title">
+                                        <span class="text-gray">Plan: </span>
+                                        {{ lastLearn.joined[learn].plan.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'course'">
+                                    <span class="title">
+                                        <span class="text-gray">在线课程: </span>
+                                        {{ lastLearn.joined[learn].course.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'project'">
+                                    <span class="title">
+                                        <span class="text-gray">项目实战: </span>
+                                        {{ lastLearn.joined[learn].project.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'lab'">
+                                    <span class="title">
+                                        <span class="text-gray">实验室: </span>
+                                        {{ lastLearn.joined[learn].lab.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'quiz'">
+                                    <span class="title">
+                                        <span class="text-gray">阶段测评: </span>
+                                        {{ lastLearn.joined[learn].quiz.name }}
+                                    </span>
+                                </div>
+                                <div ng-if="lastLearn.joined[learn].ctype === 'exercise'">
+                                    <span class="title">
+                                        <span class="text-gray">练习题库: </span>
+                                        {{ lastLearn.joined[learn].exercise.name }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 m-t-xs">
+                                <span class="pull-right text-navy m-l">{{ lastLearn.joined[learn].completed_percentage }} %</span>
+                                <uib-progressbar class="progress-mini" value="lastLearn.joined[learn].completed_percentage"></uib-progressbar>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="pull-right">
+                                    <span class="fa fa-angle-right text-gray"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

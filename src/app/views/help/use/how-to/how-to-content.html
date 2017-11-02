@@ -1,0 +1,15 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.use')">如何选课</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.use')"><a ui-sref="help.use.how-to">如何选课</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.use.how-to.articles({ 'articles_name': 'start-with-plan' })">我完全没有编程基础，如何选择课程？</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.how-to.articles({ 'articles_name': 'start-with-self' })">我有一些编程基础，如何选择课程？</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.how-to.articles({ 'articles_name': 'course-required' })">没有找到理想的课程，或没有相关课程？</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,45 @@
+<script type="text/javascript" src="bower_components/ace-diff/libs/diff_match_patch.js"></script>
+<script type="text/javascript" src="bower_components/ace-diff/dist/ace-diff.min.js"></script>
+
+<div class="study-checklist-diff" ng-if="task.tringtype === 'coding' || task.tringtype === 'webfront' || task.tringtype === 'webserver' || task.tringtype === 'javascript'">
+    <div class="study-checklist-diff__tips">{{ checkListOutput }}</div>
+    <div id="flex-container" ng-controller="StudyCheckListDiffController">
+        <div>
+            <div class="study-checklist-diff__bar text-navy">正确答案 {{ task.check_lists[currentCheckList.index].standard_answer.filename }}</div>
+            <div id="acediff-left-editor"></div>
+        </div>
+        <div id="acediff-gutter"></div>
+        <div>
+            <div class="study-checklist-diff__bar text-danger">你的代码 {{ fileObj.filename }}</div>
+            <div id="acediff-right-editor"></div>
+        </div>
+    </div>
+    <div class="study-checklist-diff__footer">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <button class="btn btn-primary btn-block" ng-click="closeModal()">我已知道代码错误，现在去更改。</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="study-checklist-diff" ng-if="task.tringtype === 'ipython' || task.tringtype === 'linuxbash'">
+    <div class="study-checklist-diff__tips">{{ checkListOutput }}</div>
+    <div id="flex-container" ng-controller="StudyCheckListDiffController">
+        <div>
+            <div class="study-checklist-diff__bar text-navy">标准代码</div>
+            <div id="acediff-left-editor"></div>
+        </div>
+        <div id="acediff-gutter"></div>
+        <div>
+            <div class="study-checklist-diff__bar text-danger">你的代码</div>
+            <div id="acediff-right-editor"></div>
+        </div>
+    </div>
+    <div class="study-checklist-diff__footer">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <button class="btn btn-primary btn-block" ng-click="closeModal()">我已知道代码错误，现在去更改。</button>
+            </div>
+        </div>
+    </div>
+</div>

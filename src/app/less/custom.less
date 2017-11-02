@@ -1,0 +1,119 @@
+a:focus,
+:focus {
+    outline: -webkit-focus-ring-color auto 0;
+}
+.absolute-center {
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.position-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+// .study-page ::-webkit-scrollbar {
+//   width: 2px;  /* for vertical scrollbars */
+//   height: 2px; /* for horizontal scrollbars */
+// }
+//
+// ::-webkit-scrollbar {
+//   width: 6px;
+//   height: 6px;
+// }
+//
+// ::-webkit-scrollbar-button,
+// ::-webkit-scrollbar-track,
+// ::-webkit-scrollbar-track-piece,
+// ::-webkit-scrollbar-corner,
+// ::-webkit-resizer {
+//     display: none !important;
+// }
+// ::-webkit-scrollbar-thumb {
+//   background: @navy;
+// }
+
+.overflow-auto {
+    overflow: auto;
+}
+::selection {
+    color: #FFF;
+    background: @navy;
+}
+.text-ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+.tooltip-dark.left .tooltip-arrow {
+    border-left-color: @flat-color;
+}
+.tooltip-dark .tooltip-inner {
+    color: #FFF;
+    background: @flat-color;
+}
+.tooltip-dark.top .tooltip-arrow {
+    border-top-color: @flat-color;
+}
+.tooltip-mini .tooltip-inner {
+    max-width: 60px;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+.tooltip-md .tooltip-inner {
+    max-width: 100px;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+.study-layer .tooltip {
+    display: none;
+}
+
+.loading-layer {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-style: oblique;
+    -webkit-justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition-delay: 0, 0.01s;
+    transition-delay: 0, 0.01s;
+    -webkit-transition: visibility 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    transition: visibility 0.25s ease-in-out, opacity 0.25s ease-in-out;
+}
+.loading-layer.margin-header {
+    top: 60px;
+}
+hr {
+    border-color: #ddd;
+}
+a.text-navy:hover {
+    color: darken(@navy, 8%);
+}

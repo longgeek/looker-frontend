@@ -1,0 +1,47 @@
+<div class="inmodal">
+    <div class="modal-header">
+        Python 技能
+        <a class="close" ng-click="close()">×</a>
+    </div>
+    <div class="modal-body white-bg no-paddings">
+        <div class="alert alert-info m-t-sm m-r-sm m-l-sm m-b-none">
+            <i class="fa fa-info-circle m-r-8"></i>
+            工单系统   工单系统是您与 Fuvism 最直接有效的交流平台，您可以通过工单系统来咨询任何问题，我们会第一时间为您解决。同时我们也欢迎您提交建议与意见。
+        </div>
+        <div class="homepage-learnings p-sm">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <dl class="learn-progress" ng-repeat="learn in lastLearn.joined_sort track by $index" ng-if="$index !== 0">
+                            <dt>
+                                <span>
+                                    {{ lastLearn.joined[learn].course.name }}
+                                </span>
+                            </dt>
+                            <dd>
+                                <span class="total"
+                                    tooltip-placement="top"
+                                    tooltip-class="tooltip-dark tooltip-mini"
+                                    uib-tooltip="{{ lastLearn.joined[learn].completed_percentage }}%"
+                                    ng-if="lastLearn.joined[learn].completed_percentage !== null">
+                                    <span class="progress" style="width: {{  lastLearn.joined[learn].completed_percentage }}%;"></span>
+                                </span>
+                                <span class="total"
+                                    tooltip-placement="top"
+                                    tooltip-class="tooltip-dark tooltip-mini"
+                                    uib-tooltip="0%"
+                                    ng-if="lastLearn.joined[learn].completed_percentage === null">
+                                    <span class="progress" style="width: 0%;"></span>
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer no-borders p-t-none">
+        <button type="button" class="btn btn-flat-dark" ng-click="close()">取消</button>
+        <button type="button" class="ladda btn btn-primary" ng-click="close()">确认</button>
+    </div>
+</div>

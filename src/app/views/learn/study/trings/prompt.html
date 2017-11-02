@@ -1,0 +1,28 @@
+<div class="col-xs-12 full-height no-paddings">
+    <ng-include src="'app/views/learn/study/trings/docs.html'"></ng-include>
+
+    <div class="full-height animated fadeIn" ng-class="{'col-xs-8': task.reference_material, 'col-xs-12': !task.reference_material}">
+        <div class="study-tring-content" ng-if="!task.topic_content">
+            <div class="col-xs-12 col-md-10 col-md-offset-1 full-height">
+                <div class="prompt full-height absolute-center">
+                    <h3 class="font-oblique font-bold"><span class="text-white">这道题已创建，但是没有内容。</span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="study-tring-content" ng-if="task.topic_content">
+            <div class="col-xs-12 col-md-8 col-md-offset-2 full-height">
+                <div class="study-tring-content__container p-w-m">
+                    <div class="absolute-center full-height">
+                        <div class="prompt-content">
+                            <div class="prompt-title font-oblique font-bold text-navy">{{ task.name }}</div>
+                            <div class="tring-markdown" ng-bind-html="task.topic_content.content | toMarkDown | toTrusted"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="study-footer-btn" ng-class="{'opacity-layer': !task.topic_content}">
+            <button type="button" class="ladda btn btn-w-m btn-primary animated fadeIn" ng-click="gotIt(true)" ng-disabled="!task.topic_content" ladda="studyLayer">完成阅读</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="inmodal">
+    <div class="modal-body">
+        <div class="text-center" ng-if="!study_quit || study_quit === 'reseting'">
+            <h3 class="m-t-none">重置本课代码</h3>
+            <button ng-click="resetConfirm()" type="button" class="ladda-button btn btn-w-m btn-sm btn-danger" ladda="study_quit">立即重置</button>
+            <button ng-click="cancel()" type="button" class="btn btn-w-m btn-sm btn-primary btn-outline" ng-if="!study_quit">取消重置</button>
+            <button type="button" class="btn btn-w-m btn-sm btn-primary" ng-if="study_quit" disabled>取消重置</button>
+        </div>
+        <div class="text-center animated fadeIn" ng-if="study_quit === true">
+            <h3 class="m-t-none">代码已重置</h3>
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                    <button ng-click="resetAction()" type="button" class="btn btn-block btn-sm btn-primary">
+                        窗口将在&nbsp;<timer interval="1000" countdown="4">{{countdown}}</timer>&nbsp;秒后关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

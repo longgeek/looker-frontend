@@ -1,0 +1,41 @@
+<div id="study-left-nav__container" class="study-left-nav__container" du-scroll-container scroll-to-sticky>
+    <div class="study-layer docs" ng-if="studyLayer"></div>
+    <div id="study-docs-container" class="p-t-xl">
+        <section id="study-docs" ng-if="!isFullScreen">
+            <div class="ibox no-margins">
+                <div class="ibox-title study-fixed-docs" ng-click="toStudyDocs()">
+                    <h5><span class="fa fa-file-text-o"></span>学习资料</h5>
+                </div>
+                <div class="ibox-content p-lg">
+                    <div class="study-docs-content" ng-if="task.reference_material">
+                        <h3 class="m-t-none">{{ task.name }}</h3>
+                        <div ng-bind-html="task.reference_material | toMarkDown| toTrusted"></div>
+                    </div>
+                    <div class="study-docs-content" ng-if="!task.reference_material">
+                        <h3 class="m-t-none">{{ task.name }}</h3>
+                        <p class="font-oblique small">这道题没有文档</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="study-task-container" class="p-t-xl" check-list-height ng-if="task.check_lists && task.check_lists.length !== 0">
+        <section id="study-task" ng-if="!isFullScreen">
+            <div class="ibox no-margins">
+                <div class="ibox-title" ng-click="toStudyTask()">
+                    <h5>
+                        <span class="fa fa-check-square-o"></span>课程任务
+                    </h5>
+                    <h5 class="pull-right">
+                        <span class="pull-right label task-status" ng-class="{true: 'label-primary'}[completed_tasks.indexOf(task.uuid) !== -1]">
+                            <span ng-if="completed_tasks.indexOf(task.uuid) !== -1">本课任务已全部完成</span>
+                            <span ng-if="completed_tasks.indexOf(task.uuid) === -1">{{ currentCheckList.index }}/{{ task.check_lists.length }} 完成</span>
+                        </span>
+                    </h5>
+                </div>
+                <div ng-include="'app/views/learn/study/study-checklist.html'" ng-controller="CheckListController"></div>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="inmodal">
+    <div class="modal-header">
+        {{ qa.title }}
+        <a class="close" ng-click="close()">×</a>
+    </div>
+    <div class="modal-body white-bg no-paddings animated fadeIn" ng-include="'app/views/qas/detail.html'"></div>
+    <div class="modal-footer no-borders">
+        <button type="button" class="ladda btn btn-flat-dark" ng-click="close()">关闭该窗口</button>
+    </div>
+</div>

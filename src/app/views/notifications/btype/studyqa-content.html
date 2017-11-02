@@ -1,0 +1,59 @@
+<div class="details" ng-if="notice.ctype === 'studyqa:replied'">
+    <h3 class="title">
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 有新的回复
+    </h3>
+    <p class="time">回复于: {{ notice.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <div class="content">
+        <a ui-sref="u.homepage({username: notice.params.reply.created_by.uuid})">{{ notice.params.reply.created_by.nickname }}</a>
+        回复了你的问答
+        <a ui-sref="home.qas.detail({ud: notice.params.studyqa.uuid})">
+            "{{ notice.params.studyqa.title }}":
+            {{ notice.params.reply.content }}
+        </a>
+    </div>
+</div>
+<div class="details" ng-if="notice.ctype === 'studyqa:accepted'">
+    <h3 class="title">
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 已被接受
+    </h3>
+    <p class="time">接受于: {{ notice.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <div class="content">
+        你的问答
+        <a ui-sref="home.qas.detail({ud: notice.params.studyqa.uuid})">
+            "{{ notice.params.studyqa.title }}"
+        </a>
+        已被
+        <a ui-sref="u.homepage({username: notice.params.accepted_by.uuid})">{{ notice.params.accepted_by.nickname }}</a>
+        老师接受，正在处理中，请耐心等待。
+    </div>
+</div>
+<div class="details" ng-if="notice.ctype === 'studyqa:resolved'">
+    <h3 class="title">
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 标记为已解决
+    </h3>
+    <p class="time">解决于: {{ notice.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <div class="content">
+        你的问答
+        <a ui-sref="home.qas.detail({ud: notice.params.uuid})">
+            "{{ notice.params.title }}"
+        </a>
+        已被老师标记为解决。
+    </div>
+</div>
+<div class="details" ng-if="notice.ctype === 'studyqa:attached'">
+    <h3 class="title">
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 上传了新的附件
+    </h3>
+    <p class="time">上传于: {{ notice.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <div class="content">
+        你的问答
+        <a ui-sref="home.qas.detail({ud: notice.params.uuid})">
+            "{{ notice.params.title }}"
+        </a>
+        上传了新的附件。
+    </div>
+</div>

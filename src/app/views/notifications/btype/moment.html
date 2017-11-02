@@ -1,0 +1,7 @@
+<div class="details" ng-if="n.ctype === 'moment:replied'">
+    <h6>
+        <i class="fa fa-comment-o m-r-8"></i>
+        你的 "圈子" 有新的评论
+    </h6>
+    <span class="time">评论于: {{ n.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+</div>

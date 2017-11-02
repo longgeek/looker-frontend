@@ -1,0 +1,105 @@
+.notifications-dropdown {
+    -webkit-font-smoothing: initial;
+    .fa-notifications {
+        width: 30px;
+        color: @dark-gray;
+    }
+    .fa-notifications.unread {
+        -moz-animation: push-alert;
+        -webkit-animation: push-alert;
+        -webkit-animation-duration: 2s;
+        animation-duration: 3s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+    }
+    .fa-notifications.unread:before {
+        color: @yellow;
+        content: "\f0f3";
+    }
+    .dropdown-menu.notifications {
+        width: 365px;
+        padding: 0;
+        margin-top: -1px;
+        .notifications-content {
+            .headers {
+                background: @light-gray;
+                padding: 10px 15px;
+                font-size: 12px;
+                .total {
+                    padding: 0 4px;
+                    font-weight: 700;
+                }
+            }
+            .items {
+                overflow: auto;
+                max-height: 300px;
+                .item {
+                    font-size: 12px;
+                    padding: 12px 15px;
+                    border-top: 1px solid #eee;
+                    word-wrap: break-word;
+                    h6 {
+                        margin: 0 0 8px;
+                        font-weight: 700;
+                        font-size: 12px;
+                        color: #999;
+                        line-height: 20px;
+                    }
+                    p {
+                        margin: 0;
+                        font-size: 12px;
+                        padding: 0 0 3px;
+                        line-height: 20px;
+                    }
+                    .time {
+                        color: #777;
+                        font-size: 12px;
+                    }
+                    .tips {
+                        .label {
+                            font-family: inherit;
+                            font-weight: inherit;
+                        }
+                        .label-default {
+                            color: @light-dark;
+                            background: @dark-gray;
+                        }
+                    }
+                }
+                .item.unread {
+                    h6 {
+                        color: @flat-color;
+                    }
+                }
+                .item:hover {
+                    cursor: pointer;
+                    background: rgba(243, 243, 243, 0.5);
+                }
+            }
+        }
+        .alert {
+            margin: 5px 0 8px;
+            padding: 5px 10px;
+            border-radius: 2px;
+            font-size: 10.2px;
+        }
+    }
+}
+
+.study-page {
+    .notifications-dropdown {
+        .dropdown-toggle {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+        .fa-notifications {
+            color: #4f5f6a;
+        }
+    }
+}
+.notifications-dropdown:hover {
+    .dropdown-menu {
+        display: block;
+    }
+}

@@ -1,0 +1,67 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed"><i class="fa fa-bars"></i></button>
+            <a ui-sref="home" class="navbar-brand">
+                <img src="assets/icons/logo-white.svg" ng-if="$state.is('home') || $state.includes('learn')">
+                <img src="assets/icons/logo-dark.svg" ng-if="!$state.is('home') && !$state.includes('learn')">
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ng-class="{'white': $state.includes('learn')}" href="http://blog.fuvism.com/articles/" target="_blank">博客</a>
+                </li>
+                <li ng-class="{current: $state.includes('home.moments')}">
+                    <a ng-class="{'white': $state.includes('learn')}" ui-sref="home.moments">圈子</a>
+                </li>
+                <li ng-class="{current: $state.includes('home.team')}">
+                    <a ng-class="{'white': $state.includes('learn')}" ui-sref="home.team">小组</a>
+                </li>
+                <li ng-class="{current: $state.is('home.qas') || $state.is('home.qas.my') || $state.is('home.qas.detail')}">
+                    <a ng-class="{'white': $state.includes('learn')}" ui-sref="home.qas">问答</a>
+                </li>
+                <li class="dropdown learn-type-dropdown" uib-dropdown ng-class="{current: $state.includes('learn')}">
+                    <a ui-sref="learn" class="dropdown-toggle">学习</a>
+                    <ul class="dropdown-menu animated fadeIn learn-type-dropdown__menu" ng-include="'app/views/topnavbar/learn/learn.html'"></ul>
+                </li>
+                <li class="dropdown notifications-dropdown" uib-dropdown ng-if="isAuthenticated()">
+                    <a class="dropdown-toggle">
+                        <span class="fa fa-bell fa-notifications" ng-class="{'unread': notifications.total > 0}"></span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeIn notifications" role="menu">
+                        <div ng-include="'app/views/topnavbar/notifications/notifications.html'"></div>
+                    </ul>
+                </li>
+                <li class="dropdown remind-dropdown" uib-dropdown ng-if="isAuthenticated()" ng-mouseenter="getStudyWorkspace()">
+                    <a class="dropdown-toggle no-borders" uib-dropdown-toggle>
+                        <div class="remind-learn" ng-class="{'none': !remindLearn.status, 'quit': remindLearn.status && remindLearn.quit}">
+                            <div class="remind-animated"></div>
+                            <div class="remind-animated-dot"></div>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu animated fadeIn remind-dropdown__menu" ng-style="{'true': {'display': 'block'}}[remindLearn.quit]" ng-include="'app/views/topnavbar/remind/remind.html'"></ul>
+                </li>
+                <li ng-if="!isAuthenticated()">
+                    <a class="signin" ui-sref="auth.login">
+                        <button type="button" class="btn btn-outline btn-primary">登录</button>
+                    </a>
+                </li>
+                <li ng-if="!isAuthenticated()">
+                    <a class="signup" ui-sref="auth.signup"><button class="btn btn-primary">注册</button></a>
+                </li>
+                <li class="dropdown user-profile-dropdown" uib-dropdown ng-if="isAuthenticated()" ng-mouseenter="getUserBalance()">
+                    <a class="dropdown-toggle user-img" uib-dropdown-toggle>
+                        <div class="user-img-background">
+                            <div class="default-user-img">
+                                <img class="img-circle" gravatar-src="user.user.gravatar">
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu animated fadeIn user-profile-dropdown__menu" ng-include="'app/views/topnavbar/user/user.html'"></ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+</nav>

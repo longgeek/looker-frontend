@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-xs-12">
+        <a class="btn btn-flat-dark btn-sm" ui-sref="learn.course.detail({ud: qa.course.uuid})" target="_blank"><i class="fa fa-eye m-r-8"></i>查看该课程</a>
+    </div>
+</div>
+<div class="row m-t-md">
+    <div class="col-xs-12 animated fadeIn">
+        <div class="contact-box">
+            <a ui-sref="learn.course.detail({ud: qa.course.uuid})" target="_blank">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img alt="image" class="img-circle m-t-xs img-responsive" src="assets/icons/course.svg">
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <h3><strong>{{ qa.course.name }}</strong></h3>
+                    <p>{{ qa.course.description }}</p>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </div>
+    </div>
+</div>

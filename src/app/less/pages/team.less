@@ -1,0 +1,201 @@
+.team-list-section {
+    background: @cyan-gray;
+    padding: 80px 0 50px;
+}
+.team-list {
+    background: #FFF;
+    padding: 40px 20px 30px;
+    text-align: center;
+    border-radius: 3px;
+    margin-bottom: 30px;
+
+    .status {
+        position: absolute;
+        right: 45px;
+        top: 25px;
+    }
+    .logo {
+        margin-top: 15px;
+        margin-bottom: 40px;
+    }
+    .name {
+        color: @flat-color;
+        font-size: 22px;
+        line-height: 32px;
+        margin-bottom: 15px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .description {
+        font-size: 14px;
+        line-height: 22px;
+        height: 40px;
+        overflow: hidden;
+    }
+    .list-group {
+        font-size: 13px;
+        color: @flat-color;
+    }
+}
+.team-list:hover {
+    color: #FFF;
+    cursor: pointer;
+    background: @navy;
+
+    .logo,
+    .name,
+    .description,
+    .list-group {
+        color: #FFF;
+    }
+    .status .label {
+        color: @flat-color;
+        background: #FFF;
+    }
+}
+
+.team-member-section {
+    background: #FFF;
+    padding: 40px 0;
+    border-top: 1px solid #e6edf4;
+}
+.team-member {
+    width: 100%;
+    text-align: center;
+    .title {
+        opacity: 0.5;
+        margin-bottom: 10px;
+    }
+    .progress-number {
+        font-size: 12px;
+    }
+}
+.team-member-list {
+    width: 8%;
+    margin-top: 20px;
+    display: inline-block;
+
+    img {
+        width: 45px;
+        height: 45px;
+        border: 1px solid #edeff1;
+        background: #EEE;
+        margin-bottom: 5px;
+    }
+    .name {
+        color: @flat-color;
+        opacity: 0.5;
+        font-size: 12px;
+        font-style: oblique;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin: 0 5px;
+    }
+}
+.team-course-section {
+    background: @cyan-gray;
+    padding: 40px 0 60px;
+    -webkit-user-select: none;
+
+    .title {
+        opacity: 0.5;
+        text-align: center;
+        margin: 0 20px 10px;
+
+        .tags {
+            margin-top: 20px;
+            color: #888;
+        }
+    }
+}
+.team-course-list {
+    background: #FFF;
+    text-align: center;
+    margin-top: 30px;
+    padding: 50px 30px;
+    border-radius: 3px;
+
+    .tags {
+        position: absolute;
+        right: 40px;
+        top: 50px;
+        color: #d4d4d4;
+    }
+    img {
+        width: 60px;
+        height: 60px;
+        border: 2px solid #E6EDF4;
+        margin-bottom: 30px;
+    }
+    .name {
+        color: @flat-color;
+        font-size: 18px;
+        line-height: 28px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .progress-mini {
+        margin-right: 45px;
+    }
+    .progress-mini.m-r-none {
+        margin-right: 0;
+    }
+    .progress-number {
+        float: right;
+        margin-top: -13px;
+    }
+}
+.team-course-list:hover {
+    cursor: pointer;
+    background: @navy;
+    .name {
+        color: #FFF;
+    }
+    .progress-bar {
+        background: lighten(@navy, 8%);
+    }
+    .progress-number {
+        color: #FFF;
+    }
+    .tags {
+        .fa-ban {
+            color: #FFF;
+        }
+        .fa-star-o {
+            color: #FFF;
+        }
+        .fa-star:not(.text-navy) {
+            color: #FFF;
+        }
+        .fa-star.text-navy {
+            color: lighten(@navy, 8%);
+        }
+        .fa-facebook {
+            color: lighten(@navy, 8%);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .team-member-list {
+        width: 20%;
+        img {
+            width: 80%;
+        }
+    }
+}
+
+/* ipad */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+    .team-member-list {
+        width: 15%;
+        img {
+            width: 60px;
+        }
+    }
+}

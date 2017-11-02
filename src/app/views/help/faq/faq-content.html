@@ -1,0 +1,31 @@
+<section class="help-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 ng-if="!$state.is('help')">常见问题</h2>
+                <h2 ng-if="$state.is('help')"><a ui-sref="help.faq">常见问题</a></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/faq/account/account-content.html'"></div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/faq/learning/learning-content.html'"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/faq/billing/billing-content.html'"></div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/faq/ticket/ticket-content.html'"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/faq/other/other-content.html'"></div>
+            </div>
+        </div>
+    </div>
+</section>

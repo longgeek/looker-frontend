@@ -1,0 +1,39 @@
+.consumption-chart {
+    background: #f8fbfd;
+    padding: 30px 20px;
+    overflow: auto;
+}
+.consumption-overview {
+    margin-left: 50px;
+    .title {
+        font-size: 26px;
+        color: @flat-color;
+    }
+    .text {
+        color: #888888;
+    }
+}
+.consumption-item:hover {
+    color: #FFF;
+    background: @navy;
+    p, h1, .fa.cny {
+        color: #FFF;
+    }
+}
+.consumption-item {
+    cursor: pointer;
+    padding: 50px 30px;
+    background: @cyan-gray;
+    border-radius: 3px;
+}
+.consumption-item p {
+    color: @flat-color;
+}
+.consumption-item > h1 {
+    margin: 0 0 5px;
+}
+.consumption-item .fa.cny {
+    color: #cccccc;
+    font-family: inherit;
+    font-weight: 900;
+}

@@ -1,0 +1,28 @@
+<div class="details" ng-if="n.ctype === 'studyqa:replied'">
+    <h6>
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 有新的回复
+    </h6>
+    <span class="time">回复于: {{ n.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+</div>
+<div class="details" ng-if="n.ctype === 'studyqa:accepted'">
+    <h6>
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 已被接受
+    </h6>
+    <span class="time">接受于: {{ n.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+</div>
+<div class="details" ng-if="n.ctype === 'studyqa:resolved'">
+    <h6>
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 标记为已解决
+    </h6>
+    <span class="time">解决于: {{ n.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+</div>
+<div class="details" ng-if="n.ctype === 'studyqa:attached'">
+    <h6>
+        <i class="fa fa-question-circle m-r-8"></i>
+        你的 "问答" 上传了新的附件
+    </h6>
+    <span class="time">上传于: {{ n.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+</div>

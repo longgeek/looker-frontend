@@ -1,0 +1,41 @@
+<div class="bsection one" ng-include="'app/views/learn/lab/one.html'"></div>
+<section class="learn-list-section labs-section gray-bg" oc-lazy-load="wu.masonry">
+    <div class="container text-center p-b-xl">
+        <div class="p-t-sm">
+            <ul class="learn-classify" ng-init="courseClassify = 'all'">
+                <li>
+                    <a ng-click="courseClassify = 'all'" ng-class="{'active': courseClassify === 'all' || !courseClassify}">All</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Python'" ng-class="{'active': courseClassify === 'Python'}">Python</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Web Front(HTML, CSS, Javascript)'" ng-class="{'active': courseClassify === 'Web Front(HTML, CSS, Javascript)'}">Web Front</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-w-m" masonry="{ gutter: 30 }" load-images="false" preserve-order column-width="525" reload-on-resize>
+                    <div class="masonry-brick labs-item" ng-repeat="lab in labs" ui-sref="learn.lab.detail({ ud: lab.uuid })">
+                        <div class="col-xs-2 no-paddings text-center">
+                            <img src="assets/icons/lab.svg" class="img-square labs-icon">
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="labs-item-title m-b-xs">{{ lab.name }}</div>
+                            <div class="labs-item-desc">
+                                {{ lab.description }}
+                            </div>
+                            <div class="m-t" ng-if="joinedLabs.joined[lab.uuid]">
+                                <span class="text-navy pull-right m-l-md m-t-n-xs"><i class="fa fa-level-up"></i> {{ joinedLabs.joined[lab.uuid].completed_percentage }}%</span>
+                                <uib-progressbar class="progress-mini" value="joinedLabs.joined[lab.uuid].completed_percentage"></uib-progressbar>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

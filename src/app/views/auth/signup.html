@@ -1,0 +1,35 @@
+<div class="signup-email">
+    <div class="container">
+        <div class="signup-content">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h1>简单几步, 开始学习.</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                    <div class="signup-form-div" ng-show="!signupEmailSend">
+                        <form role="form" name="signup_email_form" ng-submit="signupEmailForm()" novalidate>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="邮箱" ng-model="SignUpEmail" ng-class="{true: 'text-danger-important'}[signup_email_form.email.$invalid && signup_email_form.submitted]" required autofocus ng-disabled="signupLoading">
+                                <label class="fa fa-at"></label>
+                            </div>
+                            <div class="form-error-box" ng-show="signup_email_form.email.$invalid && signup_email_form.submitted">
+                                <small class="text-danger" ng-show="signup_email_form.email.$error">请输入一个有效的邮箱地址</small>
+                            </div>
+                            <div class="form-error-box" ng-if="signupEmailWarning">
+                                <small class="text-danger">{{ signupEmailWarning }}</small>
+                            </div>
+                            <button type="submit" class="ladda btn btn-lg btn-block btn-danger" ladda="signupLoading">发送邮件</button>
+                        </form>
+                    </div>
+                    <div class="signup-form-div" ng-if="signupEmailSend">
+                        <div class="text-center">
+                            <h3><span class="text-navy">注册确认邮件已发送到: <span>{{ SignUpEmail }}</span>，<br/><br/>请在 10 分钟内激活账号.</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

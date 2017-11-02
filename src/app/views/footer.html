@@ -1,0 +1,88 @@
+<section class="footer animated fadeIn" ng-class="{'navy': $state.is('home') || $state.is('learn')}">
+    <div class="footer-top" ng-if="$state.is('home')">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                    <div ng-if="!isAuthenticated()">
+                        <p>现在注册，立送 10 元充值!</p>
+                        <button class="btn btn-danger btn-lg btn-block" ui-sref="auth.signup">注册, 开启学习!</button>
+                    </div>
+                    <div ng-if="isAuthenticated()">
+                        <p>充值有优惠，充 100 送 100，<a ui-sref="home.account.recharge" style="color: #43aadc;">查看详情。</a></p>
+                        <button class="btn btn-primary btn-lg btn-block" ui-sref="learn.course">选课, 开始学习!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" ng-if="displayFooter()">
+        <div class="footer-content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <div class="footer-banner">
+                        <h3 class="footer-title">开始</h3>
+                        <ul class="unstyled">
+                            <li><a ui-sref="help.use.start">新手上路</a></li>
+                            <li><a ui-sref="help.use.how-to">如何选课</a></li>
+                            <li><a ui-sref="help">获取帮助</a></li>
+                            <li><a ui-sref="help.use">用户指导</a></li>
+                            <li><a ui-sref="help.faq">常见问题</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <div class="footer-banner">
+                        <h3 class="footer-title">学习</h3>
+                        <ul class="unstyled">
+                            <li><a ui-sref="learn.plan">职业规划</a></li>
+                            <li><a ui-sref="learn.course">在线课程</a></li>
+                            <li><a ui-sref="learn.project">项目实战</a></li>
+                            <li><a>实验室</a></li>
+                            <li><a>阶段测评</a></li>
+                            <li><a>练习题库</a></li>
+                            <li><a>应用开发</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <div class="footer-banner">
+                        <h3 class="footer-title">技能</h3>
+                        <ul class="unstyled">
+                            <li><a>编程语言</a></li>
+                            <li><a>开发框架</a></li>
+                            <li><a>系统工具</a></li>
+                            <li><a>开源</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <div class="footer-banner">
+                        <h3 class="footer-title">联系我们</h3>
+                        <ul class="unstyled">
+                            <li><a ui-sref="about">关于我们</a></li>
+                            <li><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=1aa693ddeacf1382d18aa66ba01714aec5ebcd319cec0d22c44def7fd07fd69e">QQ 群：272551255</a></li>
+                            <li><a><span class="fa fa-envelope-o"></span> contact@fuvism.com</a></li>
+                            <li><br><img src="assets/images/footer-qrcode.jpg" width="120"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-scroll hide" back-top>
+                <button class="btn btn-primary btn-rounded" ng-click="scrollToTop()">回到顶部</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" ng-if="!$state.is('home.tickets') && !$state.is('home.qas.detail') && !$state.includes('home.moments') && !$state.includes('u.homepage') && !$state.includes('notifications')">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <span>© 2017 深圳市全栈科技有限公司</span>
+                    <span>All Rights Reserved</span>
+                    <span><a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank" rel="noreferrer">粤ICP备15075318号-3</a></span>
+                    <span>粤公网安备44030402000224</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

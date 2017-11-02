@@ -1,0 +1,13 @@
+<div class="inmodal">
+    <div class="modal-header">
+        {{ textPreviewInfo.name }}
+        <a class="close" ng-click="close()">×</a>
+    </div>
+    <div class="modal-body white-bg">
+        <pre ng-if="textPreviewInfo.loading" class="font-oblique text-warning">正在加载...</pre>
+        <pre ng-if="!textPreviewInfo.loading">{{ textPreviewInfo.content }}</pre>
+        <a class="zoom" title="查看原文件" href="{{ textPreviewInfo.link }}" target="_blank">
+            <span class="fa fa-file-text-o"></span>
+        </a>
+    </div>
+</div>

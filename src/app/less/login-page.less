@@ -1,0 +1,79 @@
+.login-page {
+    font-weight: 200;
+    color: @text-color;
+    font-family: @font-family;
+}
+.login-page {
+    .login {
+        background: @cyan-gray;
+    }
+    .login-content {
+        margin: 50px;
+    }
+    .login-form-div {
+        margin: 40px 0;
+        padding: 35px 25px 30px;
+        background: #FFF;
+        border: 1px solid @border-color;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .login-content .btn {
+        border-radius: 0px;
+        font-size: 14px;
+        outline: 0;
+    }
+    .login-footer {
+        margin: 15px 0;
+        text-align: center;
+        color: #808080;
+    }
+    label {
+        position: relative;
+        top: -28px;
+        right: 15px;
+        font-size: 16px;
+        color: #bfc9ca;
+        transition: all .25s;
+        float: right;
+    }
+    input {
+        font-size: 14px;
+        text-indent: 3px;
+        border-color: @cyan-gray;
+    }
+    .form-control {
+        height: 40px;
+        padding: 8px 12px;
+        line-height: 1.467;
+        color: @text-color;
+        border-radius: 0px;
+        border-width: 1px;
+
+    }
+    .login-link {
+        font-size: 13px;
+        color: #bfc9ca;
+        margin-bottom: 10px;
+        outline: 0;
+    }
+    .login-link:focus,
+    .login-link:hover {
+        color: @navy;
+    }
+    input:focus ~ label {
+        color: @navy;
+    }
+    .ladda-button {
+        padding: 10px 16px;
+        font-size: 14px;
+        -webkit-font-smoothing: inherit;
+    }
+}
+@media (max-width:767px) {
+    .login-page .login-content {
+        margin: 20px;
+    }
+    .signup-page .signup-content, .resetpass-page .signup-content, .signup-page .resetpass-content, .resetpass-page .resetpass-content {
+        margin: 20px !important;
+    }
+}

@@ -1,0 +1,66 @@
+<div class="qas-list">
+    <table class="table table-hover no-margins" ng-if="!qasLoading">
+        <thead>
+            <tr>
+                <th>问题描述</th>
+                <th class="text-center status">状态</th>
+                <th class="text-center accept">老师</th>
+                <th class="text-center time">时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="qa in qas.studyqas"
+                ng-if="!qasLoading"
+                ui-sref="home.qas.detail({ud: qa.uuid})">
+                <td class="title">
+                    <a><span class="fa fa-question-circle m-r-8"></span>{{ qa.title | limitTo: 20 }}...</a>
+                    <div class="content">{{ qa.content | filterHtmlTags | limitTo: 50 }}...</div>
+                    <div class="content"><i class="fa fa-tag m-r-8"></i>{{ qa.learn.name }}<div>
+                </td>
+                <td class="text-center status">
+                    <span class="text-navy" ng-if="qa.accepted_by && !qa.is_resolved">
+                        <span class="fa fa-circle m-r-8"></span>
+                        处理中
+                    </span>
+                    <span class="text-warning" ng-if="!qa.accepted_by && !qa.is_resolved">
+                        <span class="fa fa-circle m-r-8"></span>
+                        派送中
+                    </span>
+                    <span ng-if="qa.is_resolved">
+                        <span class="fa fa-circle m-r-8"></span>
+                        已解决
+                    </span>
+                </td>
+                </td>
+                <td class="text-center accept" ng-if="qa.accepted_by">
+                    <img class="img-circle m-r-8" gravatar-src="qa.accepted_by.gravatar" width="24" height="24"> {{ qa.accepted_by.nickname }}
+                </td>
+                <td class="text-center accept" ng-if="!qa.accepted_by && !qa.is_resolved">
+                    <span class="text-warning">派送问题中...</span>
+                </td>
+                <td class="text-center accept" ng-if="!qa.accepted_by && qa.is_resolved">
+                    <span>无</span>
+                </td>
+                <td class="text-center time">{{ qa.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination-md"
+        uib-pagination
+        total-items="qas.paging.amount"
+        ng-model="qas.paging.pos"
+        max-size="5"
+        items-per-page="qas.paging.step"
+        force-ellipses="false"
+        boundary-links="true"
+        rotate="false"
+        first-text="首页"
+        last-text="末页"
+        previous-text="上一页"
+        next-text="下一页"
+        ng-if="qas && !qasLoading && qas.paging.amount > qas.studyqas.length"
+        ng-change="qas_pagination()">
+    </ul>
+    <div class="m-t-md font-oblique small" ng-if="qasLoading">正在加载...</div>
+    <div class="m-t-md font-oblique small" ng-if="!qasLoading && qas.length === 0">你在学习过程中还没有提交过任何问题, 继续努力...</div>
+</div>

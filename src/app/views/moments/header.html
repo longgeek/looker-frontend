@@ -1,0 +1,48 @@
+<div class="moments-item" ng-if="isAuthenticated() && moments">
+    <div class="moments-avatar">
+        <a ui-sref="u.homepage({'username': user.user.uuid})" target="_blank"><img alt="img" gravatar-src="user.user.gravatar"></a>
+    </div>
+    <div class="moments-box publish-moments">
+        <div class="reply">
+            <uib-tabset>
+                <uib-tab>
+                    <uib-tab-heading>
+                        <span class="fa fa-bullhorn"></span>Say
+                    </uib-tab-heading>
+                    <div class="write-content">
+                        <textarea class="form-control"
+                            rows="6"
+                            ng-model="publish_content.content"
+                            ng-disabled="publish_content.loading"
+                            msd-elastic
+                            textarea-tab
+                            textarea-image="moments"
+                             emoji-picker="emoji-picker"
+                             emoji-attachment-location="top right"
+                             emoji-menu-location="bottom right">
+                        </textarea>
+                        <p class="drag-and-drop">
+                            <span class="default" ng-if="!momentUploadError">通过拖放、截图粘贴（仅支持chrome）来附加图片（jpeg, png, jpg, gif）。</span>
+                            <span class="error" ng-if="momentUploadError">{{ momentUploadError }}</span>
+                            <span class="pull-right" ng-class="{true: 'default', false: 'text-warning'}[256 >= publish_content.content.length > 0]" ng-if="publish_content.content.length > 0">{{ publish_content.content.length }}</span>
+                        </p>
+                    </div>
+                </uib-tab>
+                <uib-tab select="moment_publish_preview()">
+                    <uib-tab-heading>
+                        <span class="fa fa-eye"></span>预览
+                    </uib-tab-heading>
+                    <div class="preview-content" btf-markdown="publish_content.content"></div>
+                    <!-- div class="preview-content" btf-markdown="publish_content.content | atUsername"></div -->
+                </uib-tab>
+            </uib-tabset>
+            <div class="reply-button">
+                <button type="button" class="ladda btn btn-sm btn-flat-dark" ng-click="moment_publish()" ng-disabled="!publish_content.content || publish_content.uploading" ladda="publish_content.loading">
+                    <span class="fa fa-send m-r-8"></span>
+                    <span ng-if="publish_content.uploading">上传图片中，请等待</span>
+                    <span ng-if="!publish_content.uploading">发布到圈子</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

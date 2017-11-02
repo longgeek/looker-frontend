@@ -1,0 +1,36 @@
+<div class="col-xs-12 col-md-12 profile-box p-md">
+    <h2 class="m-t-sm">已购买的学习课程</h2>
+    <div>
+        <table class="table table-hover no-margins">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>数量</th>
+                <th>过期</th>
+                <th>有效期开始于</th>
+                <th>有效期结束于</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="invite-tooltip" ng-repeat="bl in buylearnings['sorted']">
+                <td>{{ $index + 1 }}</td>
+                <td>
+                    {{ buylearnings['values'][bl].learn_type }}
+                    {{ buylearnings['values'][bl].learning.name }}
+                </td>
+                <td>{{ buylearnings['values'][bl].quantity }}</td>
+                <td>{{ buylearnings['values'][bl].is_expired }}</td>
+                <td>
+                    {{ buylearnings['values'][bl].start_at | convertZone | date: 'yyyy-MM-dd HH:mm:ss' }}
+                </td>
+                <td>
+                    {{ buylearnings['values'][bl].end_at | convertZone | date: 'yyyy-MM-dd HH:mm:ss' }}
+                </td>
+                <td><a href="">详情</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

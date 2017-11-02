@@ -1,0 +1,39 @@
+.homepage-following-and-followers {
+    position: relative;
+    .item {
+        color: @flat-color;
+        padding: 25px 0;
+        border-bottom: 1px solid #edeff1;
+        a {
+            color: inherit;
+            img {
+                width: 50px;
+                height: 50px;
+                background: #edeff1;
+                border-radius: 3px;
+            }
+        }
+        .nickname {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .username {
+            padding-left: 4px;
+        }
+        p {
+            font-size: 12px;
+            line-height: 18px;
+            margin: 10px 0;
+            svg {
+                margin-top: 3px;
+                margin-right: 8px;
+            }
+        }
+        p:last-child {
+            margin-bottom: 0px;
+        }
+    }
+    .item:first-child {
+        padding-top: 0;
+    }
+}

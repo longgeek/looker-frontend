@@ -1,0 +1,68 @@
+/* Tomorrow_Night theme style */
+.ace_editor {
+    position: absolute !important;
+    top: 70px;
+    bottom: 0;
+    margin: 10px 0;
+    right: 8px;
+    left: 0;
+}
+.ace-tm,
+.ace-tm .ace_gutter,
+.ace-tomorrow-night .ace_gutter-active-line,
+.ace-tomorrow-night .ace_marker-layer .ace_active-line {
+    background-color: #213140 !important;
+}
+.ace-tomorrow-night .ace_print-margin {
+    background-color: #283a4c !important;
+}
+.ace-tm .ace_gutter-active-line {
+    background-color: #213140 !important;
+    color: #FFF;
+}
+.ace-tomorrow-night,
+.ace-tomorrow-night .ace_gutter {
+    background: #213140 !important;
+    color: #c5c8c6;
+}
+.ace-tomorrow-night .ace_marker-layer .ace_selection {
+    background: #283A4C !important;
+    border-radius: 0 !important;
+    right: 2px !important;
+}
+.ace-tomorrow-night .ace_marker-layer .ace_active-line {
+    right: 2px !important;
+}
+
+/* Syntax Status */
+.ace_gutter-cell.ace_error {
+    background-image: url('/assets/icons/error-dot.svg') !important;
+    background-position: 6px center !important;
+}
+.ace_gutter-cell.ace_warning {
+    background-image: url('/assets/icons/warning-dot.svg') !important;
+    background-position: 6px center !important;
+}
+.ace_gutter-cell.ace_info {
+    background-image: url('/assets/icons/gray-dot.svg') !important;
+    background-position: 6px center !important;
+}
+.ace_tooltip {
+    background-color: #1b2a37 !important;
+    border: 1px solid #102231 !important;
+    font-size: 12px;
+    font-family: monospace;
+    color: inherit !important;
+}
+
+// Auto Complete window
+.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {
+    background-color: #CAD6FA !important;
+    z-index: 1;
+}
+
+/* Vim Mode */
+.normal-mode .ace_cursor {
+    border: 1px solid #FFF;
+    background-color: #FFF;
+}

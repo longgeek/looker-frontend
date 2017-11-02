@@ -1,0 +1,9 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.faq')">其他</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.faq')"><a ui-sref="help.faq.other">其他</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.faq.other.articles({'articles_name':  'other-1'})">Fuvism 有没有线下培训课程？</a>
+        </li>
+    </ul>
+</div>

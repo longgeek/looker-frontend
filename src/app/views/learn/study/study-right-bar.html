@@ -1,0 +1,63 @@
+<div class="inmodal">
+    <div class="modal-body">
+        <div class="study-rightbar-user__info">
+            <div class="row">
+                <div class="col-xs-5 p-t-m">
+                    <div class="study-rightbar-user__img">
+                        <img class="img-square" gravatar-src="user.user.gravatar">
+                    </div>
+                    <p class="font-bold m-t">
+                        <a ui-sref="u.homepage({username: user.user.uuid})" target="_blank" class="study-rightbar-user__name">{{ user.user.nickname }}</a>
+                    </p>
+                </div>
+                <div class="col-xs-7 p-l-none">
+                    <div class="m-t-xs m-b-sm">
+                        余额:
+                        <span class="font-bold study-rightbar-user__balance" ng-class="{'text-danger': myBalance < 10, 'text-warning': myBalance >= 10 && myBalance < 20, 'text-navy': myBalance >= 20}">
+                            ￥ {{ myBalance | number }}
+                        </span>
+                    </div>
+                    <div class="study-rightbar-user__warning" ng-class="{'text-danger': myBalance < 10, 'text-warning': myBalance >= 10 && myBalance < 20, 'text-navy': myBalance >= 20}">
+                        <small>预估可学习 <strong>{{ myBalance | remainingStudyTime:studyLearnTime.price }}</strong></small>
+                    </div>
+                    <div class="small space-15 study-rightbar-user__link">
+                        <a ui-sref="home.account.history" target="_blank">充值记录</a> |
+                        <a ui-sref="home.consumption" target="_blank">消费详情</a>
+                    </div>
+                    <a ui-sref="home.account.recharge" target="_blank" class="btn btn-xs btn-w-m btn-outline btn-primary">立即充值</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs-container">
+            <form role="form" name="right_bar_form" ng-submit="rightBarForm()" novalidate>
+                <uib-tabset>
+                    <uib-tab>
+                        <uib-tab-heading>
+                            <span class="fa fa-history"></span>
+                        </uib-tab-heading>
+                        <div class="panel-body" ng-include="'app/views/learn/study/right-bar/learn.html'" ng-controller="RightBarLearnController"></div>
+                    </uib-tab>
+                    <uib-tab ng-click="current_tab = 2">
+                        <uib-tab-heading>
+                            <span class="fa fa-usd"></span>
+                        </uib-tab-heading>
+                        <div ng-if="current_tab == 2" class="panel-body study-right-bill" ng-include="'app/views/learn/study/right-bar/bill.html'" ng-controller="RightBarBillController"></div>
+                    </uib-tab>
+                    <uib-tab ng-click="current_tab = 3">
+                        <uib-tab-heading>
+                            <span class="fa fa-ticket"></span>
+                        </uib-tab-heading>
+                        <div ng-if="current_tab == 3" class="panel-body" ng-include="'app/views/learn/study/right-bar/ticket.html'"></div>
+                    </uib-tab>
+                    <uib-tab ng-click="current_tab = 4">
+                        <uib-tab-heading>
+                            <span class="fa fa-question"></span>
+                        </uib-tab-heading>
+                        <div class="panel-body" ng-if="current_tab == 4" ng-include="'app/views/learn/study/right-bar/faq.html'" ng-controller="RightBarFaqController"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </form>
+        </div>
+    </div>
+</div>

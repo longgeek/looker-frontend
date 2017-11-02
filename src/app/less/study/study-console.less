@@ -1,0 +1,182 @@
+.study-page {
+    .study-footer-console {
+        position: absolute;
+        right: 8px;
+        bottom: 0px;
+    }
+    .study-footer-console ul li a {
+        color: #FFF;
+    }
+    .study-workspace {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        position: relative;
+    }
+    .dropdown-menu-right {
+        left: auto !important;
+        right: 0;
+    }
+    .study-footer-console .dropdown-menu {
+        z-index: 10001;
+        border-radius: 0;
+        background: #26394A;
+        color: #fff;
+        margin-bottom: 0px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    .study-footer-console .dropdown-menu > li > a.open,
+    .study-footer-console .dropdown-menu > li > a:hover,
+    .study-footer-console .dropdown-menu > li > a:focus {
+        text-decoration: none;
+        color: #fff;
+        background-color: #213140;
+        border-radius: 0;
+    }
+    .study-footer-console .btn {
+        color: #fff;
+        background-color: #26394A;
+        border-color: #26394A;
+    }
+    .study-footer-console .btn-group {
+        padding: 9px 0;
+    }
+    .study-footer-console .dropdown-toggle {
+        margin-left: 2px;
+    }
+    .study-footer-console .btn.open,
+    .study-footer-console .btn:hover,
+    .study-footer-console .btn:focus {
+        background: #213140;
+        border-color: #213140;
+        box-shadow: none;
+    }
+    .study-console-layer {
+        position: absolute;
+        top: 45%;
+        right: 8px;
+        bottom: 50px;
+        left: 66.5%;
+        background: #213140;
+        z-index: 1000;
+        margin: 8px;
+        /* margin: 8px 8px 58px 58px; */
+    }
+    .study-console-layer-header {
+        background: @study-bg;
+    }
+    .study-console-layer-header .code-header__controller .code-label {
+        color: #FFF;
+        cursor: move;
+        font-size: 12px;
+        padding-bottom: 5px;
+    }
+    .study-console-layer-header .code-header__controller .code-label > span {
+        margin-left: -65px;
+    }
+    .study-console-layer-header .code-header__tabs {
+        background: @study-bg;
+        font-size: 12px;
+    }
+    .study-console-layer > .ui-resizable-handle {
+        z-index: 10000;
+        position: absolute;
+        background: #172a3a;
+    }
+    .study-console-layer > .ui-resizable-n {
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        height: 8px;
+        cursor: row-resize;
+    }
+    .study-console-layer > .ui-resizable-e {
+        top: -8px;
+        right: -8px;
+        bottom: -8px;
+        cursor: col-resize;
+        width: 8px;
+    }
+    .study-console-layer > .ui-resizable-s {
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        cursor: row-resize;
+        height: 8px;
+    }
+    .study-console-layer > .ui-resizable-w {
+        top: -8px;
+        left: -8px;
+        bottom: -8px;
+        cursor: col-resize;
+        width: 8px;
+    }
+    .code-header__controller .study-console-close:hover > .fa-square:before {
+        cursor: pointer;
+        content: "\f057";
+    }
+    .code-header__controller .study-console-refresh:hover > .fa-square:before {
+        cursor: pointer;
+        content: "\f192";
+    }
+    .code-header__controller .study-console-add-bash:hover > .fa-square:before {
+        cursor: pointer;
+        content: "\f055";
+    }
+    .code-header__controller .study-console-add-bash.disabled:hover > .fa-square:before {
+        cursor: no-drop;
+        content: "\f055";
+    }
+    .study-console-box {
+        position: absolute;
+        top: 55px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .study-console-iframe {
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .study-console__none {
+        position: absolute;
+        top: 30px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .terminal .nav-tabs.nav-justified > .active > a,
+    .terminal .nav-tabs.nav-justified > .active > a:hover,
+    .terminal .nav-tabs.nav-justified > .active > a:focus {
+        color: #FFF;
+        background: #26394A;
+        border: 1px solid #26394A !important;
+    }
+    .terminal .nav-tabs > li > a:hover,
+    .terminal .nav-tabs > li > a:focus {
+        background-color: #213140;
+        color: #FFF;
+        border: 1px solid #213140 !important;
+    }
+    .terminal .nav-tabs.nav-justified > li > a:hover .code-header__tabs__close {
+        display: block;
+    }
+    .terminal.code-header__tabs .nav .code-header__tabs__close:hover {
+        color: #FFF;
+        background: #213140 !important;
+    }
+    .terminal.code-header__tabs .nav .active .code-header__tabs__close:hover {
+        color: #FFF;
+        background: #26394A !important;
+    }
+    .code-content-none {
+        position: absolute;
+        bottom: 0;
+        top: 30px;
+        left: 0;
+        right: 0;
+    }
+}

@@ -1,0 +1,12 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.faq')">工单，咨询，提意见，报 Bug</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.faq')"><a ui-sref="help.faq.ticket">工单，咨询，提意见，报 Bug</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.faq.ticket.articles({'articles_name':  'ticket-1'})">如何提交建议，报告 Bug?</a>
+        </li>
+        <li>
+            <a ui-sref="help.faq.ticket.articles({'articles_name':  'ticket-2'})">提意见，报 Bug 有奖励吗？</a>
+        </li>
+    </ul>
+</div>

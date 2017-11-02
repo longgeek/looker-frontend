@@ -1,0 +1,151 @@
+<section class="footer">
+    <div class="footer-header" ng-if="!isAuthenticated() || $state.is('home')">
+        <div class="container">
+            <div class="row animated fadeIn">
+                <div class="col-sm-12 text-center">
+                    <blockquote class="blockquote-reverse">
+                        <span class="font-oblique" style="color: #808fa4; font-size: 18px;">准备好开始学习了吗?</span>
+                    </blockquote>
+                </div>
+                <div class="col-sm-12 m-t text-center">
+                    <button class="btn btn-lg btn-info" ui-sref="learn">现在注册，送试用劵</button>
+                </div>
+                <div class="col-xs-12 text-center m-t">
+                    <p class="font-oblique m-t-md" style="color: #808fa4">FUVSIM 面对职业生涯规划, 使得在线学习更加高效和专业。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <a class="footer-brand" href="http://www.coderpie.com/">
+                        <img src="assets/images/new/logo.svg" width="100" height="100">
+                    </a>
+                    <p style="padding-top: 20px;">Learn in Future Connectivism.<br></p>
+                    <p>
+                        <span class=""><a href="#/">Home</a></span> |
+                        <span class=""><a href="#/story">Stories</a></span> |
+                        <span class=""><a href="#/blog">Blog</a></span>
+                    </p>
+                    <p class="pvl">
+                        <span class="fa fa-github"></span>
+                        <span class="fa fa-weibo"></span>
+                        <span class="fa fa-weixin"></span>
+                    </p>
+                    <p><span class="fa fa-envelope-o"><a class="text-navy">&nbsp; contact@coderpie.com</a></span></p>
+                    <div class="language-switch">
+                        <a>中文</a> <span>|</span> <a>EN</a>
+                    </div>
+                </div>
+
+                <div class="col-xs-2">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="footer-banner">
+                                <h3 class="footer-title">Function</h3>
+                                <ul class="unstyled">
+                                    <li><a>Online Learning</a></li>
+                                    <li><a>Career Plan</a></li>
+                                    <li><a>Q&A by Ticket</a></li>
+                                    <li><a>Billing by Seconds</a></li>
+                                    <li><a>Project Development</a></li>
+                                    <li><a>Labs</a></li>
+                                    <li><a>Cloud Computing</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="footer-banner">
+                                <h3 class="footer-title">Tools</h3>
+                                <ul class="unstyled">
+                                    <li><a>Linux</a></li>
+                                    <li><a>Git</a></li>
+                                    <li><a>Python Selenium</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="footer-title">Language</h3>
+                            <ul class="unstyled">
+                                <li><a>PHP</a></li>
+                                <li><a>Ruby</a></li>
+                                <li><a>Python</a></li>
+                                <li><a>Web Front-end</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="footer-title">Framework</h3>
+                            <ul class="unstyled">
+                                <li><a>Django</a></li>
+                                <li><a>Ruby on Rails</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="footer-title">Skills</h3>
+                            <ul class="unstyled">
+                                <li><a>Web Register</a></li>
+                                <li><a>Task Query</a></li>
+                                <li><a>RESTful API</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="footer-banner">
+                                <h3 class="footer-title">Software Engineer</h3>
+                                <ul class="unstyled">
+                                    <li><a>Python Software Engineer</a></li>
+                                    <li><a>Ruby Software Engineer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="footer-banner">
+                                <h3 class="footer-title">Web Development</h3>
+                                <ul class="unstyled">
+                                    <li><a>Django Web Development</a></li>
+                                    <li><a>PHP Web Engineer</a></li>
+                                    <li><a>RoR Web Development(Ruby)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="footer-banner">
+                                <h3 class="footer-title">System Management</h3>
+                                <ul class="unstyled">
+                                    <li><a>Linux System Manager</a></li>
+                                    <li><a>Python Dev/Ops Engineer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom-bar">
+        <div class="container text-center">
+            <span>© 2015 深圳全栈科技 Inc. </span>
+            <span>All Rights Reserved.</span>
+            <span>粤ICP备15075318-2号</span>
+        </div>
+    </div>
+</section>

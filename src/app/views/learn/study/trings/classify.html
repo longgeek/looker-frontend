@@ -1,0 +1,120 @@
+<div class="col-xs-12 full-height no-paddings" ng-controller="ClassifyController">
+    <ng-include src="'app/views/learn/study/trings/docs.html'"></ng-include>
+
+    <div class="full-height animated fadeIn" ng-class="{'col-xs-8': task.reference_material, 'col-xs-12': !task.reference_material}">
+        <div class="study-tring-content" ng-if="!task.topic_content">
+            <div class="col-xs-12 classify p-w-sm full-height absolute-center">
+                <div class="classify-info font-oblique font-bold text-white">这道题已创建，但是没有内容。</div>
+            </div>
+        </div>
+        <div class="study-tring-content" ng-if="task.topic_content">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="col-xs-12 full-height">
+                <div class="study-tring-content__container">
+                    <div class="absolute-center full-height p-w-m">
+                        <div class="classify-info font-oblique font-bold text-navy" ng-if="!showClassifySuccess && !showClassifyError && !showClassifyAnswer">将下列选项拖入相应的归类中</div>
+                        <div class="classify-info font-oblique font-bold text-danger" ng-if="!showClassifySuccess && showClassifyError && !showClassifyAnswer">归类错误, 请重新归类!</div>
+                        <div class="classify-info font-oblique font-bold text-navy" ng-if="!showClassifySuccess && !showClassifyError && showClassifyAnswer">正确答案如下</div>
+                        <!-- Not check -->
+                        <div class="classify-content text-center animated fadeIn" ng-if="!showClassifySuccess && !showClassifyError && !showClassifyAnswer">
+                            <div class="row">
+                                <div class="col-xs-12 m-b-lg">
+                                    <ul class="classify-list classify-items-box" ui-sortable="sortableOptions" ng-model="ClassifyItems">
+                                        <li ng-repeat="item in ClassifyItems">
+                                            <div class="classify-item">
+                                                <i class="fa fa-hand-o-up"></i> {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-class="{'col-xs-6': ClassifyTypes.length === 2, 'col-xs-4': ClassifyTypes.length === 3, 'col-xs-3': ClassifyTypes.length === 4}" ng-repeat="type in ClassifyTypes">
+                                    <p class="m-t-sm text-white">{{ type }}</p>
+                                    <ul class="classify-list classify-type-box connectList" ui-sortable="sortableOptions" ng-model="ClassifyData[type]">
+                                        <li ng-repeat="item in ClassifyData[type]">
+                                            <div class="classify-item">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Has the errors -->
+                        <div class="classify-content text-center animated fadeIn" ng-if="!showClassifySuccess && showClassifyError && !showClassifyAnswer">
+                            <div class="row">
+                                <div class="col-xs-12 m-b-lg">
+                                    <ul class="classify-list classify-items-box" ui-sortable="sortableOptions" ng-model="ClassifyItems">
+                                        <li ng-repeat="item in ClassifyItems">
+                                            <div class="classify-item">
+                                                <i class="fa fa-hand-o-up"></i> {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-class="{'col-xs-6': ClassifyTypes.length === 2, 'col-xs-4': ClassifyTypes.length === 3, 'col-xs-3': ClassifyTypes.length === 4}" ng-repeat="type in ClassifyTypes">
+                                    <p class="m-t-sm text-white">{{ type }}</p>
+                                    <ul class="classify-list classify-type-box connectList" ui-sortable="sortableOptions" ng-model="ClassifyData[type]" ng-class="{'error': ClassifyErrorList.indexOf(type) !== -1, 'success': ClassifyErrorList.indexOf(type) === -1}">
+                                        <li ng-repeat="item in ClassifyData[type]">
+                                            <div class="classify-item">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- All the right -->
+                        <div class="classify-content text-center animated fadeIn" ng-if="showClassifySuccess && !showClassifyError && !showClassifyAnswer">
+                            <div class="row">
+                                <div ng-class="{'col-xs-6': ClassifyTypes.length === 2, 'col-xs-4': ClassifyTypes.length === 3, 'col-xs-3': ClassifyTypes.length === 4}" ng-repeat="type in ClassifyTypes">
+                                    <p class="m-t-sm text-white">{{ type }}</p>
+                                    <ul class="classify-list classify-type-box success">
+                                        <li ng-repeat="item in task.topic_content[0][type]">
+                                            <div class="classify-item">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Show classify answer -->
+                        <div class="classify-content text-center animated fadeIn" ng-if="!showClassifySuccess && !showClassifyError && showClassifyAnswer">
+                            <div class="row">
+                                <div ng-class="{'col-xs-6': ClassifyTypes.length === 2, 'col-xs-4': ClassifyTypes.length === 3, 'col-xs-3': ClassifyTypes.length === 4}" ng-repeat="type in ClassifyTypes">
+                                    <p class="m-t-sm text-white">{{ type }}</p>
+                                    <ul class="classify-list classify-type-box">
+                                        <li ng-repeat="item in task.topic_content[0][type]">
+                                            <div class="classify-item">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/learn/study/trings/will-done.html'"></div>
+        </div>
+
+        <div class="study-footer-btn" ng-if="!showClassifySuccess && !showClassifyError && !showClassifyAnswer" ng-class="{'opacity-layer': classifyDisabledCheck()}">
+            <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="classifyCheck()" ng-disabled="classifyDisabledCheck()">提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showClassifySuccess && showClassifyError && !showClassifyAnswer" ng-class="{'opacity-layer': classifyDisabledRecheck()}">
+            <button type="button" class="btn btn-w-m btn-danger animated fadeIn" ng-click="classifyCheck()" ng-disabled="classifyDisabledRecheck()">重新提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showClassifySuccess && !showClassifyError && showClassifyAnswer">
+            <button type="button" class="btn btn-circle btn-primary animated fadeIn" ng-click="classifyAnswerBack()"><i class="fa fa-angle-left"></i></button>
+        </div>
+        <div ng-include="'app/views/learn/study/trings/having-trouble.html'" ng-if="showTroubleHelp"></div>
+    </div>
+</div>

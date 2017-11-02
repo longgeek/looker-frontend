@@ -1,0 +1,13 @@
+<div class="col-xs-12 col-md-8 profile-box p-md">
+    <h2 class="m-t-sm">个人简介</h2>
+    <form role="form">
+        <p>请用一句话来描述自己。</p>
+        <div class="form-group">
+            <textarea type="text" class="form-control profile-form-control" name="intro" placeholder="输入简介" ng-model="intro" autofocus required></textarea>
+        </div>
+        <div class="text-navy p-b-sm animated fadeIn small" ng-if="intro_form.intro.$valid && setintroSuccess && !setintroError">
+            个人简介设置成功.
+        </div>
+        <button type="submit" class="ladda btn btn-lg btn-danger btn-w-m profile-submit-btn" ladda="introLoading" ng-click="setintroForm()">设置</button>
+    </form>
+</div>

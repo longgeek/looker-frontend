@@ -1,0 +1,254 @@
+<div class="col-xs-12 full-height no-paddings" ng-controller="ChoiceController">
+    <ng-include src="'app/views/learn/study/trings/docs.html'"></ng-include>
+
+    <div class="full-height animated fadeIn" ng-class="{'col-xs-8': task.reference_material, 'col-xs-12': !task.reference_material}">
+        <div class="study-tring-content">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="col-xs-12 full-height" ng-class="{ 'col-md-8 col-md-offset-2': !showChoiceSuccess && !showChoiceError && !showChoiceAnswer, 'col-md-10 col-md-offset-1': showChoiceSuccess || showChoiceError || showChoiceAnswer}">
+                <div class="study-tring-content__container">
+                    <div class="absolute-center full-height animated fadeIn" ng-if="!task.topic_content">
+                        <div class="choice-content text-white text-center">
+                            <div class="choice-info font-oblique font-bold text-white">这道题已创建，但是没有内容。</div>
+                        </div>
+                    </div>
+                    <div class="absolute-center full-height" ng-if="task.topic_content">
+                        <div class="choice-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showChoiceSuccess && !showChoiceError && !showChoiceAnswer">请至少选择一个正确选项</div>
+                        <div class="choice-info font-oblique font-bold animated fadeIn text-danger" ng-if="!showChoiceSuccess && showChoiceError && !showChoiceAnswer">选择错误, 请重新选择!</div>
+                        <div class="choice-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showChoiceSuccess && !showChoiceError && showChoiceAnswer">正确答案如下</div>
+                        <!-- Not check -->
+                        <div class="choice-content text-white text-center animated fadeIn" ng-if="!showChoiceSuccess && !showChoiceError && !showChoiceAnswer">
+                            <slick dots=true touch-move=true infinite=false>
+                                <div class="p-lg choice-item" ng-repeat="choice in task.topic_content">
+                                    <div class="choice-title font-oblique font-bold text-white">{{ $index + 1 }}/{{ task.topic_content.length }}. {{ choice.title }}</div>
+                                    <ul class="choice-list">
+                                        <li ng-click="choiceOptionClick('A', $index)">
+                                            <div class="choice-item-option">
+                                                <span>A.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('A') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.A }}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-click="choiceOptionClick('B', $index)">
+                                            <div class="choice-item-option">
+                                                <span>B.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('B') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.B }}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-click="choiceOptionClick('C', $index)">
+                                            <div class="choice-item-option">
+                                                <span>C.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('C') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.C }}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-click="choiceOptionClick('D', $index)">
+                                            <div class="choice-item-option">
+                                                <span>D.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('D') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.D }}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </slick>
+                        </div>
+
+                        <!-- Has the errors -->
+                        <div class="choice-content text-white text-center animated fadeIn" ng-if="!showChoiceSuccess && showChoiceError && !showChoiceAnswer">
+                            <slick dots=true touch-move=true infinite=false init-onload=true slides-to-show=2>
+                                <div class="p-lg choice-item" ng-repeat="choice in task.topic_content" ng-class="{'success': choiceCheckErrorList.indexOf($index) === -1, 'error': choiceCheckErrorList.indexOf($index) !== -1}">
+                                    <div class="choice-title font-oblique font-bold text-white">{{ $index + 1 }}/{{ task.topic_content.length }}. {{ choice.title }}</div>
+                                    <ul class="choice-list">
+                                        <li ng-click="choiceOptionClick('A', $index)">
+                                            <div class="choice-item-option">
+                                                <span>A.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('A') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.A }}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-click="choiceOptionClick('B', $index)">
+                                            <div class="choice-item-option">
+                                                <span>B.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('B') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.B }}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-click="choiceOptionClick('C', $index)">
+                                            <div class="choice-item-option">
+                                                <span>C.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('C') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.C }}</span>
+                                            </div>
+                                        </li>
+                                        <li ng-click="choiceOptionClick('D', $index)">
+                                            <div class="choice-item-option">
+                                                <span>D.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="ChoiceData[$index].indexOf('D') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.D }}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </slick>
+                        </div>
+
+                        <!-- Show choice answer -->
+                        <div class="choice-content text-white text-center animated fadeIn" ng-if="!showChoiceSuccess && !showChoiceError && showChoiceAnswer">
+                            <slick dots=true touch-move=true infinite=false init-onload=true slides-to-show=2>
+                                <div class="p-lg choice-item" ng-repeat="choice in task.topic_content">
+                                    <div class="choice-title font-oblique font-bold text-white">{{ $index + 1 }}/{{ task.topic_content.length }}. {{ choice.title }}</div>
+                                    <ul class="choice-list">
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>A.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('A') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.A }}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>B.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('B') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.B }}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>C.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('C') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.C }}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>D.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('D') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.D }}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </slick>
+                        </div>
+
+                        <!-- All the rights -->
+                        <div class="choice-content text-white text-center animated fadeIn" ng-if="showChoiceSuccess && !showChoiceError && !showChoiceAnswer">
+                            <slick dots=true touch-move=true infinite=false init-onload=true slides-to-show=2>
+                                <div class="p-lg choice-item success" ng-repeat="choice in task.topic_content">
+                                    <div class="choice-title font-oblique font-bold text-white">{{ $index + 1 }}/{{ task.topic_content.length }}. {{ choice.title }}</div>
+                                    <ul class="choice-list">
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>A.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('A') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.A }}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>B.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('B') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.B }}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>C.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('C') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.C }}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="choice-item-option">
+                                                <span>D.</span>
+                                            </div>
+                                            <div class="choice-item-mark" ng-if="choice.answer.indexOf('D') !== -1">
+                                                <span class="fa fa-check text-navy"></span>
+                                            </div>
+                                            <div class="choice-item-content">
+                                                <span>{{ choice.D }}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/learn/study/trings/will-done.html'"></div>
+        </div>
+
+        <div class="study-footer-btn" ng-if="!showChoiceSuccess && !showChoiceError && !showChoiceAnswer" ng-class="{'opacity-layer': choiceDisabledCheck()}">
+            <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="choiceCheck()" ng-disabled="choiceDisabledCheck()">提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showChoiceSuccess && showChoiceError && !showChoiceAnswer" ng-class="{'opacity-layer': choiceDisabledRecheck()}">
+            <button type="button" class="btn btn-w-m btn-danger animated fadeIn" ng-click="choiceCheck()" ng-disabled="choiceDisabledRecheck()">重新提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showChoiceSuccess && !showChoiceError && showChoiceAnswer">
+            <button type="button" class="btn btn-circle btn-primary animated fadeIn" ng-click="choiceAnswerBack()"><i class="fa fa-angle-left"></i></button>
+        </div>
+        <div ng-include="'app/views/learn/study/trings/having-trouble.html'" ng-if="showTroubleHelp"></div>
+    </div>
+</div>

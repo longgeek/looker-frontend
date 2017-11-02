@@ -1,0 +1,126 @@
+.matching {
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.matching-info {
+    font-size: 18px;
+}
+.matching-info .fa {
+    color: #005A63;
+    font-size: 14px;
+    position: absolute;
+}
+.matching-content {
+    width: 100%;
+    max-height: 80%;
+    font-size: 15px;
+    line-height: 24px;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+.matching-bg {
+    background: -webkit-radial-gradient(center, circle cover, #203C54 0%, #192835 100%);
+}
+.matching-text {
+    color: #005A63;
+    border: 1px dashed #8A96A2;
+    padding: 5px 20px;
+    margin-top: 10px;
+}
+.matching-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+}
+.matching-list li {
+    display: block;
+    position: relative;
+    margin-bottom: 5px;
+    background: transparent;
+}
+.matching-left-item,
+.matching-right-item {
+    display: block;
+    color: #FFF;
+    background: #23405B;
+    font-size: 14px;
+    padding: 12px 15px;
+    list-style: none;
+    text-decoration: none;
+}
+.item-right {
+    top: 50%;
+    right: -15px;
+    margin-right: -15px;
+    margin-top: -15px;
+    border-style: solid;
+    border-top-width: 0;
+    border-color: transparent;
+    border-left-color: #23405B;
+    border-top-color: #23405B;
+    border-bottom-color: #23405B;
+    border-width: 15px;
+    float: right;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+}
+.item-left {
+    top: 50%;
+    left: -15px;
+    margin-left: -15px;
+    margin-top: -15px;
+    border-style: solid;
+    border-top-width: 0;
+    border-color: transparent;
+    border-right-color: #23405B;
+    border-width: 15px;
+    float: right;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+}
+.matching-right-item:hover {
+    cursor: move;
+    color: @navy;
+    background: #2B4D6D;
+}
+.matching-right-item:hover .item-left {
+    border-right-color: #2B4D6D;
+}
+.matching-content-success .matching-right-item:hover {
+    cursor: inherit;
+    color: #FFF;
+    background: #23405B;;
+}
+.matching-content-success .matching-right-item:hover .item-left {
+    border-right-color: #234058;
+}
+.matching-left-item.success {
+    border-left: 6px solid @navy;
+}
+.matching-right-item.success {
+    border-right: 6px solid @navy;
+}
+.matching-left-item.error {
+    border-left: 6px solid @red;
+}
+.matching-right-item.error {
+    border-right: 6px solid @red;
+}

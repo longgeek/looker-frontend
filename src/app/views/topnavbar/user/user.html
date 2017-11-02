@@ -1,0 +1,13 @@
+<li>
+    <div class="p-xs text-center">
+        <img class="user-profile-img img-circle" gravatar-src="user.user.gravatar" ui-sref="u.homepage({username: user.username})">
+        <div class="m-t-xs" ng-class="{'text-danger': myBalance < 10, 'text-warning': myBalance >= 10 && myBalance < 20, 'text-navy': myBalance >= 20}">CNY&nbsp;<span class="user-profile-balance">{{ myBalance }}</span></div>
+    </div>
+</li>
+<li class="divider"></li>
+<li><a ui-sref="home.invite"><i class="fa fa-share-alt"></i> 邀请&nbsp;(邀请好友，共享优惠)</a></li>
+<li><a ui-sref="home.tickets"><i class="fa fa-ticket"></i> 工单&nbsp;(提建议，有惊喜)<span class="label pull-right no-margins" ng-if="false">13</span></a></li>
+<li><a ui-sref="home.account.recharge"><i class="fa fa-money"></i> 账户充值&nbsp;(充值有优惠)</a></li>
+<li><a ui-sref="home.consumption"><i class="fa fa-bar-chart-o"></i> 消费记录</a></li>
+<li><a ui-sref="home.profile"><i class="fa fa-cog"></i> 个人设置</a></li>
+<li><a ui-sref="auth.logout"><i class="fa fa-sign-out"></i> 退出</a></li>

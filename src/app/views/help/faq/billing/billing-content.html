@@ -1,0 +1,15 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.faq')">消费，充值，邀请好友</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.faq')"><a ui-sref="help.faq.billing">消费，充值，邀请好友</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.faq.billing.articles({ 'articles_name': 'billing-1' })">如何查看我的账单？</a>
+        </li>
+        <li>
+            <a ui-sref="help.faq.billing.articles({ 'articles_name': 'billing-2' })">为什么我的余额欠费，并且成为了负数？</a>
+        </li>
+        <li>
+            <a ui-sref="help.faq.billing.articles({ 'articles_name': 'billing-3' })">充值有哪些方式？</a>
+        </li>
+    </ul>
+</div>

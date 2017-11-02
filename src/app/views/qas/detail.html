@@ -1,0 +1,145 @@
+<ng-include src="'app/views/qas/header.html'"></ng-include>
+<section class="section-qas-detail" ng-if="!qa && detailLoading">
+    <div class="container full-height">
+        <div class="p-t-md font-oblique small">
+            正在加载...
+        </div>
+    </div>
+</section>
+<section class="section-qas-detail" ng-if="qa">
+    <div class="container full-height">
+        <div class="qas-detail">
+            <div class="inner">
+                <div class="base-item animated fadeIn">
+                    <div class="title">
+                        <h3>详情</h3>
+                    </div>
+                    <div class="content">
+                        <div class="system-notifications-title"><i class="fa fa-bullhorn m-r-8"></i>系统通知</div>
+                        <div class="system-notifications-content">
+                            <p>- 系统已收到该问题, 正在派送问题到相关老师, 请等待</p>
+                            <p ng-if="qa.accepted_by">- 成功派送到 [{{ qa.accepted_by.nickname }}] 老师</p>
+                            <p ng-if="qa.is_resolved">- 当前问题已被关闭</p>
+                        </div>
+                        <table class="base-item-table table small">
+                            <tbody>
+                            <tr>
+                                <td>状态</td>
+                                <td class="font-oblique">
+                                    <span class="fa fa-circle text-navy" ng-if="!qa.is_resolved && qa.accepted_by">
+                                        <span class="m-l-xs">处理中</span>
+                                    </span>
+                                    <span class="fa fa-circle text-warning" ng-if="!qa.is_resolved && !qa.accepted_by">
+                                        <span class="m-l-xs">派送中</span>
+                                    </span>
+                                    <span class="fa fa-circle text-muted" ng-if="qa.is_resolved">
+                                        <span class="m-l-xs">已关闭</span>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>提交者</td>
+                                <td>
+                                    <a ui-sref="u.homepage({username: qa.created_by.uuid})" target="_blank">
+                                        <img class="img-circle m-r-8" gravatar-src="qa.created_by.gravatar" width="18">
+                                        {{ qa.created_by.nickname }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>老师</td>
+                                <td class="text-success" ng-if="qa.accepted_by">
+                                    <a ui-sref="u.homepage({username: qa.accepted_by.uuid})" target="_blank">
+                                        <img class="img-circle m-r-8" gravatar-src="qa.accepted_by.gravatar" width="18">
+                                        {{ qa.accepted_by.nickname }}
+                                    </a>
+                                </td>
+                                <td class="font-oblique" ng-if="!qa.accepted_by && !qa.resolved">无</td>
+                                <td class="font-oblique text-warning" ng-if="!qa.accepted_by && qa.resolved">无，点击下面的按钮将会把该问题单独分配给你.</td>
+                            </tr>
+                            <tr>
+                                <td>提交时间</td>
+                                <td class="font-oblique">{{ qa.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</td>
+                            </tr>
+                            <tr>
+                                <td>更新时间</td>
+                                <td class="font-oblique">{{ qa.updated_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-flat-dark btn-block m-t-md btn-sm" ng-click="qa_make_resolved()" ng-if="!qa.is_resolved && isAuthenticated() && qa.created_by.uuid === user.user.uuid" ng-disabled="!qa.accepted_by"><i class="fa fa-question-circle m-r-8"></i>该问题已得到解决?</button>
+                        <button class="btn btn-flat-dark btn-block m-t-md btn-sm disabled" ng-if="qa.is_resolved"><i class="fa fa-info-circle m-r-8"></i>该问题已标记为解决</button>
+                        <button class="btn btn-flat-dark btn-block m-t-md btn-sm disabled" ng-if="!qa.is_resolved && qa.created_by.uuid !== user.user.uuid"><i class="fa fa-info-circle m-r-8"></i>该问题已得到解决?</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="base-item animated fadeIn">
+                    <div class="title">
+                        <h3>附件</h3>
+                    </div>
+                    <div class="content">
+                        <div class="attachments" ng-if="!detailLoading" ng-class="{'none': qa.attach === null && qa.is_resolved}">
+                            <div class="tips font-oblique m-b-sm small">该问答没有上传附件。</div>
+                            <p class="help small">支持格式：txt、jpg、jpeg、png，最大 2M，最多可上传 10 个附件。</p>
+                            <ul class="items">
+                                <li class="item" ng-repeat="file in qa.attach.sorted track by $index">
+                                    <!-- 图片 -->
+                                    <div class="list" ng-if="qa.attach.values[file].filetype.indexOf('image') !== -1">
+                                        <a class="delete" ng-click="deleteAttachFile($index, file, qa.attach.values[file])" ng-if="!qas[qaIndex].is_resolved">
+                                            <span class="fa fa-times"></span>
+                                        </a>
+                                        <a class="preview" ng-click="imagePreview(qa.attach.values[file].filename, qa.qa_bucket_domain + qa.attach.values[file].filepath + file)">
+                                            <span class="fa fa-search-plus"></span>
+                                        </a>
+                                        <img ng-src="{{ qa.qa_bucket_domain + qa.attach.values[file].filepath + file }}">
+                                    </div>
+                                    <!-- 文本 -->
+                                    <div class="list" ng-if="qa.attach.values[file].filetype.indexOf('text') !== -1">
+                                        <a class="delete" ng-click="deleteAttachFile($index, file, qa.attach.values[file])" ng-if="!qas[qaIndex].is_resolved">
+                                            <span class="fa fa-times"></span>
+                                        </a>
+                                        <a class="preview" ng-click="textPreview(qa.attach.values[file].filename, qa.qa_bucket_domain + qa.attach.values[file].filepath + file)">
+                                            <span class="fa fa-eye"></span>
+                                        </a>
+                                        <div class="text-file">
+                                            <span class="fa fa-file-text-o"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" ng-style="{'false': {'display': 'none'}}[!qa.is_resolved && qa.attach === null || !qa_is_resolved && qa.attach.sorted.length < 10]">
+                                    <!-- qiniu-upload handle="test-handle" uploader="uploader" opts="uploaderOpts"></qiniu-upload -->
+                                    <div class="upload-none"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="font-oblique small m-b-sm" ng-if="detailLoading">正在加载...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="qas-content">
+            <div class="inner">
+                <div class="tabs-container">
+                    <uib-tabset>
+                        <uib-tab>
+                            <uib-tab-heading>
+                                <span class="fa fa-reply-all"></span>问答记录
+                            </uib-tab-heading>
+                            <div class="panel-body">
+                                <div ng-include="'app/views/qas/replies.html'"></div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab ng-if="!$state.is('study')">
+                            <uib-tab-heading>
+                                <span class="fa fa-align-center"></span>所在课程
+                            </uib-tab-heading>
+                            <div class="panel-body">
+                                <div ng-include="'app/views/qas/course.html'"></div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

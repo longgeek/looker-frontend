@@ -1,0 +1,16 @@
+<div class="study-will-done__code animated fadeInUp" ng-if="showWillDone">
+    <div class="study-will-done__close" ng-click="closeWillDone()">×</div>
+    <div class="text-center">
+        <h3>Well done!</h3>
+        <p>恭喜你完成了本课的学习, 你可以选择: </p>
+        <button type="button" class="ladda btn btn-sm btn-w-m m-t-xs btn-primary" ng-click="goNext(taskSession.source.current_task_uuid)" ladda="studyLayer">继续学习</button>
+        <button type="button" class="btn btn-sm btn-w-m m-t-xs btn-outline btn-primary" ng-click="resetCheckLists()">重新尝试</button>
+    </div>
+    <div class="study-will-done__arrow"></div>
+</div>
+
+<div class="study-will-done__code__mini animated fadeInUp" ng-if="showMiniWillDone || completed_tasks.indexOf(task.uuid) !== -1 && !showWillDone">
+    <span class="small">
+        <i class="fa fa-check"></i> 你已经完成当前学习，<span class="next" ng-click="goNext(taskSession.source.current_task_uuid)"><i class="fa fa-arrow-right"></i>&nbsp;点击进入下一课</span>，<span class="retry" ng-click="resetCheckLists()"><i class="fa fa-undo"></i>&nbsp;或重新尝试!</span>
+    </span>
+</div>

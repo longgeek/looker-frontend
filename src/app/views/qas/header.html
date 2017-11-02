@@ -1,0 +1,21 @@
+<div class="section-qas-header" qas-page-scroll ng-if="!$state.is('study')">
+    <div class="container">
+        <nav role="navigation">
+            <a ng-class="{selected: $state.is('home.qas')}" ui-sref="home.qas" ng-click="qas_list()">
+                <i class="fa fa-globe m-r-sm"></i>所有问答
+            </a>
+            <a ng-class="{selected: $state.is('home.qas.my')}" ui-sref="home.qas.my" ng-click="qas_list('my')" ng-if="isAuthenticated()">
+                <i class="fa fa-group m-r-sm"></i>我提交的问答
+            </a>
+        </nav>
+        <nav class="pull-right" role="navigation" ng-if="$state.is('home.qas.detail')">
+            <a class="selected" ui-sref="home.qas.detail" ng-click="qa_detail(qa.uuid)" ng-if="qa">
+                <i class="fa fa-question-circle m-r-sm"></i>{{ qa.title}}
+            </a>
+            <a class="selected" ng-if="!qa && !detailLoading">
+                <i class="fa fa-fa-exclamation-triangle m-r-sm"></i>
+                "没有找到该问答, 请确保 URL 地址正确。"
+            </a>
+        </nav>
+    </div>
+</div>

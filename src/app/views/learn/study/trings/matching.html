@@ -1,0 +1,142 @@
+<div class="col-xs-12 full-height no-paddings" ng-controller="MatchingController">
+    <ng-include src="'app/views/learn/study/trings/docs.html'"></ng-include>
+
+    <div class="full-height animated fadeIn" ng-class="{'col-xs-8': task.reference_material, 'col-xs-12': !task.reference_material}">
+        <div class="study-tring-content" ng-if="!task.topic_content">
+            <div class="col-xs-12 col-md-10 col-md-offset-1 full-height">
+                <div class="matching full-height">
+                    <div class="matching-info font-oblique font-bold text-white">这道题已创建，但是没有内容。</div>
+                </div>
+            </div>
+        </div>
+        <div class="study-tring-content" ng-if="task.topic_content">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="col-xs-12 col-md-10 col-md-offset-1 full-height">
+                <div class="study-tring-content__container">
+                    <div class="matching full-height">
+                        <div class="matching-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showMatchingSuccess && !showMatchingError && !showMatchingAnswer">请移动右侧的选项与左侧选项正确匹配</div>
+                        <div class="matching-info font-oblique font-bold animated fadeIn text-danger" ng-if="!showMatchingSuccess && showMatchingError && !showMatchingAnswer">匹配出现错误, 请重新匹配!</div>
+                        <div class="matching-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showMatchingSuccess && !showMatchingError && showMatchingAnswer">正确答案如下</div>
+
+                        <!-- Not check -->
+                        <div class="matching-content text-center animated fadeIn" ng-if="!showMatchingSuccess && !showMatchingError && !showMatchingAnswer">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <ul class="matching-list">
+                                        <li ng-repeat="item in MatchingLeftItems">
+                                            <div class="item-right"></div>
+                                            <div class="matching-left-item">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-6">
+                                    <ul class="matching-list" ui-sortable ng-model="MatchingRightItems">
+                                        <li ng-repeat="item in MatchingRightItems">
+                                            <div class="matching-right-item">
+                                                <div class="item-left"></div>
+                                                <i class="fa fa-hand-o-up pull-left p-t-xxs p-l-xs"></i>
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Has the errors -->
+                        <div class="matching-content text-center animated fadeIn" ng-if="!showMatchingSuccess && showMatchingError && !showMatchingAnswer">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <ul class="matching-list">
+                                        <li ng-repeat="item in MatchingLeftItems">
+                                            <div class="item-right"></div>
+                                            <div class="matching-left-item" ng-class="{'success': MatchingErrorList.indexOf($index) === -1, 'error': MatchingErrorList.indexOf($index) !== -1}">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-6">
+                                    <ul class="matching-list" ui-sortable ng-model="MatchingRightItems">
+                                        <li ng-repeat="item in MatchingRightItems">
+                                            <div class="matching-right-item" ng-class="{'success': MatchingErrorList.indexOf($index) === -1, 'error': MatchingErrorList.indexOf($index) !== -1}">
+                                                <div class="item-left"></div>
+                                                <i class="fa fa-hand-o-up pull-left p-t-xxs p-l-xs"></i>
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- All the right -->
+                        <div class="matching-content matching-content-success text-center animated fadeIn" ng-if="showMatchingSuccess && !showMatchingError && !showMatchingAnswer">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <ul class="matching-list">
+                                        <li ng-repeat="item in MatchingLeftItems">
+                                            <div class="item-right"></div>
+                                            <div class="matching-left-item success">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-6">
+                                    <ul class="matching-list">
+                                        <li ng-repeat="item in MatchingRightItems">
+                                            <div class="matching-right-item success">
+                                                <div class="item-left"></div>
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Show matching answer -->
+                        <div class="matching-content text-center animated fadeIn" ng-if="!showMatchingSuccess && !showMatchingError && showMatchingAnswer">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <ul class="matching-list">
+                                        <li ng-repeat="item in MatchingLeftItems">
+                                            <div class="item-right"></div>
+                                            <div class="matching-left-item success">
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-6">
+                                    <ul class="matching-list" ng-model="MatchingRightItems">
+                                        <li ng-repeat="item in MatchingRightItems">
+                                            <div class="matching-right-item success">
+                                                <div class="item-left"></div>
+                                                {{ item }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/learn/study/trings/will-done.html'"></div>
+        </div>
+        <div class="study-footer-btn" ng-if="!showMatchingSuccess && !showMatchingError && !showMatchingAnswer" ng-class="{'opacity-layer': matchingDisabledCheck()}">
+            <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="matchingCheck()" ng-disabled="matchingDisabledCheck()">提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showMatchingSuccess && showMatchingError && !showMatchingAnswer" ng-class="{'opacity-layer': matchingDisabledCheck()}">
+            <button type="button" class="btn btn-w-m btn-danger animated fadeIn" ng-click="matchingCheck()" ng-disabled="matchingDisabledCheck()">重新提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showMatchingSuccess && !showMatchingError && showMatchingAnswer">
+            <button type="button" class="btn btn-circle btn-primary animated fadeIn" ng-click="matchingAnswerBack()"><i class="fa fa-angle-left"></i></button>
+        </div>
+        <div ng-include="'app/views/learn/study/trings/having-trouble.html'" ng-if="showTroubleHelp"></div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<section class="section-user-homepage-header" user-home-page-scroll ng-if="userinfo">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 left">
+                <nav role="navigation">
+                    <a ng-click="scrollToNavbar()" ui-sref="u.homepage({username: userinfo.username})" ui-sref-opts="{reload: true}">
+                        <i class="fa fa-home m-r-8"></i>{{ userinfo.nickname }} 个人主页
+                    </a>
+                </nav>
+                <div class="sticky-bar">
+                    <div class="mini-bar" ng-click="scrollToNavbar()">
+                        <a class="mini-avatar">
+                            <img alt="@{{ userinfo.username }}" height="32" gravatar-src="userinfo.gravatar " width="32">
+                        </a>
+                        <a class="mini-name">
+                            <strong>{{ userinfo.nickname }}</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <nav role="navigation">
+                    <a ng-class="{selected: $state.is('u.homepage')}" ui-sref="u.homepage({username: userinfo.username})" ng-click="get_user_overview(userinfo.uuid)">
+                        <i class="fa fa-area-chart m-r-8"></i>总览
+                    </a>
+                    <a ng-class="{selected: $state.is('u.homepage.activity')}" ui-sref="u.homepage.activity({username: userinfo.username})" ng-click="load_user_moments()">
+                        <i class="fa fa-bullhorn m-r-8"></i>动态
+                    </a>
+                    <a ng-class="{selected: $state.is('u.homepage.following')}" ui-sref="u.homepage.following({username: userinfo.username})" ng-click="load_user_following()">
+                        <i class="fa fa-eye m-r-8"></i>关注
+                    </a>
+                    <a ng-class="{selected: $state.is('u.homepage.followers')}" ui-sref="u.homepage.followers({username: userinfo.username})" ng-click="load_user_followers()">
+                        <i class="fa fa-joomla m-r-8"></i>粉丝
+                    </a>
+                    <!-- a>
+                        <i class="fa fa-group m-r-8"></i>学习小组
+                    </a>
+                    <a>
+                        <i class="fa fa-share-alt m-r-8"></i>代码分享
+                    </a>
+                    <a>
+                        <i class="fa fa-wrench m-r-8"></i>项目实战
+                    </a -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-user-homepage-content" ng-if="userinfo">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="homepage-left" ng-include="'app/views/user/left.html'"></div>
+            </div>
+            <div class="col-lg-8">
+                <ng-include src="'app/views/user/overviews.html'" ng-if="$state.is('u.homepage')"></ng-include>
+                <div ng-if="$state.is('u.homepage.activity') && !activityLoading" ng-controller="MomentsController">
+                    <div infinite-scroll="scrollLoadMoments()"
+                         infinite-scroll-disabled="loading"
+                         infinite-scroll-distance="0">
+                        <ng-include src="'app/views/moments/content.html'"></ng-include>
+                    </div>
+                </div>
+                <ng-include src="'app/views/user/following.html'" ng-if="$state.is('u.homepage.following') && !loadFollowingLoading" ng-controller="UserHomePageFollowingController"></ng-include>
+                <ng-include src="'app/views/user/followers.html'" ng-if="$state.is('u.homepage.followers') && !loadFollowersLoading" ng-controller="UserHomePageFollowersController"></ng-include>
+            </div>
+        </div>
+    </div>
+</section>

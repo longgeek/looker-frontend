@@ -1,0 +1,27 @@
+<nav class="sub-nav">
+    <div class="container">
+        <ol class="breadcrumbs">
+            <li title="帮助中心">
+                <a ui-sref="help">帮助中心</a>
+            </li>
+            <li title="常见问题">
+                <a ui-sref="help.faq">常见问题</a>
+            </li>
+            <li title="课程，学习控制台，问答">
+                <a ui-sref="help.faq.learning">课程，学习控制台，问答</a>
+            </li>
+        </ol>
+    </div>
+</nav>
+<section class="help-content m-b-xl">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 study-page">
+                <div ng-include="articles_template" class="study-docs-content m-r" onload="highlightCode()"></div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div ng-include="'app/views/help/faq/learning/learning-content.html'"></div>
+            </div>
+        </div>
+    </div>
+</section>

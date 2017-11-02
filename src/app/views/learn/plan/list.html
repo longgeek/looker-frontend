@@ -1,0 +1,20 @@
+<div class="bsection one" ng-include="'app/views/learn/plan/one.html'"></div>
+<section class="page-section cyan-gray-bg">
+    <div class="container">
+        <div class="plan-list" ng-repeat="plan in plans" ng-if="!planLoading && plans.length" ui-sref="learn.plan.detail({ ud: plan.uuid })">
+            <a>
+                <div class="row">
+                    <div class="plan-list__icon" style="background: rgb(36, 171, 255);">
+                        <img src="assets/icons/plan.svg" width="154px" height="143px">
+                    </div>
+                    <div class="plan-list__text">
+                        <h3>{{ plan.name }}</h3>
+                        <p>{{ plan.description }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="font-oblique text-center" ng-if="planLoading">正在加载...</div>
+        <div class="font-oblique text-center" ng-if="!planLoading && !plans.length">没有找到职业规划课程。</div>
+    </div>
+</section>

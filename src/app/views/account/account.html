@@ -1,0 +1,30 @@
+<section class="p-h-xxl text-center white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="m-t-none">账户</h1>
+                <div>当前余额: <span class="font-bold" style="font-size: 20px;" ng-class="{'text-danger': myBalance < 10, 'text-warning': myBalance >= 10 && myBalance < 20, 'text-navy': myBalance >= 20}">{{ myBalance | number }}</span> 元</div>
+                <!-- p class="m-t-md">
+                    <span class="warning-text font-oblique">当前余额大约还能学习 <strong>{{ myBalance | remainingStudyTime:0.0028 }}</strong>.</span>
+                </p -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="white-bg">
+    <div class="container">
+        <div class="tabs tabs-small">
+            <nav>
+                <ul>
+                    <li ui-sref="home.account.recharge"><a ng-class="{'active': $state.is('home.account.recharge') || $state.is('home.account')}">账户充值</a></li>
+                    <li ui-sref="home.account.history"><a ng-class="{'active': $state.is('home.account.history')}">充值记录</a></li>
+                    <!-- li ui-sref="home.account.coupon"><a ng-class="{'active': $state.is('home.account.coupon')}">优惠券</a></li>
+                    <li ui-sref="home.account.lnvoice"><a ng-class="{'active': $state.is('home.account.lnvoice')}">发票管理</a></li -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+<div ui-view class="cyan-gray-bg" autoscroll="true">
+    <div ng-include="'app/views/account/recharge.html'"></div>
+</div>

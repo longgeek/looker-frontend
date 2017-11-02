@@ -1,0 +1,152 @@
+<div class="notifications-content">
+    <div class="headers">
+        当前你有 <span class="total">{{ notifications.total }}</span> 个未读消息
+        <!-- a class="pull-right" ng-click="notification_consume_all()" ng-if="notifications.total > 0">
+            <span class="fa fa-check-circle"></span>
+            全部已读
+        </a -->
+        <a class="pull-right" ui-sref="notifications.all" ng-if="!$state.is('study')">
+            <span class="fa fa-angle-double-right"></span>
+            查看全部
+        </a>
+        <a class="pull-right" ui-sref="notifications.all" ng-if="$state.is('study')" target="_blank">
+            <span class="fa fa-angle-double-right"></span>
+            查看全部
+        </a>
+    </div>
+    <div class="items">
+        <div class="item unread" ng-repeat="(k, v) in notifications.values" ng-click="notification_consume(k, v, true)">
+            <!-- Ticket Notifications-->
+            <div ng-if="v.ctype === 'ticket:replied'">
+                <h6>
+                    <span class="fa fa-ticket m-r-8"></span>
+                    {{ v.params.ticket.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.reply.content | limitTo: 25 }}...</p>
+                <span class="time">回复于：{{ v.params.reply.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <span class="pull-right tips">
+                    <span class="label label-warning">有新的回复</span>
+                </span>
+            </div>
+            <div ng-if="v.ctype === 'ticket:new'">
+                <h6>
+                    <span class="fa fa-ticket m-r-8"></span>
+                    {{ v.params.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.ticket_content | limitTo: 25 }}...</p>
+                <span class="time">创建于：{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <div class="alert alert-info"><i class="fa fa-info-circle m-r-8"></i>有用户提交了新的工单, 请尽快处理. </div>
+            </div>
+            <div ng-if="v.ctype === 'ticket:resolved'">
+                <h6>
+                    <span class="fa fa-ticket m-r-8"></span>
+                    {{ v.params.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.ticket_content | limitTo: 25 }}...</p>
+                <span class="time">关闭于：{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <span class="pull-right tips">
+                    <span class="label label-default">工单已关闭</span>
+                </span>
+            </div>
+            <div ng-if="v.ctype === 'ticket:accepted'">
+                <h6>
+                    <span class="fa fa-ticket m-r-8"></span>
+                    {{ v.params.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.ticket_content | limitTo: 25 }}...</p>
+                <span class="time">处理于：{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <div class="alert alert-info"><i class="fa fa-info-circle m-r-8"></i>Fuvism 工程师正在处理此工单，请稍等</div>
+            </div>
+            <div ng-if="v.ctype === 'ticket:attached'">
+                <h6>
+                    <span class="fa fa-ticket m-r-8"></span>
+                    {{ v.params.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.ticket_content | limitTo: 25 }}...</p>
+                <span class="time">
+                    <span ng-if="v.params.add_or_del">上传</span><span ng-if="!v.params.add_or_del">删除</span>于：{{ v.params.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}
+                </span>
+                <span class="pull-right tips">
+                    <span class="label label-primary" ng-if="v.params.add_or_del">有新的附件</span>
+                    <span class="label label-default" ng-if="!v.params.add_or_del">有附件删除</span>
+                </span>
+            </div>
+            <!-- QA Notifications -->
+            <div ng-if="v.ctype === 'studyqa:replied'">
+                <h6>
+                    <span class="fa fa-question-circle m-r-8"></span>
+                    {{ v.params.studyqa.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.reply.content | limitTo: 25 }}...</p>
+                <span class="time">回复于：{{ v.params.reply.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <span class="pull-right tips">
+                    <span class="label label-warning">有新的回复</span>
+                </span>
+            </div>
+            <div ng-if="v.ctype === 'studyqa:new'">
+                <h6>
+                    <span class="fa fa-question-circle m-r-8"></span>
+                    {{ v.params.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.content | limitTo: 25 }}...</p>
+                <span class="time">创建于：{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <div class="alert alert-info"><i class="fa fa-info-circle m-r-8"></i>有用户提交了新的问答, 请尽快处理. </div>
+            </div>
+            <div ng-if="v.ctype === 'studyqa:resolved'">
+                <h6>
+                    <span class="fa fa-question-circle m-r-8"></span>
+                    {{ v.params.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.content | limitTo: 25 }}...</p>
+                <span class="time">关闭于：{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <span class="pull-right tips">
+                    <span class="label label-default">问答已关闭</span>
+                </span>
+            </div>
+            <div ng-if="v.ctype === 'studyqa:accepted'">
+                <h6>
+                    <span class="fa fa-question-circle m-r-8"></span>
+                    {{ v.params.studyqa.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.studyqa.content | limitTo: 25 }}...</p>
+                <span class="time">处理于：{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                <div class="alert alert-info"><i class="fa fa-info-circle m-r-8"></i>{{ v.params.accepted_by.nickname }} 老师正在处理此问答，请稍等</div>
+            </div>
+            <div ng-if="v.ctype === 'studyqa:attached'">
+                <h6>
+                    <span class="fa fa-question-circle m-r-8"></span>
+                    {{ v.params.title | limitTo: 20 }}...
+                </h6>
+                <p>{{ v.params.content | limitTo: 25 }}...</p>
+                <span class="time">
+                    <span ng-if="v.params.add_or_del">上传</span><span ng-if="!v.params.add_or_del">删除</span>于：{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}
+                </span>
+                <span class="pull-right tips">
+                    <span class="label label-primary" ng-if="v.params.add_or_del">有新的附件</span>
+                    <span class="label label-default" ng-if="!v.params.add_or_del">有附件删除</span>
+                </span>
+            </div>
+            <ng-include src="'app/views/topnavbar/notifications/friends.html'"></ng-include>
+            <ng-include src="'app/views/topnavbar/notifications/moments.html'"></ng-include>
+            <div ng-if="v.btype !== 'studyqa' && v.btype !== 'ticket' && v.btype !== 'friend' && v.ctype !== 'moment:replied'">
+                <p>{{ v }}</p>
+            </div>
+        </div>
+        <!-- div class="item unread">
+            <h6>
+                <span class="fa fa-bullhorn m-r-8"></span>
+                你好，longgeek，你的余额即将不足，请尽快充值以保住你的正常使用。
+            </h6>
+            <span class="time">发布于：2016-01-23 10:23:04</span>
+        </div -->
+        <!-- div class="item unread" ui-sref="home.tickets">
+            <h6>
+                <span class="fa fa-ticket m-r-8"></span>
+                奇怪的网络、防火墙？...
+                <span class="pull-right fa fa-comment text-warning"></span>
+            </h6>
+            <p>重定向到了 https://www.fuvism.com...</p>
+            <span class="time">回复于：2016-01-23 10:23:04</span>
+        </div -->
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<ng-include src="'app/views/notifications/header.html'"></ng-include>
+
+<section class="section-notifications-content">
+    <div class="container full-height">
+        <div class="notifications-list" ng-if="!notificationsLoading && notices.messages.length > 0">
+            <div class="inner">
+                <div class="toolbar">
+                    <a class="btn btn-flat-dark btn-sm" ng-click="notifications_consume_pagination()">
+                        <span class="fa fa-inbox m-r-8"></span>全部标记为已读
+                    </a>
+                    <div class="toolbar-pagination">
+                        <span>合计 : {{ notices.paging.amount }}</span>
+                        <span>&nbsp;页数 : {{ notices.paging.pos }} / {{ notices.paging.num }}</span>
+                        <ul class="pagination-md"
+                            uib-pagination
+                            num-pages="notices.paging.num"
+                            total-items="notices.paging.amount"
+                            ng-model="notices.paging.pos"
+                            max-size="0"
+                            items-per-page="notices.paging.step"
+                            force-ellipses="false"
+                            rotate="false"
+                            previous-text="<"
+                            next-text=">"
+                            ng-if="notices && !notificationsLoading && notices.paging.amount > notices.messages.length"
+                            ng-change="notifications_pagination()">
+                        </ul>
+                    </div>
+                </div>
+                <ol class="items">
+                    <li class="item" ng-repeat="n in notices.messages" ng-class="{'selected': notice.uuid === n.uuid, 'unread': !n.is_consumed}" ng-click="notifications_select($index)">
+                        <ng-include src="'app/views/notifications/btype/ticket.html'"></ng-include>
+                        <ng-include src="'app/views/notifications/btype/moment.html'"></ng-include>
+                        <ng-include src="'app/views/notifications/btype/friend.html'"></ng-include>
+                        <ng-include src="'app/views/notifications/btype/studyqa.html'"></ng-include>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="notifications-detail" ng-if="!notificationsLoading">
+            <div class="inner">
+                <ng-include src="'app/views/notifications/btype/ticket-content.html'"></ng-include>
+                <ng-include src="'app/views/notifications/btype/moment-content.html'"></ng-include>
+                <ng-include src="'app/views/notifications/btype/friend-content.html'"></ng-include>
+                <ng-include src="'app/views/notifications/btype/studyqa-content.html'"></ng-include>
+            </div>
+        </div>
+    </div>
+</section>

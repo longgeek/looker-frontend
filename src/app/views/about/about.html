@@ -1,0 +1,97 @@
+<div id="wrapper">
+    <div ng-include="'app/views/topnavbar/topnavbar.html'"></div>
+    <div class="wrapper wrapper-content no-paddings">
+        <div ui-view autoscroll="true">
+            <section class="about-header p-h-llg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 text-center">
+                            <h1>用最直接、真实的方式学习如何编程。Fuvism 提供了交互式，实战性的在线学习平台。</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="about-detail p-h-llg gray-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 no-paddings">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <h2 class="margin-top--1">关于 Fuvism</h2>
+                                <p>
+- 梦想起航，深圳全栈科技成立(2014-3月)，独立品牌“PythonPie”开创线下培训新模。一线程序员授课，项目驱动学习，完整的敏捷开发环，专注Python培训，面向就业的“Python软件工程师”课。
+                                </p>
+                                <p>
+- 发布TWFA学习模式(2014-8月)。Try：预习，练习；Workshop: 研讨，讲习；FaceToFace：授课，答疑；Apply：应用，实战。四个过程合理搭配构成完整培训模式，每个都由专门老师负责，优化学习效率和实践性。
+                                </p>
+                                <p>
+- 线上线下相结合，学习进入2.0模式(2014-10月)。将 Try 移入线上。开发独立的线上学习环境，提高学习效率。
+                                </p>
+                                <p>
+- 学习模式进入3.0，创新教育阶段(2015-9月)。线上也能学习"职业规划"，并且提供工单问答，按秒计费，多样课程。平台全面云化，新时代的，新方式的，新兴的在线教育；
+                                </p>
+                                <p>
+－2016全新开始。清新界面；更好交互；极速响应。全新平台 Fuvism 上线！
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <h2 class="margin-top--1">学习方式</h2>
+                                <p>
+－职业规划，零基础起步！Fuvism 提供完整的学习规划，通过在线课程，项目实战，阶段测评，实验室，练习题库，构建了一整套完整的课程体系，借助于工单问答系统，实现从真正零基础，无基础到开发工程师的学习体验。
+                                </p>
+                                <p>
+－在线学习方式多样，'学/练/训/实/思'样样不缺！丰富的课程类型，选最适合的！
+                                </p>
+                                <p>
+－仿真工作环境，使得每一次学习，都和工作环境拥有一样的开发界面，一样的执行过程，一样的输出展示，在学习中尽早适应工作需要。
+                                </p>
+                                <p>
+－任务通关制学习激励，为每一个学习设计其相应的学习任务。通过实际编程，逐个任务通关，完成所有任务才可进入下一个。
+                                </p>
+                                <p>
+－实操学习，积累开发经验。拒绝视频/直播的被动方式，通过不断的编程，主动和课程内容交互，同时通过代码和老师交互。写的每一句代码，都是对开发经验的积累。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="p-h-xl dark-gray-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-10 col-md-offset-1">
+                            <div class="text-center m-b-lg"><h1>我们在这里</h1></div>
+                            <div class="about-map">
+                                <div id="allmap"></div>
+                            </div>
+                            <div class="text-center m-t-md">广东省深圳市福田区车公庙</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div><!-- ui-view -->
+        <!-- Footer -->
+        <div ng-include="'app/views/footer.html'"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EBT9MqFdcD17wdOOP4XSA8l4lxzOYvWo&callback=initMap"></script>
+<script>
+    function initMap() {
+        var map = new BMap.Map('allmap');
+        var point = new BMap.Point(114.033159,22.538665);
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);              // 将标注添加到地图中
+        map.centerAndZoom(point, 14);
+        // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,type:BMAP_NAVIGATION_CONTROL_ZOOM});
+        map.addControl(ctrl_nav);
+
+        var mapStyle = {
+            features: ["road", "building","water","land"],//隐藏地图上的poi
+            style : "grayscale"  //设置地图风格为高端黑
+        }
+        map.setMapStyle(mapStyle);
+    }
+</script>

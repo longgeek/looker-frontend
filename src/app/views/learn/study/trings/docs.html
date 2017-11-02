@@ -1,0 +1,11 @@
+<div class="col-xs-4 full-height study-tring-docs__bg animated fadeIn" ng-if="task.reference_material">
+    <div class="study-layer" ng-if="studyLayer"></div>
+    <div class="study-tring-docs__container">
+        <div class="absolute-center full-height">
+            <div class="study-tring-docs__content">
+                <h2 class="text-white m-t-none">{{ task.name }}</h2>
+                <div class="study-task-docs-content" ng-bind-html="task.reference_material | toMarkDown | toTrusted"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+.debug {
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.debug-info {
+    font-size: 18px;
+}
+.debug-info .fa {
+    color: #005A63;
+    font-size: 14px;
+    position: absolute;
+}
+.debug-content {
+    width: 100%;
+    max-height: 90%;
+    overflow: auto;
+    font-size: 15px;
+    margin-top: 40px;
+    padding: 30px 30px 30px 10px;
+    border: 1px dashed #8A96A2;
+    background: #192835;
+}
+.debug-bg {
+    background: -webkit-radial-gradient(center, circle cover, #203C54 0%, #192835 100%);
+}
+.debug-content.error {
+    border: 1px dashed @red;
+}
+.debug-content.success {
+    border: 1px dashed @navy;
+}
+.debug-content pre {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+.debug-content code {
+    line-height: 24px;
+}
+.debug-content span.label:hover,
+.debug-content code:hover > span {
+    cursor: pointer;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.debug .hljs {
+    background: transparent;
+}
+.debug .hljs-code pre {
+    padding: 0;
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+}
+.debug .hljs-code pre code {
+    padding: 0;
+}

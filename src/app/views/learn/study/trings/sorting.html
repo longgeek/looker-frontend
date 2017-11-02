@@ -1,0 +1,86 @@
+<div class="col-xs-12 full-height no-paddings" ng-controller="SortingController">
+    <ng-include src="'app/views/learn/study/trings/docs.html'"></ng-include>
+
+    <div class="full-height animated fadeIn" ng-class="{'col-xs-8': task.reference_material, 'col-xs-12': !task.reference_material}">
+        <div class="study-tring-content" ng-if="!task.topic_content">
+            <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 full-height">
+                <div class="sorting full-height absolute-center">
+                    <div class="sorting-info font-oblique font-bold text-white">这道题已创建，但是没有内容。</div>
+                </div>
+            </div>
+        </div>
+        <div class="study-tring-content" ng-if="task.topic_content">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 full-height">
+                <div class="study-tring-content__container">
+                    <div class="absolute-center full-height">
+                        <div class="sorting-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showSortingSuccess && !showSortingError && !showSortingAnswer">拖拽下列选项，从上到下(降序)排列出正确的顺序</div>
+                        <div class="sorting-info font-oblique font-bold animated fadeIn text-danger" ng-if="!showSortingSuccess && showSortingError && !showSortingAnswer">顺序有错, 请重新排序!</div>
+                        <div class="sorting-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showSortingSuccess && !showSortingError && showSortingAnswer">正确答案如下</div>
+                        <!-- Not check -->
+                        <div class="sorting-content text-center animated fadeIn" ng-if="!showSortingSuccess && !showSortingError && !showSortingAnswer">
+                            <ul class="sorting-list" ui-sortable ng-model="sortingList">
+                                <li ng-repeat="item in sortingList">
+                                    <div class="sorting-item">
+                                        <i class="fa fa-hand-o-up pull-left p-t-xxs p-l-xs"></i>
+                                        {{ item }}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- All the right -->
+                        <div class="sorting-content text-center animated fadeIn" ng-if="showSortingSuccess && !showSortingError && !showSortingAnswer">
+                            <ul class="sorting-list">
+                                <div class="sorting-answer"></div>
+                                <li ng-repeat="item in sortingList">
+                                    <div class="sorting-item sorting-item-success">
+                                        {{ item }}
+                                        <span class="pull-right fa fa-check text-navy p-t-xxs"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Has the error -->
+                        <div class="sorting-content text-center animated fadeIn" ng-if="!showSortingSuccess && showSortingError && !showSortingAnswer">
+                            <ul class="sorting-list" ui-sortable ng-model="sortingList">
+                                <li ng-repeat="item in sortingList">
+                                    <div class="sorting-item" ng-class="{'sorting-item-success': sortingResult.indexOf($index) === -1, 'sorting-item-error': sortingResult.indexOf($index) !== -1}">
+                                        <i class="fa fa-hand-o-up pull-left p-t-xxs p-l-xs"></i>
+                                        {{ item }}
+                                        <span class="pull-right fa fa-check text-navy p-t-xxs" ng-class="{'fa-check text-navy': sortingResult.indexOf($index) === -1, 'fa-times text-danger': sortingResult.indexOf($index) !== -1}"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Show the answer -->
+                        <div class="sorting-content text-center animated fadeIn" ng-if="!showSortingSuccess && !showSortingError && showSortingAnswer">
+                            <ul class="sorting-list">
+                                <div class="sorting-answer"></div>
+                                <li ng-repeat="item in task.topic_content[0].items">
+                                    <div class="sorting-item sorting-item-success">
+                                        {{ item }}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/learn/study/trings/will-done.html'"></div>
+        </div>
+
+        <div class="study-footer-btn" ng-if="!showSortingSuccess && !showSortingError && !showSortingAnswer" ng-class="{'opacity-layer': sortingDisabledCheck()}">
+            <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="sortingCheck()" ng-disabled="sortingDisabledCheck()">提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showSortingSuccess && showSortingError && !showSortingAnswer" ng-class="{'opacity-layer': sortingDisabledCheck()}">
+            <button type="button" class="btn btn-w-m btn-danger animated fadeIn" ng-click="sortingCheck()" ng-disabled="sortingDisabledCheck()">重新提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showSortingSuccess && !showSortingError && showSortingAnswer">
+            <button type="button" class="btn btn-circle btn-primary animated fadeIn" ng-click="sortingAnswerBack()"><i class="fa fa-angle-left"></i></button>
+        </div>
+        <div ng-include="'app/views/learn/study/trings/having-trouble.html'" ng-if="showTroubleHelp"></div>
+    </div>
+</div>

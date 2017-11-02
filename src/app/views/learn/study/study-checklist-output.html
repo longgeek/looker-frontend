@@ -1,0 +1,17 @@
+<div class="study-checklist-output" ng-if="showCheckListOutput">
+    <div class="study-checklist-output__error" ng-if="showCheckListOutput === 'error' || showCheckListOutput === 'help'">{{ checkListOutput }}</div>
+    <div class="study-checklist-output__error" ng-if="showCheckListOutput === 'tips'">
+        你有必做任务 <span ng-repeat="checklist in unCompleteCheckLists">{{ checklist }}<span ng-if="$index !== unCompleteCheckLists.length - 1">、</span></span> 没有完成。
+    </div>
+    <div class="study-checklist-output__help" ng-if="showCheckListOutput === 'help'">
+        <span class="text-navy trouble" ng-click="popupCheckListDiff()">
+            <i class="fa fa-lightbulb-o"></i>&nbsp;遇到困难, 获取答案.
+        </span>
+    </div>
+    <div class="study-checklist-output__help" ng-if="showCheckListOutput === 'unmodified'">
+        <span ng-if="completed_tasks.indexOf(task.uuid) !== -1">代码未修改，无须保存、运行。</span>
+        <span ng-if="completed_tasks.indexOf(task.uuid) === -1">代码未修改，请按照任务要求，编写代码。</span>
+    </div>
+    <div class="study-checklist-output__success" ng-if="showCheckListOutput === 'success'">你已完成第&nbsp;{{ currentCheckList.index }}&nbsp;个课程任务!</div>
+    <div class="study-checklist-output__close" ng-class="{'text-navy': showCheckListOutput === 'success', 'text-danger': showCheckListOutput === 'error' || showCheckListOutput === 'help' || showCheckListOutput === 'tips'}" ng-click="closeCheckListOutput()">×</div>
+</div>

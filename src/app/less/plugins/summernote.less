@@ -1,0 +1,68 @@
+.note-editor .modal {
+    display: none !important;
+}
+/* summernote editor */
+.note-popover,
+.note-handle {
+    display: none !important;
+}
+.note-editor > .modal.link-dialog {
+    display: none !important;
+}
+.note-editor.note-frame {
+    border: 1px solid @cyan-gray;
+    border-radius: 0px;
+}
+.note-editor.note-frame .note-editing-area .note-editable {
+    color: inherit;
+}
+.note-editable > p {
+    margin: 0;
+}
+.resize-none {
+    resize: none;
+}
+.form-group.has-error > .note-editor.note-frame {
+    border-color: @red;
+}
+
+/* summernote comment image style */
+.summernote-image {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    opacity: 0.7;
+    max-width: 100%;
+    width: 15rem !important;
+}
+.summernote-image:hover {
+    opacity: 1;
+    cursor: pointer;
+    border: 2px solid @navy;
+}
+
+/* summernote comment image dialog */
+/* click image the open dialog show zoom image */
+.summernote-image-window {
+    display: block !important;
+}
+.summernote-modal {
+    margin: auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 1;
+}
+.summernote-modal > img {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+}
+.summernote-modal-close {
+    position: absolute;
+    top: 20px;
+    right: -50px;
+}
+.summernote-modal-close > .fa:hover {
+    color: @navy;
+    cursor: pointer;
+}

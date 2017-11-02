@@ -1,0 +1,37 @@
+<section class="p-h-llg">
+    <div class="container">
+        <div class="white-bg p-lg account-history">
+            <table class="table table-striped no-margins table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center font-oblique">类型</th>
+                        <th class="text-center font-oblique">货币</th>
+                        <th class="text-center font-oblique">充值金额</th>
+                        <th class="text-center font-oblique">充值前</th>
+                        <th class="text-center font-oblique">充值后</th>
+                        <th class="text-center font-oblique">时间</th>
+                    </tr>
+                </thead>
+                <tbody ng-if="bills.length !== 0">
+                    <tr ng-repeat="bill in bills" ng-if="bill.ctype === 'incoming'">
+                        <td class="text-center">
+                            <span ng-if="bill.incoming_channel == 'present:first-registration'">首次注册</span>
+                            <span ng-if="bill.incoming_channel == 'present:recharge-return'">充值赠送</span>
+                            <span ng-if="bill.incoming_channel == 'recharge:online-recharge'">在线充值</span>
+                            <span ng-if="bill.incoming_channel == 'present:invite-return'">邀请赠送</span>
+                            <span ng-if="bill.incoming_channel == 'present:fuvism-present'">系统赠送</span>
+                        </td>
+                        <td class="text-center">{{ bill.currency_type }}</td>
+                        <td class="text-center text-navy">{{ bill.amount }}</td>
+                        <td class="text-center">{{ bill.balance_before }}</td>
+                        <td class="text-center">{{ bill.balance_after }}</td>
+                        <td class="text-center"><i class="fa fa-clock-o"></i> {{ bill.created_at | convertZone | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="p-t-lg text-center font-oblique" ng-if="bills.length === 0">
+                <h4>没有找到充值记录.</h4>
+            </div>
+        </div>
+    </div>
+</section>

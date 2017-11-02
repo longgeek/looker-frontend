@@ -1,0 +1,48 @@
+<div class="col-xs-12 full-height no-paddings" ng-controller="DebugController">
+    <ng-include src="'app/views/learn/study/trings/docs.html'"></ng-include>
+
+    <div class="full-height animated fadeIn" ng-class="{'col-xs-8': task.reference_material, 'col-xs-12': !task.reference_material}">
+        <div class="study-tring-content" ng-if="!task.topic_content">
+            <div class="col-xs-12 col-md-8 col-md-offset-2 full-height">
+                <div class="debug full-height">
+                    <div class="debug-info font-oblique font-bold text-white">这道题已创建，但是没有内容。</div>
+                </div>
+            </div>
+        </div>
+        <div class="study-tring-content" ng-if="task.topic_content">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="col-xs-12 col-md-8 col-md-offset-2 full-height">
+                <div class="study-tring-content__container p-w-m">
+                    <div class="debug full-height animated fadeIn">
+                        <div class="debug-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showDebugSuccess && !showDebugError && !showDebugAnswer">请标记错误内容所在的行编号</div>
+                        <div class="debug-info font-oblique font-bold animated fadeIn text-danger" ng-if="!showDebugSuccess && showDebugError && !showDebugAnswer">选择错误, 请重新选择错误的代码行!</div>
+                        <div class="debug-info font-oblique font-bold animated fadeIn text-navy" ng-if="!showDebugSuccess && !showDebugError && showDebugAnswer">正确答案如下</div>
+                        <div class="debug-content animated fadeIn" ng-if="!showDebugSuccess && !showDebugError && !showDebugAnswer">
+                            <pre class="text-white"><code ng-repeat="code in task.topic_content.content.split('\n') track by $index" ng-click="debugContentSelect($index)"><span class="label no-border-radius" ng-class="{'label-danger': debugUserSelect.indexOf($index) !== -1}">{{ $index + 1 }}</span> <span hljs hljs-source="code" class="hljs-code"></span><br /></code></pre>
+                        </div>
+                        <div class="debug-content error animated fadeIn" ng-if="!showDebugSuccess && showDebugError && !showDebugAnswer">
+                            <pre class="text-white"><code ng-repeat="code in task.topic_content.content.split('\n') track by $index" ng-click="debugContentSelect($index)"><span class="label no-border-radius" ng-class="{'label-danger': debugUserSelect.indexOf($index) !== -1}">{{ $index + 1 }}</span> <span hljs hljs-source="code" class="hljs-code"></span><br /></code></pre>
+                        </div>
+                        <div class="debug-content success animated fadeIn" ng-if="showDebugSuccess && !showDebugError && !showDebugAnswer">
+                            <pre class="text-white"><code ng-repeat="code in task.topic_content.content.split('\n') track by $index"><span class="label no-border-radius" tooltip-placement="right" uib-tooltip="{{ task.topic_content.answer[$index] }}" ng-class="{'label-danger': task.topic_content.answer.hasOwnProperty($index)}">{{ $index + 1 }}</span> <span hljs hljs-source="code" class="hljs-code">{{ code }}</span><br /></code></pre>
+                        </div>
+                        <div class="debug-content" ng-if="!showDebugSuccess && !showDebugError && showDebugAnswer">
+                            <pre class="text-white"><code ng-repeat="code in task.topic_content.content.split('\n') track by $index"><span class="label no-border-radius" tooltip-placement="right" uib-tooltip="{{ task.topic_content.answer[$index] }}" ng-class="{'label-danger': task.topic_content.answer.hasOwnProperty($index)}">{{ $index + 1 }}</span> <span hljs hljs-source="code" class="hljs-code">{{ code }}</span><br /></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/learn/study/trings/will-done.html'"></div>
+        </div>
+        <div class="study-footer-btn" ng-if="!showDebugSuccess && !showDebugError && !showDebugAnswer" ng-class="{'opacity-layer': debugUserSelect.length === 0}">
+            <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="debugCheck()" ng-disabled="debugUserSelect.length === 0">提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showDebugSuccess && showDebugError && !showDebugAnswer" ng-class="{'opacity-layer': debugDisabledRecheck()}">
+            <button type="button" class="btn btn-w-m btn-danger animated fadeIn" ng-click="debugCheck()" ng-disabled="debugDisabledRecheck()">重新提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showDebugSuccess && !showDebugError && showDebugAnswer">
+            <button type="button" class="btn btn-circle btn-primary animated fadeIn" ng-click="debugAnswerBack()"><i class="fa fa-angle-left"></i></button>
+        </div>
+        <div ng-include="'app/views/learn/study/trings/having-trouble.html'" ng-if="showTroubleHelp"></div>
+    </div>
+</div>

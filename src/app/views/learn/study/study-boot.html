@@ -1,0 +1,31 @@
+<div class="study-boot-container absolute-center row no-margins">
+    <div class="col-xs-10 col-md-5 col-lg-3 text-center study-boot-container__box absolute-center">
+        <span class="fa fa-long-arrow-left study-boot-back__btn" ng-click="studyBootingBack()"></span>
+        <span class="fa fa-ellipsis-h study-boot-detail__btn" ng-click="showBootingSteps()" ng-class="{'open': BootingStepsDetail, 'error': BootingError}"></span>
+        <img class="img-circle" src="assets/icons/logo.svg">
+        <!-- img class="img-circle" gravatar-src="user.gravatar" -->
+        <h4><span class="text-white">hi, {{ user.user.nickname }}!</span></h4>
+        <p class="text-white small font-oblique study-boot-text" ng-if="!BootingError && !BootingStepsDetail">正在加载学习控制台, 请稍等...</p>
+        <!-- div class="col-xs-12 m-b" ng-if="!BootingError">
+            <p ng-if="!quitting" class="text-white small font-oblique">正在加载学习控制台, 请等待...</p>
+            <p ng-if="quitting" class="text-white small font-oblique">系统检测到你有 workspace 正在退出, 请等待...</p>
+        </div -->
+        <div class="col-xs-12 m-b-md">
+            <uib-progressbar class="progress-mini border-radius-4" value="BootingProgress"></uib-progressbar>
+        </div>
+        <div class="col-xs-12" ng-if="BootingError.status || BootingStepsDetail">
+            <div class="study-boot-error animated fadeIn text-left text-white small" scroll-glue-bottom>
+                <p ng-class="{'study-boot-text': BootingSteps.length - 1 === $index && !BootingError.status}" class="study-boot-error__step font-oblique" ng-repeat="step in BootingSteps">{{ $index + 1 }}. {{ step }} ...</p>
+                <p class="study-boot-error__text font-oblique animated fadeIn">{{ BootingError.msgs }}</p>
+                <div class="text-right m-t-sm animated fadeIn">
+                    <button type="button" class="btn btn-xs btn-outline btn-primary m-l-xs" ng-if="BootingError.goto === 'ticket' && dialogTicketSend" ui-sref="home.tickets"><i class="fa fa-ticket"></i> 已报告, 点击跳转到工单页面</button>
+                    <button type="button" class="btn btn-xs btn-outline btn-danger m-l-xs" ng-if="BootingError.goto === 'ticket' && !dialogTicketSend" ng-click="dialogTicket()"><i class="fa fa-ticket"></i> 报告这个错误</button>
+                    <button type="button" class="btn btn-xs btn-outline btn-primary m-l-xs" ng-if="BootingError.goto === 'last'" ng-click="studyReload(BootingError.data)"><i class="fa fa-ticket"></i> 进入已开启的学习环境</button>
+                    <a class="btn btn-xs btn-outline btn-primary m-l-xs" ng-if="BootingError.goto === 'recharge'" ui-sref="home.account.recharge" target="_blank"><i class="fa fa-usd"></i> 立即充值</a>
+                    <button type="button" class="btn btn-xs btn-outline btn-primary m-l-xs" ng-if="BootingError.goto === 'timeout'" ng-click="reloadPage()"><i class="fa fa-refresh"></i> 刷新页面</button>
+                    <button type="button" class="btn btn-xs btn-outline btn-primary m-l-xs" ng-if="BootingError.goto === 'login'" ui-sref="auth.login({'next': '/learn/study'})"><i class="fa fa-refresh"></i> 重新登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

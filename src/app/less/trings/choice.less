@@ -1,0 +1,82 @@
+.choice-info {
+    font-size: 18px;
+}
+.choice-info .fa {
+    color: #005A63;
+    font-size: 14px;
+    position: absolute;
+}
+.choice-content {
+    width: 100%;
+    max-height: 90%;
+    overflow: auto;
+    font-size: 15px;
+    line-height: 24px;
+    margin: 30px 0;
+    padding: 0 30px;
+}
+.choice-content::-webkit-scrollbar {
+    width: 2px;
+}
+.choice-content::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+.choice-bg {
+    background: -webkit-radial-gradient(center, circle cover, #203C54 0%, #192835 100%);
+}
+
+.choice-list {
+    padding: 0;
+    margin: 0;
+    margin-top: 30px;
+    list-style: none;
+    text-align: left;
+}
+.choice-list li {
+    display: block;
+    position: relative;
+    margin-bottom: 5px;
+    color: #FFF;
+    background: #23405B;
+    font-size: 14px;
+    padding: 8px 15px;
+    list-style: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+.choice-list li:hover {
+    color: @navy;
+    background: #2B4D6D;
+}
+.choice-item {
+    margin: 10px;
+    border: 1px dashed #8A96A2;
+}
+.choice-item.error {
+    border: 1px dashed @red;
+}
+.choice-item.success {
+    border: 1px dashed @navy;
+}
+.choice-item-option {
+    position: relative;
+    float: left;
+}
+.choice-item-option > span {
+    position: absolute;
+    top: 0;
+    left: 10px;
+}
+.choice-item-content {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.choice-item-mark {
+    position: relative;
+    float: right;
+}
+.choice-item-mark > span {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}

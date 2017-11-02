@@ -1,0 +1,17 @@
+<div class="inmodal">
+    <div class="modal-body no-paddings">
+        <div class="navy-bg p-xl text-center">
+            <h2 class="m-t-none">恭喜!</h2>
+            <p>本章&nbsp;<span class="font-bold">[&nbsp;{{ part.name }}&nbsp;]</span>&nbsp;的学习已全部完成, 下一章自动解锁.</p>
+        </div>
+        <div class="p-xl white-bg text-left">
+            <h3 class="m-t-none">{{ nextPart.name }}</h3>
+            <p>{{ nextPart.description }}</p>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <button type="button" class="btn btn-block btn-primary" ng-click="cancel(); loadTask({'part': nextPart.uuid})">进入下一章</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

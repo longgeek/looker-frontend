@@ -1,0 +1,67 @@
+.login-modal-page {
+    background: radial-gradient(ellipse at center,#2D3F52 0,#192835 100%);
+    font-weight: 200;
+    color: @text-color;
+    font-family: @font-family;
+}
+.login-modal-page {
+    .login-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -200px;
+        margin-left: -170px;
+    }
+    .login-from {
+        width: 360px;
+        padding: 35px 23px 30px;
+        background: @cyan-gray;
+        border-radius: 6px;
+        box-shadow: 0 0 20px #232121;
+    }
+    .btn {
+        border-radius: 6px;
+        font-size: 14px;
+        outline: 0;
+    }
+    .login-footer {
+        margin: 15px 0;
+        text-align: center;
+        color: #808080;
+    }
+    label {
+        position: relative;
+        top: -28px;
+        right: 15px;
+        font-size: 16px;
+        color: #bfc9ca;
+        transition: all .25s;
+        float: right;
+    }
+    input {
+        font-size: 14px;
+        text-indent: 3px;
+        border-color: transparent;
+    }
+    .form-control {
+        height: 40px;
+        padding: 8px 12px;
+        line-height: 1.467;
+        color: @text-color;
+        border-radius: 6px;
+
+    }
+    .login-link {
+        font-size: 13px;
+        color: #bfc9ca;
+        margin-bottom: 10px;
+        outline: 0;
+    }
+    .login-link:focus,
+    .login-link:hover {
+        color: @navy;
+    }
+    input:focus ~ label {
+        color: @navy;
+    }
+}

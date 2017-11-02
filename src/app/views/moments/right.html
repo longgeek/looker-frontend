@@ -1,0 +1,33 @@
+<div class="recommended-course-box">
+    <div class="header">
+        <div class="m-b-md">
+            <h2 class="font-bold">Python 软件工程师</h2>
+        </div>
+        <img src="assets/icons/plan.svg">
+        <div class="info">
+            <span>初级级别</span> |
+            <span>包含 12 门课程</span> |
+            <span>共 50+ 小时</span>
+        </div>
+    </div>
+    <div class="footer">
+        <p>职业规划 "Python 软件工程师"，是面向初学者/入门者，适合就业的学习计划。课程包含了预科，基础篇，高级篇，应用篇，Web开发篇，大项目实战等不同类型和阶段，帮助学员从零基础/无基础，成长为一名合格的开发工程师。</p>
+        <div class="text-center">
+            <a class="btn btn-sm btn-block btn-flat-dark" href="http://www.fuvism.com/learn/plan/detail/?ud=946b6010-85f9-11e6-9db5-121766479588" target="_blank">
+                <i class="fa fa-heart m-r-8"></i>立即查看
+            </a>
+        </div>
+    </div>
+</div>
+<div class="ibox">
+    <div class="ibox-content">
+        <h4>热门圈友</h4>
+        <div>
+            <a class="hot-users-list" ui-sref="u.homepage({username: u.uuid})" target="_blank" ng-repeat="u in hotUsers">
+                <img class="img-circle" gravatar-src="u.gravatar">
+                <div class="name">{{ u.nickname }}</div>
+            </a>
+        </div>
+        <div class="small text-flat font-oblique" ng-if="hotUsersLoading">正在加载...</div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<section class="cyan-gray-bg">
+    <div class="container">
+        <div class="row space-20">
+            <div class="col-xs-12 text-center">
+                <h1>我的账号</h1>
+            </div>
+        </div>
+        <div class="row m-b-xl">
+            <div class="col-xs-12 col-sm-5 col-md-4">
+                <ul class="profile-select">
+                    <li ui-sref="home.profile" ng-class="{'active': $state.is('home.profile')}"><a>个人信息</a></li>
+                    <li ui-sref="home.profile.intro" ng-class="{'active': $state.is('home.profile.intro')}"><a>个人简介</a></li>
+                    <li ui-sref="home.profile.tags" ng-class="{'active': $state.is('home.profile.tags')}"><a>个人标签</a></li>
+                    <li ui-sref="home.profile.password" ng-class="{'active': $state.is('home.profile.password')}"><a>修改密码</a></li>
+                    <li ui-sref="home.profile.email" ng-class="{'active': $state.is('home.profile.email')}"><a>变更邮箱</a></li>
+                    <li ui-sref="home.profile.nickname" ng-class="{'active': $state.is('home.profile.nickname')}"><a>修改别名</a></li>
+                    <li ui-sref="home.profile.operate" ng-class="{'active': $state.is('home.profile.operate')}"><a>操作日志</a></li>
+                    <li ui-sref="home.profile.login" ng-class="{'active': $state.is('home.profile.login')}"><a>登录日志</a></li>
+                    <li ui-sref="home.profile.buylearning" ng-class="{'active': $state.is('home.profile.buylearnings')}"><a>已购买的</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-8 m-b-xl">
+                <div class="col-xs-12 white-bg">
+                    <div ui-view autoscroll="true">
+                        <div class="p-xl">
+                            <div class="row" ng-if="$state.is('home.profile')">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="text-center">
+                                        <div class="profile-user-img">
+                                            <img class="img-circle" gravatar-src="user.user.gravatar">
+                                        </div>
+                                        <h2>{{ userProfile.username }}</h2>
+                                        <div class="m-b-sm">{{ userProfile.email }}</div>
+                                        <span class="font-oblique">如需修改头像，请前往&nbsp;<a href="http://cn.gravatar.com/" target="_blank">Gravatar</a></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="text-center">
+                                        <h3 class="m-t-xl">加入时间</h3>
+                                        <p class="small">{{ userProfile.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+                                        <hr/>
+                                        <h3>上次登录</h3>
+                                        <p class="small">{{ userProfile.updated_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

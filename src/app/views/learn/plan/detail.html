@@ -1,0 +1,100 @@
+<div class="loading-layer margin-header" ng-if="planDetailLoading">正在加载...</div>
+<div class="loading-layer margin-header" ng-if="!planDetailLoading && !plan">没有找到该职业计划，请选择其它课程学习。</div>
+<div ng-if="!planDetailLoading && plan">
+<div class="bsection one" ng-include="'app/views/learn/plan/detail-one.html'"></div>
+<section id="plan-detail" class="plan-detail-info">
+    <div class="container">
+        <div class="row col-xs-12 col-md-10 col-md-offset-1 animated fadeInDown text-center">
+            <div class="col-xs-12 col-sm-3">
+                <p ng-if="plan.level_required">{{ plan.level_required }}</p>
+                <p ng-if="!plan.level_required">Beginner</p>
+                <small>难度|级别</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p style="font-size: 16px;">¥ 0.0028/s | RMB {{ plan.estimated_lesson_expense | number:1 }}</p>
+                <small>单价 | 预估花费</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p style="font-size: 16px;" class="text-navy">{{ plan.subcourses_index.length }} 个 | {{ plan.estimated_lesson_period / 3600 | number:2 }} h</p>
+                <small>课程数量 | 预估总课时</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <!-- p><span>{{ plan.cloud_flavor.quota.cpus }}CPU {{ plan.cloud_flavor.quota.mem }}MB {{ plan.cloud_flavor.quota.disk }}GB</span></p -->
+                <p>1CPU 512MB 12GB</p>
+                <small>云配额</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="learn-section cyan-gray-bg plan-detail-subcourse">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="vertical-timeline" class="vertical-container dark-timeline no-margins" ng-repeat="cgroup in plan.cgroups_index">
+                    <div class="vertical-timeline-block">
+                        <div class="tek-progress-box">
+                            <tek-progress-bar class="vertical-progress" bar-class="progress-bar-success" mode="vertical" ng-model="plan.cgroups[cgroup].progress"></tek-progress-bar>
+                        </div>
+                        <div class="vertical-timeline-icon none" ng-if="!plan.cgroups[cgroup].progress">{{ plan.cgroups[cgroup].progress | number:0 }}%</div>
+                        <div class="vertical-timeline-icon" ng-if="plan.cgroups[cgroup].progress < 100 && plan.cgroups[cgroup].progress > 0">{{ plan.cgroups[cgroup].progress | number:0 }}%</div>
+                        <div class="vertical-timeline-icon navy-bg" ng-if="plan.cgroups[cgroup].progress >= 100"><i class="fa fa-check"></i></div>
+                        <div class="vertical-timeline-content">
+                            <div masonry="{ gutter: 30, transitionDuration: '0.4s' }" load-images="false" preserve-order column-width="300" reload-on-resize>
+                                <div class="masonry-brick" ng-repeat="course in plan.cgroups[cgroup].courses" ui-sref="learn.{{ course.subcourse_type }}.detail({ pd: plan.uuid, ud: course.uuid })">
+                                    <!-- div class="course-item white-bg text-center">
+                                        <img ng-src="assets/icons/{{ course.subcourse_type }}.svg" class="m-b-md" width="120" height="120">
+                                        <div class="course-name">{{ course.name }}</div>
+                                        <span class="course-progress-number" ng-if="planProgress.joined_subcourses[course.uuid]">{{ planProgress.joined_subcourses[course.uuid].completed_percentage }}%</span>
+                                        <uib-progressbar class="progress-mini m-t-xl" value="planProgress.joined_subcourses[course.uuid].completed_percentage" ng-if="planProgress.joined_subcourses[course.uuid]"></uib-progressbar>
+                                        <div class="course-description text-left" ng-if="!planProgress.joined_subcourses[course.uuid]">{{ course.description | limitTo:50 }}<span ng-if="course.description.length > 50">...</span></div>
+                                    </div -->
+                                    <div class="base-item hover">
+                                        <div class="title text-center">
+                                            <h3>{{ course.name }}</h3>
+                                        </div>
+                                        <div class="content">
+                                            <div class="text-center">
+                                                <img ng-src="assets/icons/{{ course.subcourse_type }}.svg" class="m-b m-t-n-sm" width="80" height="80">
+                                            </div>
+                                            <span class="pull-right m-l-sm m-t-n-2 text-navy" ng-if="planProgress.joined_subcourses[course.subcourse_type + ':' + course.uuid].completed_percentage >= 0">{{ planProgress.joined_subcourses[course.subcourse_type + ':' + course.uuid].completed_percentage }}%</span>
+                                            <!-- uib-progressbar class="progress-mini m-b" value="0" ng-if="!planProgress.joined_subcourses[course.subcourse_type + ':' + course.uuid]"></uib-progressbar -->
+                                            <uib-progressbar class="progress-mini m-b" value="planProgress.joined_subcourses[course.subcourse_type + ':' + course.uuid].completed_percentage" ng-if="planProgress.joined_subcourses[course.subcourse_type + ':' + course.uuid].completed_percentage >= 0"></uib-progressbar>
+                                            <table class="base-item-table table small">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>预估课时</td>
+                                                        <td class="text-navy">{{ course.estimated_lesson_period / 3600 | number:2 }} h</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>是否可选</td>
+                                                        <td>否</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <ul class="tag-list">
+                                                <li>
+                                                    <a>
+                                                        <i class="fa fa-tag m-r-xs"></i>
+                                                        <span ng-if="course.subcourse_type === 'course'">在线课程</span>
+                                                        <span ng-if="course.subcourse_type === 'project'">项目实战</span>
+                                                        <span ng-if="course.subcourse_type === 'lab'">实验室</span>
+                                                        <span ng-if="course.subcourse_type === 'quiz'">阶段测评</span>
+                                                        <span ng-if="course.subcourse_type === 'exercise'">练习题库</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="vertical-date">{{ cgroup }}（共 {{ plan.cgroups[cgroup].courses.length }} 个课程，总课时约 <span class="text-navy">{{ plan.cgroups[cgroup].period / 3600 | number:2 }}</span> 小时.）</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>

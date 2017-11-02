@@ -1,0 +1,13 @@
+<div class="details" ng-if="notice.ctype === 'friend:followed'">
+    <h3 class="title">
+        <i class="fa fa-eye m-r-8"></i>
+        有人 "关注" 了你
+    </h3>
+    <p class="time">关注于: {{ notice.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <div class="content">
+        <a ui-sref="u.homepage({username: notice.params.friend_uuid})">{{ notice.params.nickname }}</a>
+        关注了你, 你可以在
+        <a ui-sref="u.homepage.followers({username: user.user.uuid})">这里</a>
+        查看你的粉丝。
+    </div>
+</div>

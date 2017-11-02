@@ -1,0 +1,113 @@
+.base-item {
+    background: #FFF;
+    margin-bottom: 20px;
+}
+.base-item.gray-bg {
+    background-color: @gray;
+}
+.base-item.light-gray-bg {
+    background-color: @light-gray;
+}
+.base-item.dark-gray-bg {
+    background-color: @dark-gray;
+}
+.base-item .title {
+    padding: 20px;
+}
+.base-item .title h3 {
+    display: inline-block;
+    font-weight: 700;
+    margin: 0;
+}
+.base-item .content {
+    padding: 10px 30px 20px;
+}
+.base-item .content .base-item-table {
+    margin: 0;
+    table-layout: fixed;
+    tbody tr {
+        border-bottom: 1px solid #f3f3f3;
+    }
+    tbody tr:last-child {
+        border: none;
+    }
+    tbody tr td {
+        padding: 8px 0;
+        border: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 16px;
+    }
+    tbody tr td:first-child {
+        width: 100px;
+    }
+}
+.base-item .content .base-item-table.table-hover {
+    tbody tr td {
+        cursor: pointer;
+        padding: 8px 10px;
+    }
+    tbody tr td:not(.disabled):hover {
+        color: @navy;
+        background: @light-gray;
+    }
+    tbody tr td.active {
+        color: @navy;
+        background: @gray;
+    }
+    tbody tr td.disabled,
+    tbody tr td.disabled:hover {
+        opacity: 0.4;
+        cursor: no-drop;
+        background: @gray;
+    }
+    tbody tr td:focus {
+        outline: 0;
+    }
+}
+.base-item .action,
+.base-item .dropdown-toggle {
+    width: 20px;
+    height: 20px;
+    color: @flat-color;
+    cursor: pointer;
+    text-align: center;
+}
+.base-item .action:hover,
+.base-item .dropdown-toggle:hover {
+    color: @navy;
+}
+.base-item .action:focus {
+    outline: 0;
+}
+.base-item .dropdown-menu > li > a > .text {
+    padding-left: 8px;
+}
+.base-item.gray-bg .content .base-item-table tbody tr {
+    border-bottom: 1px solid @dark-gray;
+}
+.base-item.gray-bg .content .tag-list li a {
+    background: #FFF;
+}
+.base-item.light-gray-bg .content .base-item-table tbody tr {
+    border-bottom: 1px solid rgba(221,221,221,0.46);
+}
+.base-item.gray-bg .content .base-item-table tbody tr:last-child,
+.base-item.light-gray-bg .content .base-item-table tbody tr:last-child {
+    border: none;
+}
+.base-item.light-gray-bg .content .tag-list li a {
+    background: #FFF;
+}
+.base-item.m-b-none {
+    margin-bottom: 0;
+}
+.base-item.hover:hover {
+    color: #FFF;
+    cursor: pointer;
+    background: @navy !important;
+    .title h3 {
+        color: #FFF;
+    }
+}

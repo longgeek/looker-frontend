@@ -1,0 +1,11 @@
+<div id="wrapper" ng-class="{'notifications-page': $state.includes('notifications')}">
+    <!-- Top navbar -->
+    <div ng-include="'app/views/topnavbar/topnavbar.html'"></div>
+    <div class="wrapper wrapper-content animated fadeIn no-paddings">
+
+        <div ui-view autoscroll="true"></div>
+
+    </div>
+    <!-- Footer -->
+    <div ng-include="'app/views/footer.html'"></div>
+</div>

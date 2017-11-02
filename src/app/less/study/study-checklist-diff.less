@@ -1,0 +1,141 @@
+/* study checklist answer ace-diff */
+#flex-container {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    top: 70px;
+    left: 0;
+    padding: 8px 20px 0;
+
+    /* these 3 lines are to prevents an unsightly scrolling bounce affect on Safari */
+    width: 100%;
+    overflow: auto;
+}
+#flex-container > div {
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    position: relative;
+    background: #213140;
+    border-radius: 4px;
+}
+#flex-container > div#acediff-gutter {
+    flex: 0 0 60px;
+    -webkit-flex: 0 0 60px;
+    background-color: #192835;
+    overflow: hidden;
+    margin: 50px 0 10px;
+}
+#acediff-gutter svg {
+    background-color: #192835;
+}
+
+#acediff-left-editor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 50px 0 10px;
+}
+#acediff-right-editor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 50px 0 10px;
+}
+.acediff-diff {
+    background-color: #d8f2ff;
+    border-top: 1px solid #a2d7f2;
+    border-bottom: 1px solid #a2d7f2;
+    position: absolute;
+    z-index: 4;
+}
+#acediff-left-editor .acediff-diff {
+    background-color: rgba(98, 239, 210, 0.42);
+    border-top: 1px solid #005a63;
+    border-bottom: 1px solid #005a63;
+}
+#acediff-right-editor .acediff-diff {
+    background-color: rgba(216, 152, 152, 0.42);
+    border-top: 1px solid #865E63;
+    border-bottom: 1px solid #865E63;
+}
+.acediff-diff.targetOnly {
+    height: 0px !important;
+    border-top: 1px solid #a2d7f2;
+    border-bottom: 0px;
+    position: absolute;
+}
+.acediff-connector {
+    fill: rgba(216, 152, 152, 0.42);
+    stroke: #865E63;
+}
+
+.acediff-copy-left {
+    float: right;
+}
+.acediff-copy-right,
+.acediff-copy-left {
+    position: relative;
+}
+.acediff-copy-right div {
+    color: @navy;
+    position: absolute;
+    cursor: pointer;
+    margin: -3px 3px;
+    font-size: 18px;
+}
+.acediff-copy-right div:hover {
+    opacity: 0.8;
+}
+.acediff-copy-left div {
+    color: @red;
+    position: absolute;
+    right: 0px;
+    margin: -3px 3px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.acediff-copy-left div:hover {
+    opacity: 0.8;
+}
+
+.study-checklist-diff {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #192835;
+}
+.study-checklist-diff__tips {
+    padding: 15px;
+    color: @red;
+    margin: 20px 20px 8px;
+    background: #213140;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: auto;
+}
+.study-checklist-diff__bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+    background: #26394A;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.study-checklist-diff__footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    text-align: center;
+}

@@ -1,0 +1,139 @@
+<nav class="sub-nav" ng-if="tickets.length > 0">
+    <div class="container">
+        <ol class="breadcrumbs">
+            <li class="title" title="工单系统">
+                工单系统
+            </li>
+            <li class="text" title="在使用网站过程中，遇到问题可以提交工单给我们，我们将会及时的处理。">
+                工单系统是您与 Fuvism 最直接有效的交流平台，您可以通过工单系统来咨询任何问题，我们会第一时间为您解决。同时我们也欢迎您提交建议与意见。
+            </li>
+        </ol>
+    </div>
+</nav>
+<section class="section-tickets">
+    <div class="container full-height">
+        <div class="tickets-none" ng-if="tickets.length == 0">
+            <h2>工单</h2>
+            <p class="lead">工单系统是您与未来图谱（Fuvism） 最直接有效的交流平台，您可以通过工单系统来咨询任何问题，我们会第一时间为您解决。同时我们也欢迎您提交建议与意见。</p>
+            <a class="btn btn-flat-dark btn-w-m" ng-click="createTicket()">
+                <span class="fa fa-ticket m-r-8"></span>创建工单
+            </a>
+        </div>
+        <div class="tickets-list" ng-if="tickets.length > 0">
+            <div class="inner">
+                <div class="toolbar">
+                    <button class="btn btn-flat-dark btn-sm" ng-click="ticket_list()"><i class="fa fa-refresh"></i></button>
+                    <a class="btn btn-flat-dark btn-sm" ng-click="createTicket()">
+                        <span class="fa fa-ticket m-r-8"></span>创建工单
+                    </a>
+                </div>
+                <ol class="items">
+                    <li class="item" ng-repeat="t in tickets" ng-click="ticketDetail(t.uuid, $index)" ng-class="{'selected': ticket.uuid === t.uuid}">
+                        <div class="details">
+                            <h6>
+                                <span>{{ t.title | limitTo: 20 }}<span ng-if="t.title.length > 20">...</span></span>
+                                <span class="fa fa-circle pull-right small" ng-class="{true: 'text-navy', false: 'text-muted'}[!t.is_resolved]">
+                                    <span class="m-l-xs" ng-if="!t.is_resolved">处理中</span>
+                                    <span class="m-l-xs" ng-if="t.is_resolved">已解决</span>
+                                </span>
+                            </h6>
+                            <span class="time">提交于: {{ t.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+                            <p>{{ t.content | limitTo: 65 }}<span ng-if="t.content.length > 65">...</span></p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="tickets-detail" ng-if="tickets.length > 0">
+            <div class="inner" scroll-glue>
+                <div class="details">
+                    <h3 class="title">
+                        {{ tickets[ticketIndex].title }}
+                        <a class="btn btn-flat-dark btn-sm pull-right" ng-if="!tickets[ticketIndex].is_resolved" ng-click="ticketMakeResolved(tickets[ticketIndex].uuid)">
+                            <span class="fa fa-check m-r-8"></span>问题已解决
+                        </a>
+                        <button class="btn btn-white btn-sm pull-right text-muted font-oblique" ng-if="tickets[ticketIndex].is_resolved" disabled>已解决</button>
+                    </h3>
+                    <p class="time">提交于: {{ tickets[ticketIndex].created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }} （ {{ tickets[ticketIndex].created_at | convertZone | toChinaTime }} ）</p>
+                    <div class="content">
+                        <pre>{{ tickets[ticketIndex].content }}</pre>
+                    </div>
+                </div>
+                <div class="attachments" ng-if="!detailLoading" ng-class="{'none': ticket.attach === null && ticket.is_resolved}">
+                    <h4 ng-if="ticket">
+                        <span class="fa fa-paperclip m-r-8"></span>
+                        附件<span class="total" ng-if="ticket.attach.sorted.length > 0">({{ ticket.attach.sorted.length }})</span>
+                        <span class="help">支持格式：txt、jpg、jpeg、png，最大 2M，每个工单最多可上传 5 个附件.</span>
+                    </h4>
+                    <ul class="items">
+                        <li class="item" ng-repeat="file in ticket.attach.sorted">
+                            <!-- 图片 -->
+                            <div class="list" ng-if="ticket.attach.values[file].filetype.indexOf('image') !== -1">
+                                <a class="delete" ng-click="deleteAttachFile($index, file, ticket.attach.values[file])" ng-if="!tickets[ticketIndex].is_resolved">
+                                    <span class="fa fa-times"></span>
+                                </a>
+                                <a class="preview" ng-click="imagePreview(ticket.attach.values[file].filename, ticket.ticket_bucket_domain + ticket.attach.values[file].filepath + file)">
+                                    <span class="fa fa-search-plus"></span>
+                                </a>
+                                <img ng-src="{{ ticket.ticket_bucket_domain + ticket.attach.values[file].filepath + file }}">
+                            </div>
+                            <!-- 文本 -->
+                            <div class="list" ng-if="ticket.attach.values[file].filetype.indexOf('text') !== -1">
+                                <a class="delete" ng-click="deleteAttachFile($index, file, ticket.attach.values[file])" ng-if="!tickets[ticketIndex].is_resolved">
+                                    <span class="fa fa-times"></span>
+                                </a>
+                                <a class="preview" ng-click="textPreview(ticket.attach.values[file].filename, ticket.ticket_bucket_domain + ticket.attach.values[file].filepath + file)">
+                                    <span class="fa fa-eye"></span>
+                                </a>
+                                <div class="text-file">
+                                    <span class="fa fa-file-text-o"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item" ng-style="{'false': {'display': 'none'}}[!ticket.is_resolved && ticket.attach === null || !ticket.is_resolved && ticket.attach.sorted.length < 5]">
+                            <qiniu-upload handle="test-handle" uploader="uploader" opts="uploaderOpts"></qiniu-upload>
+                            <div class="upload-none"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="replies" ng-if="detailLoading">
+                    <span class="font-oblique small">正在加载...</span>
+                </div>
+                <div class="replies" ng-if="!detailLoading">
+                    <div class="chat-activity-list">
+                        <div class="chat-element" ng-repeat="replie in ticket.replies">
+                            <a class="pull-left" ui-sref="u.homepage({username: replie.created_by.uuid})" target="_blank">
+                                <img alt="image" class="img-circle" gravatar-src="replie.created_by.gravatar">
+                            </a>
+                            <div class="media-body">
+                                <span class="fa fa-circle text-warning pull-right" style="display: none;"></span>
+                                <strong>{{ replie.created_by.nickname }}</strong>
+                                <span class="text-muted small pull-right">
+                                    {{ replie.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}
+                                    （ {{ replie.created_at | convertZone | toChinaTime }} ）
+                                </span>
+                                <pre class="replie">{{ replie.content }}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-form m-t-md" ng-if="!ticket.is_resolved">
+                        <div class="alert alert-info" ng-if="ticket.is_accepted">
+                            <i class="fa fa-info-circle m-r-8"></i>
+                            {{ ticket.accepted_admin_by.nickname }} 工程师正在处理此工单, 请稍等
+                        </div>
+                        <form role="form">
+                            <div class="form-group">
+                                <textarea class="form-control ticket-textarea" ng-model="replyMsg.content" value="replyMsg.content" rows="6" textarea-tab></textarea>
+                            </div>
+                            <div class="text-right">
+                                <button type="button" class="btn btn-sm btn-flat-dark m-t-n-xs" ng-click="replyTicketMsg()" ng-disabled="!replyMsg.content">
+                                    <span class="fa fa-reply m-r-8"></span>回复该工单
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,70 @@
+.tabs {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    font-weight: 300;
+    font-size: 1.25em;
+}
+.tabs-content {
+    padding: 30px;
+}
+
+.tabs nav ul {
+    position: relative;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1200px;
+    list-style: none;
+    -ms-box-orient: horizontal;
+    -ms-box-pack: center;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+}
+
+.tabs nav ul li {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin: 0;
+    text-align: center;
+    -webkit-flex: 100%;
+    -moz-flex: 100%;
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 180px;
+}
+
+.tabs nav ul li a {
+    color: @flat-color;
+    font-weight: 400;
+    margin: 0 2px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 2.5;
+    font-size: 14px;
+    padding: 8px 0;
+    height: 50px;
+    border-color: @cyan-gray;
+    border-style: solid;
+    border-width: 1px 1px 0;
+}
+.tabs nav ul li a:hover,
+.tabs nav ul li a.active {
+    background: @cyan-gray;
+    border-color: @cyan-gray;
+}

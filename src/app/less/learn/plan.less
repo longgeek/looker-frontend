@@ -1,0 +1,138 @@
+/* Plan List */
+.page-section {
+    padding: 60px 0 44px;
+}
+.plan-list {
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+    margin-bottom: 45px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.plan-list {
+    .plan-list__icon {
+        float: left;
+        width: 100%;
+        position: relative;
+        min-height: 1px;
+        padding: 30px 10px;
+        text-align: center;
+    }
+    .plan-list__text {
+        float: left;
+        width: 100%;
+        position: relative;
+        min-height: 1px;
+        text-align: left;
+        color: #2d405a;
+        padding: 20px 30px;
+    }
+}
+
+/* Recommend Plan */
+.recommend-plan-logo {
+    width: 180px;
+    height: 180px;
+}
+
+/* Plan Detail */
+.plan-detail-subcourse .vertical-container {
+    width: 100%;
+}
+.plan-detail-subcourse .vertical-container:before {
+    background: #FFF !important;
+}
+.plan-detail-subcourse .tek-progress-box {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+}
+.plan-detail-subcourse .progress.vertical.vertical-progress {
+    position: absolute;
+    top: 0;
+    left: 18px;
+    height: 100%; /*calc(~"100vh - 165px");*/
+    width: 4px;
+    background: #FFF;
+    z-index: 2;
+}
+.plan-detail-subcourse .vertical-progress .progress-bar {
+    width: 100%;
+    transition: height 0.6s ease 0s;
+}
+.plan-detail-subcourse .vertical-progress .progress-bar-success {
+    background: @navy;
+}
+.plan-detail-subcourse .vertical-timeline-icon {
+    left: -5px;
+    width: 50px;
+    height: 50px;
+    z-index: 3;
+    border: 3px solid @navy;
+    text-align: center;
+    padding-top: 12px;
+    font-size: 14px;
+    font-family: monospace;
+    font-weight: 600;
+    color: #FFF;
+    background: #59d0c0;
+}
+.plan-detail-subcourse .vertical-timeline-icon.none {
+    border: 3px solid #FFF;
+    background: #f5f5f5;
+    color: @flat-color;
+}
+.plan-detail-subcourse .vertical-timeline-icon i {
+    font-size: 16px;
+    margin-top: -13px;
+}
+.plan-detail-subcourse .dark-timeline .vertical-timeline-content {
+    background: transparent;
+}
+.plan-detail-subcourse .dark-timeline .vertical-timeline-content:before {
+    border-color: transparent;
+}
+.plan-detail-subcourse .vertical-timeline-content {
+    padding-top: 60px;
+}
+.plan-detail-subcourse .vertical-timeline-content .vertical-date {
+    top: 0;
+    position: absolute;
+    font-size: 18px;
+    top: 12px;
+    color: @flat-color;
+}
+.progress-bar-warning {
+    background-color: #fad733;
+}
+@media only screen and (min-width: 1170px) {
+    .plan-detail-subcourse .center-orientation .vertical-timeline-content .vertical-date {
+        top: 12px;
+        font-size: 16px;
+    }
+}
+@media (min-width: 768px) {
+    .plan-list {
+        .plan-list__icon {
+            float: left;
+            width: 25%;
+        }
+        .plan-list__text {
+            float: left;
+            width: 75%;
+            h3 {
+                font-family: 'gloriolamedium';
+                font-size: 24px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 25px;
+            }
+        }
+    }
+}

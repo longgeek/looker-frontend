@@ -1,0 +1,70 @@
+<div class="loading-layer margin-header" ng-if="courseDetailLoading">正在加载...</div>
+<div class="loading-layer margin-header" ng-if="!courseDetailLoading && !course">没有找到该课程，请选择其它课程学习。</div>
+<div ng-if="!courseDetailLoading && course">
+<div class="bsection one" ng-include="'app/views/learn/course/detail-one.html'"></div>
+<section class="plan-detail-info">
+    <div class="container">
+        <div class="row col-xs-12 col-md-10 col-md-offset-1 animated fadeInDown text-center">
+            <div class="col-xs-12 col-sm-3">
+                <p ng-if="course.level_required">{{ course.level_required }}</p>
+                <p ng-if="!course.level_required">Beginner</p>
+                <small>难度|级别</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p style="font-size: 16px;">0.0028/s | RMB {{ course.estimated_lesson_expense | number:1 }}</p>
+                <small>单价 | 预估花费</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p style="font-size: 16px;" class="text-navy">{{ course.parts.length }}/{{ courseStageCount }}/{{ courseTaskCount }} | {{ course.estimated_lesson_period / 3600 | number:2 }} h</p>
+                <small>章/节/课 | 预估课时</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <!-- p>{{ course.cloud_flavor.quota.cpus }}CPU {{ course.cloud_flavor.quota.mem }}MB {{ course.cloud_flavor.quota.disk }}GB</p -->
+                <p style="font-size: 16px;">1CPU 512MB 12GB</p>
+                <small>云配额</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="course-detail-path">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2 white-bg">
+                <div class="p-b-m p-t-m" ng-repeat="part in course.parts">
+                    <div class="p-m text-left">
+                        <h3 class="m-t-none">第{{ $index + 1 }}章 - {{ part.name }}</h3>
+                        <p>{{ part.description }}</p>
+                    </div>
+
+                    <ul class="stage-list">
+                        <li ng-repeat="stage in part.stages">
+                            <div class="lock m-l-md m-r-md" ng-if="!courseProgress.progress.stages_achievement.hasOwnProperty(stage.uuid)"></div>
+                            <a ng-click="goToStudy({'origin': 'course', 'source': {'course': course.uuid, 'part': part.uuid, 'stage': stage.uuid, 'task': stage.tasks_index[0]}})" ng-class="{'completed': courseProgress.progress.stages_achievement[stage.uuid].is_completed}">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="stage-status">
+                                            <span ng-if="!courseProgress.progress.stages_achievement.hasOwnProperty(stage.uuid)">0|{{ stage.tasks_index.length }}</span>
+                                            <span ng-if="courseProgress.progress.stages_achievement.hasOwnProperty(stage.uuid)">{{ courseProgress.progress.stages_achievement[stage.uuid].completed_tasks_uuid.length }}|{{ stage.tasks_index.length }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="small pull-right m-t-xs text-center" style="width: 80px;">
+                                            <uib-progressbar class="progress-mini" value="courseProgress.progress.stages_achievement[stage.uuid].completed_percentage" ng-if="courseProgress.progress.stages_achievement[stage.uuid]"></uib-progressbar>
+                                            <uib-progressbar class="progress-mini" value="0" ng-if="!courseProgress.progress.stages_achievement.hasOwnProperty(stage.uuid) && courseProgress.progress.parts_achievement.hasOwnProperty(part.uuid) && $index === 0"></uib-progressbar>
+                                            <span class="fa fa-lock" ng-if="!courseProgress.progress.stages_achievement.hasOwnProperty(stage.uuid)"></span>
+                                        </div>
+                                        <h3 class="m-t-none">{{ stage.name }}</h3>
+                                        <p>{{ stage.description }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>

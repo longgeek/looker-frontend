@@ -1,0 +1,73 @@
+<div class="inmodal full-height">
+    <div class="modal-body subcourse-detail no-margins">
+        <nav class="study-detail-list" role="navigation">
+            <div class="sidebar-collapse full-height">
+                <ul side-navigation class="study-detail-list__nav metismenu full-height">
+                    <li class="nav-header p-lg">
+                        <span class="label label-info pull-right">项目实战</span>
+                        <h3 class="text-white m-t-none">{{ project.name }} &nbsp; &nbsp;<span class="fa fa-check-square text-navy" ng-if="currentStudyProgress.is_completed"></span></h3>
+                        <small>{{ project.description }}</small>
+                    </li>
+                    <li class="study-location-li text-white text-center p-b-xs">
+                        <p class="animated pulse p-t-m">
+                            <span class="fa fa-map-marker text-navy"></span>
+                            &nbsp;&nbsp;
+                            第 {{ part.stages_index.indexOf(taskSession.source.current_stage_uuid) + 1 }} 节 ...
+                            第 {{ stage.tasks_index.indexOf(taskSession.source.current_task_uuid) + 1 }} 课
+                        </p>
+                    </li>
+                    <li class="study-detail-guide no-margins">
+                        <h5 class="text-success">小节列表</h5>
+                    </li>
+                    <li ng-repeat="detail_stage in project.stages" ng-class="{'active': detail_stage.uuid === taskSession.source.current_stage_uuid}">
+                        <a>
+                            <div class="col-xs-10">
+                                <span class="nav-label">{{ $index + 1 }}. {{ detail_stage.name }}</span>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <uib-progressbar class="progress-mini m-t-7" value="currentStudyProgress.progress.stages_achievement[detail_stage.uuid].completed_percentage" ng-if="currentStudyProgress.progress.stages_achievement[detail_stage.uuid]"></uib-progressbar>
+                                <uib-progressbar class="progress-mini m-t-7" value="0" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid] && $index === 0"></uib-progressbar>
+                                <uib-progressbar class="progress-mini m-t-7" value="0" ng-if="detail_stage.uuid === taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid]"></uib-progressbar>
+                                <span class="fa fa-lock" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && !currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid]"></span>
+                                <span class="fa fa-lock" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid] && $index !== 0"></span>
+                            </div>
+                        </a>
+                        <ul class="nav collapse">
+                            <li class="study-detail-stage__description">
+                                <small><i class="fa fa-rss"></i> {{ detail_stage.description }}</small>
+                            </li>
+                            <li ng-repeat="detail_task in detail_stage.tasks" ng-class="{'active': detail_task.uuid === taskSession.source.current_task_uuid}" ng-if="detail_stage.uuid === taskSession.source.current_stage_uuid || currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid)">
+                                <div class="study-layer" ng-if="studyLayer"></div>
+                                <a ng-click="loadTask({'part': currentDetailPart.uuid, 'stage': detail_stage.uuid, 'task':detail_task.uuid})">
+                                    <div class="col-xs-8">
+                                        <small>{{ project.stages_index.indexOf(detail_stage.uuid) + 1 }}.{{ $index + 1 }}. {{ detail_task.name }}</small>
+                                    </div>
+                                    <div class="col-xs-2 text-left">
+                                        <span class="small">[{{ detail_task.tringtype }}]</span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <span class="fa fa-square" ng-class="{'text-navy': currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid) && currentStudyProgress.progress.stages_achievement[detail_stage.uuid].completed_tasks_uuid.indexOf(detail_task.uuid) !== -1}"></span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="disabled" ng-repeat="detail_task in detail_stage.tasks" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid)">
+                                <a>
+                                    <div class="col-xs-8">
+                                        <small>{{ project.stages_index.indexOf(detail_stage.uuid) + 1 }}.{{ $index + 1 }}. {{ detail_task.name }}</small>
+                                    </div>
+                                    <div class="col-xs-2 text-left">
+                                        <span class="small">[{{ detail_task.tringtype }}]</span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <span class="fa fa-square"></span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

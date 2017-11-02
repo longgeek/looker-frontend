@@ -1,0 +1,217 @@
+<div class="inmodal full-height">
+    <div class="modal-body no-margins">
+        <nav class="study-detail-list" role="navigation">
+            <div class="sidebar-collapse full-height">
+                <ul side-navigation class="study-detail-list__nav metismenu full-height">
+                    <li class="nav-header p-lg">
+                        <span class="label label-info pull-right">PLAN</span>
+                        <h3 class="text-white">{{ plan.name }} &nbsp; &nbsp;<span class="fa fa-check-square text-navy" ng-if="currentStudyProgress.is_completed"></span></h3>
+                        <small>{{ plan.description }}</small>
+                    </li>
+                    <li class="study-location-li text-white text-center p-b-xs">
+                        <p class="animated pulse p-t-m">
+                            <span class="fa fa-map-marker text-navy"></span>
+                            &nbsp;&nbsp;
+                            c{{ plan.subcourses_index.indexOf(taskSession.source.current_course_uuid) + 1 }} ...
+                            p{{ course.parts_index.indexOf(taskSession.source.current_part_uuid) + 1 }} ...
+                            s{{ part.stages_index.indexOf(taskSession.source.current_stage_uuid) + 1 }} ...
+                            t{{ stage.tasks_index.indexOf(taskSession.source.current_task_uuid) + 1 }}
+                        </p>
+                    </li>
+                    <li class="study-detail-guide">
+                        <h5 class="text-success">课程列表</h5>
+                    </li>
+                    <li class="study-course-li" ng-repeat="course in plan.subcourses" ng-class="{'active': course.uuid === taskSession.source.current_course_uuid}">
+                        <a ng-click="courseDetail($event, course.uuid, course.subcourse_type)">
+                            <div class="col-xs-10">
+                                <h4 class="nav-label">c{{ $index + 1 }}. {{ course.name }} <span class="text-navy">[{{ course.subcourse_type }}]</span></h4>
+                                <small ng-if="course.description.length < 40"><i class="fa fa-rss"></i> {{ course.description | limitTo: 40 }}</small>
+                                <small ng-if="course.description.length > 40"><i class="fa fa-rss"></i> {{ course.description | limitTo: 40 }}...</small>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <span class="fa fa-check text-navy study-detail-course__icon" ng-if="course.uuid === taskSession.source.current_course_uuid && currentStudyProgress.progress.course_is_completed"></span>
+                                <span class="fa fa-level-up font-bold" ng-class="{'text-navy': currentStudyProgress.progress.course_completed_percentage !== 0}" ng-if="course.uuid === taskSession.source.current_course_uuid && !currentStudyProgress.progress.course_is_completed">&nbsp;{{ currentStudyProgress.completed_percentage }}%</span>
+                                <span class="fa fa-lock study-detail-course__icon" ng-if="course.uuid !== taskSession.source.current_course_uuid && !currentStudyProgress.progress_courses.hasOwnProperty(course.uuid) && !currentStudyProgress.progress_courses[plan.subcourses[$index - 1].uuid].is_completed"></span>
+                                <span class="fa fa-unlock study-detail-course__icon" ng-if="course.uuid !== taskSession.source.current_course_uuid && !currentStudyProgress.progress_courses.hasOwnProperty(course.uuid) && currentStudyProgress.progress_courses[plan.subcourses[$index - 1].uuid].is_completed"></span>
+                            </div>
+                        </a>
+                        <ul class="nav collapse" ng-if="course.subcourse_type === 'course'">
+                            <li class="study-detail-guide__part">
+                                <small class="text-success">大章部分</small>
+                            </li>
+                            <li ng-repeat="part in currentDetailCourse.parts" ng-class="{'active': part.uuid === currentDetailPart.uuid}" ng-click="partDetail(part.uuid)">
+                                <a>
+                                    <div class="col-xs-10">
+                                        <small>p{{ $index + 1}}. {{ part.name }}</small>
+                                    </div>
+                                    <div class="col-xs-2 text-center">
+                                        <uib-progressbar class="progress-mini" value="currentStudyProgress.progress.parts_achievement[part.uuid].completed_percentage" ng-if="currentStudyProgress.progress.parts_achievement[part.uuid]"></uib-progressbar>
+                                        <span class="fa fa-lock" ng-if="part.uuid !== taskSession.source.current_part_uuid && !currentStudyProgress.progress.parts_achievement[part.uuid]"></span>
+                                        <uib-progressbar class="progress-mini" value="0" ng-if="part.uuid === taskSession.source.current_part_uuid && !currentStudyProgress.progress.parts_achievement[part.uuid]"></uib-progressbar>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav collapse" ng-if="course.subcourse_type !== 'course'"></ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="study-detail-content animated fadeInLeft" role="navigation">
+            <!-- Subcourse is: course -->
+            <div class="sidebar-collapse full-height" style="overflow: auto;" ng-if="currentDetailCourse.subcourse_type === 'course'">
+                <div class="study-no-choice full-height" ng-if="!currentDetailPart">
+                    <span class="fa fa-hand-o-left fa-3x"></span>
+                    <p class="space-15">请在左边选择你要查看的课程和课程里的章。</p>
+                </div>
+                <ul side-navigation class="study-detail-content__nav metismenu" ng-if="currentDetailPart" ng-model="currentDetailPart">
+                    <li class="nav-header no-margins p-lg">
+                        <h3 class="text-white">{{ currentDetailPart.name }}</h3>
+                        <small>{{ currentDetailPart.description }}</small>
+                    </li>
+                    <li class="study-detail-guide no-margins">
+                        <h5 class="text-success">小节列表</h5>
+                    </li>
+
+                    <li ng-repeat="detail_stage in currentDetailPart.stages" ng-class="{'active': detail_stage.uuid === taskSession.source.current_stage_uuid}">
+                        <a>
+                            <div class="col-xs-10">
+                                <span class="nav-label">s{{ $index + 1 }}. {{ detail_stage.name }}</span>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <uib-progressbar class="progress-mini" value="currentStudyProgress.progress.stages_achievement[detail_stage.uuid].completed_percentage" ng-if="currentStudyProgress.progress.stages_achievement[detail_stage.uuid]"></uib-progressbar>
+                                <uib-progressbar class="progress-mini" value="0" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid] && $index === 0"></uib-progressbar>
+                                <uib-progressbar class="progress-mini" value="0" ng-if="detail_stage.uuid === taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid]"></uib-progressbar>
+                                <span class="fa fa-lock" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && !currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid]"></span>
+                                <span class="fa fa-lock" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid] && $index !== 0"></span>
+                            </div>
+                        </a>
+                        <ul class="nav collapse">
+                            <li class="study-detail-stage__description">
+                                <small><i class="fa fa-rss"></i> {{ detail_stage.description }}</small>
+                            </li>
+                            <li class="study-detail-guide__task">
+                                <small class="text-success">所有任务</small>
+                            </li>
+                            <li ng-repeat="detail_task in detail_stage.tasks" ng-class="{'active': detail_task.uuid === taskSession.source.current_task_uuid}" ng-if="detail_stage.uuid === taskSession.source.current_stage_uuid || currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid)">
+                                <div class="study-layer" ng-if="studyLayer"></div>
+                                <a ng-click="loadTask({'part': currentDetailPart.uuid, 'stage': detail_stage.uuid, 'task':detail_task.uuid})">
+                                    <div class="col-xs-8">
+                                        <small>{{ $index + 1 }}. {{ detail_task.name }}</small>
+                                    </div>
+                                    <div class="col-xs-2 text-left">
+                                        <span class="small">[{{ detail_task.tringtype }}]</span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <span class="fa fa-square" ng-class="{'text-navy': currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid) && currentStudyProgress.progress.stages_achievement[detail_stage.uuid].completed_tasks_uuid.indexOf(detail_task.uuid) !== -1}"></span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="disabled" ng-repeat="detail_task in detail_stage.tasks" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid)">
+                                <a>
+                                    <div class="col-xs-8">
+                                        <small>{{ $index + 1 }}. {{ detail_task.name }}</small>
+                                    </div>
+                                    <div class="col-xs-2 text-left">
+                                        <span class="small">[{{ detail_task.tringtype }}]</span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <span class="fa fa-square"></span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Subcourse is: project -->
+            <div class="sidebar-collapse full-height" style="overflow: auto;" ng-if="currentDetailCourse.subcourse_type === 'project'">
+                <ul side-navigation class="study-detail-content__nav metismenu">
+                    <li class="nav-header no-margins p-lg">
+                        <h3 class="text-white">{{ currentDetailCourse.name }}</h3>
+                        <small>{{ currentDetailCourse.description }}</small>
+                    </li>
+                    <li class="study-detail-guide no-margins">
+                        <h5 class="text-success">小节列表</h5>
+                    </li>
+
+                    <li ng-repeat="detail_stage in currentDetailCourse.stages" ng-class="{'active': detail_stage.uuid === taskSession.source.current_stage_uuid}">
+                        <a>
+                            <div class="col-xs-10">
+                                <span class="nav-label">s{{ $index + 1 }}. {{ detail_stage.name }}</span>
+                            </div>
+                            <div class="col-xs-2 text-center">
+                                <uib-progressbar class="progress-mini" value="currentStudyProgress.progress.stages_achievement[detail_stage.uuid].completed_percentage" ng-if="currentStudyProgress.progress.stages_achievement[detail_stage.uuid]"></uib-progressbar>
+                                <uib-progressbar class="progress-mini" value="0" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid] && $index === 0"></uib-progressbar>
+                                <uib-progressbar class="progress-mini" value="0" ng-if="detail_stage.uuid === taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid]"></uib-progressbar>
+                                <span class="fa fa-lock" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && !currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid]"></span>
+                                <span class="fa fa-lock" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement[detail_stage.uuid] && currentStudyProgress.progress.parts_achievement[currentDetailPart.uuid] && $index !== 0"></span>
+                            </div>
+                        </a>
+                        <ul class="nav collapse">
+                            <li class="study-detail-stage__description">
+                                <small><i class="fa fa-rss"></i> {{ detail_stage.description }}</small>
+                            </li>
+                            <li class="study-detail-guide__task">
+                                <small class="text-success">所有任务</small>
+                            </li>
+                            <li ng-repeat="detail_task in detail_stage.tasks" ng-class="{'active': detail_task.uuid === taskSession.source.current_task_uuid}" ng-click="loadTask({'stage': detail_stage.uuid, 'task':detail_task.uuid})" ng-if="detail_stage.uuid === taskSession.source.current_stage_uuid || currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid)">
+                                <a>
+                                    <div class="col-xs-8">
+                                        <small>t{{ $index + 1 }}. {{ detail_task.name }}</small>
+                                    </div>
+                                    <div class="col-xs-2 text-left">
+                                        <span>[{{ detail_task.tringtype | limitTo:6 }}]</span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <span class="fa fa-square" ng-class="{'text-navy': currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid) && currentStudyProgress.progress.stages_achievement[detail_stage.uuid].completed_tasks_uuid.indexOf(detail_task.uuid) !== -1}"></span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="disabled" ng-repeat="detail_task in detail_stage.tasks" ng-if="detail_stage.uuid !== taskSession.source.current_stage_uuid && !currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid)">
+                                <a>
+                                    <div class="col-xs-8">
+                                        <small>t{{ $index + 1 }}. {{ detail_task.name }}</small>
+                                    </div>
+                                    <div class="col-xs-2 text-left">
+                                        <span>[{{ detail_task.tringtype | limitTo:6 }}]</span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <span class="fa fa-square"></span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Subcourse is: other type -->
+            <div class="sidebar-collapse full-height" style="overflow: auto;" ng-if="currentDetailCourse.subcourse_type !== 'course' && currentDetailCourse.subcourse_type !== 'project'">
+                <ul side-navigation class="study-detail-content__nav metismenu">
+                    <li class="nav-header no-margins p-lg">
+                        <h3 class="text-white">{{ currentDetailCourse.name }}</h3>
+                        <small>{{ currentDetailCourse.description }}</small>
+                    </li>
+                    <li class="study-detail-guide no-margins">
+                        <h5 class="text-success">所有任务</h5>
+                    </li>
+                    <li ng-repeat="detail_task in currentDetailCourse.tasks" ng-class="{'active': detail_task.uuid === taskSession.source.current_task_uuid}">
+                        <div class="lock"></div>
+                        <a ng-click="loadTask({'task':detail_task.uuid})">
+                            <div class="col-xs-8">
+                                <small>t{{ $index + 1 }}. {{ detail_task.name }}</small>
+                            </div>
+                            <div class="col-xs-2 text-left">
+                                <span>[{{ detail_task.tringtype | limitTo:6 }}]</span>
+                            </div>
+                            <div class="col-xs-2 text-right">
+                                <span class="fa fa-square" ng-class="{'text-navy': currentStudyProgress.progress.stages_achievement.hasOwnProperty(detail_stage.uuid) && currentStudyProgress.progress.stages_achievement[detail_stage.uuid].completed_tasks_uuid.indexOf(detail_task.uuid) !== -1}"></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+</div>

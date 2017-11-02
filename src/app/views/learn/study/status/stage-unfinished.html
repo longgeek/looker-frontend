@@ -1,0 +1,24 @@
+<div class="inmodal">
+    <div class="modal-body">
+        <div class="text-center">
+            <h2 class="m-t-none">本节未完成!</h2>
+            <div class="m-b-md cyan-gray-bg p-xs text-left">
+                <div class="m-b-sm">本节已完成&nbsp;<span class="text-danger">{{stageProgress}}%</span>, 当前还需：</div>
+                <ul>
+                    <li ng-if="stageProgress < stage.pass_score">
+                        进度至少达到 <span class="text-navy">{{stage.pass_score}}%</span>
+                    </li>
+                    <li ng-if="unfinished_tasks.length !== 0 && stageProgress >= stage.pass_score">
+                        完成 <a class="small" ng-repeat="task in unfinished_tasks" ng-click="cancel(); loadTask({'task': task.uuid})"> {{ task.name }} </a> 课程.
+                    </li>
+                </ul>
+                <div>才能进入到下一节的学习。</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <button type="button" class="btn btn-danger btn-block" ng-click="cancel()">继续学习</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

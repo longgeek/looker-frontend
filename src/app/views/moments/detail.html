@@ -1,0 +1,8 @@
+<div class="col-lg-8">
+<div class="moments-load-more" ng-if="detailLoading">正在加载...</div>
+<div class="moments-load-more" ng-if="!detailLoading && moments.moments.length === 0">没有找到该动态</div>
+<div ng-if="m && !detailLoading" ng-repeat="m in moments.moments track by $index">
+    <ng-include src="'app/views/moments/ctype/post.html'"></ng-include>
+    <ng-include src="'app/views/moments/ctype/learn.html'"></ng-include>
+</div>
+</div>

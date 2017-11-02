@@ -1,0 +1,40 @@
+<div class="inmodal">
+    <div class="modal-body">
+        <div class="text-center" ng-if="!study_quit">
+            <h2 class="m-t-none">退出学习?</h2>
+            <p class="cyan-gray-bg font-oblique p-xs">
+                你确定要退出学习, 并且关闭课程的云主机?
+            </p>
+            <button ng-click="studyQuitConfirm()" type="button" class="btn btn-w-m btn-danger">立即退出</button>
+            <button ng-click="studyQuitCancel()" type="button" class="btn btn-w-m btn-primary btn-outline">继续学习</button>
+        </div>
+        <div class="text-center" ng-if="study_quit === 'quiting'">
+            <h2 class="m-t-none" ng-if="!QuitingError">正在退出</h2>
+            <h2 class="m-t-none text-warning" ng-if="QuitingError">{{ QuitingError.status }}</h2>
+            <p class="cyan-gray-bg font-oblique p-xs" ng-if="!QuitingError">
+                退出学习中，请等待...
+            </p>
+            <p class="cyan-gray-bg font-oblique p-xs text-warning" ng-if="QuitingError">{{ QuitingError.msgs }}</p>
+            <button ng-click="studyQuitDone()" ng-if="QuitingError" type="button" class="btn btn-w-m btn-primary"><i class="fa fa-arrow-circle-o-left"></i> 返回课程页面</button>
+            <div class="study-quit-load sk-spinner sk-spinner-three-bounce" ng-if="!QuitingError">
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+            </div>
+        </div>
+        <div class="text-center animated fadeIn" ng-if="study_quit === true">
+            <h2 class="m-t-none">学习环境已退出</h2>
+            <p class="cyan-gray-bg font-oblique p-xs">
+                页面将在&nbsp;<timer interval="1000" countdown="4" class="text-navy">{{countdown}}</timer>&nbsp;
+                <span ng-if="$state.is('study')">秒后跳转到课程详情页面.</span>
+                <span ng-if="!$state.is('study')">秒后关闭.</span>
+            </p>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <button ng-click="studyQuitDone()" ng-if="$state.is('study')" type="button" class="btn btn-block btn-primary"><i class="fa fa-arrow-circle-o-left"></i> 返回课程页面</button>
+                    <button ng-click="studyQuitDone()" ng-if="!$state.is('study')" type="button" class="btn btn-block btn-primary"><i class="fa fa-times-circle"></i> 关闭窗口</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

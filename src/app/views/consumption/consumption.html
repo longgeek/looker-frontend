@@ -1,0 +1,83 @@
+<section class="p-h-llg white-bg">
+    <div class="container">
+        <div class="row text-center m-b-lg">
+            <div class="col-xs-12">
+                <h2 class="m-t-none">消费记录</h2>
+                <div class="section-text">具体消费情况信息</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="consumption-chart">
+                    <!-- canvas class="chart chart-line" chart-data="data" chart-options="options" chart-labels="labels" chart-colors="colors"></canvas -->
+                    <div class="m-l-sm m-b">最近消费总览</div>
+                    <calendar-heatmap data="week_data" color="color" overview="overview" handler="print"></calendar-heatmap>
+                    <div class="consumption-overview">
+                        <span class="title">{{ overviews.today }}</span>
+                        <span class="text">今日消费</span>
+                        <span class="title m-l-md">{{ overviews.week }}</span>
+                        <span class="text">本周消费</span>
+                    </div>
+                </div>
+            </div>
+            <!-- div class="col-xs-12 col-md-3">
+                <div class="row">
+                    <div class="col-xs-12 m-b-md">
+                        <div class="consumption-item absolute-center">
+                            <h1>{{ overviews.today }}</h1>
+                            <p>今日消费</p>
+                            <span class="fa cny">CNY</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 m-b-md">
+                        <div class="consumption-item absolute-center">
+                            <h1>{{ overviews.week }}</h1>
+                            <p>本周消费</p>
+                            <span class="fa cny">CNY</span>
+                        </div>
+                    </div>
+                </div>
+            </div -->
+        </div>
+    </div>
+</section>
+
+<section class="p-h-llg cyan-gray-bg">
+    <div class="container">
+        <div class="text-center font-oblique" ng-if="consumptionLoading">正在加载...</div>
+        <div class="white-bg p-lg overflow-auto" ng-if="bills && bills.length && !consumptionLoading">
+            <table class="table table-striped no-margins table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center font-oblique">货币</th>
+                        <th class="text-center font-oblique">金额</th>
+                        <th class="text-center font-oblique">单价</th>
+                        <th class="text-center font-oblique">时长</th>
+                        <!-- th class="text-center font-oblique">类型</th -->
+                        <th class="text-center font-oblique">消费前余额</th>
+                        <th class="text-center font-oblique">消费后余额</th>
+                        <th class="text-center font-oblique">开始时间</th>
+                        <th class="text-center font-oblique">结束时间</th>
+                    </tr>
+                </thead>
+                <tbody ng-if="bills.length !== 0">
+                    <tr ng-repeat="bill in bills" ng-if="bill.ctype === 'outgoing'">
+                        <td class="text-center"> {{ bill.currency_type }}</td>
+                        <td class="text-center text-danger"> {{ bill.amount }}</td>
+                        <!-- td class="text-center">{{ bill.price }}/{{ bill.currency_type }}</td -->
+                        <td class="text-center">{{ bill.price }}/s</td>
+                        <td class="text-center"><span class="label label-primary">{{ bill.timing }} s</span></td>
+                        <!-- td class="text-center">{{ bill.outgoing_channel }}</td -->
+                        <td class="text-center">{{ bill.balance_before }}</td>
+                        <td class="text-center">{{ bill.balance_after }}</td>
+                        <td class="text-center"><i class="fa fa-clock-o"></i> {{ bill.start_at | convertZone | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                        <td class="text-center"><i class="fa fa-clock-o"></i> {{ bill.end_at | convertZone | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center font-oblique" ng-if="!bills.length && !consumptionLoading">
+            <h4>没有找到消费记录.</h4>
+        </div>
+    </div>
+</section>

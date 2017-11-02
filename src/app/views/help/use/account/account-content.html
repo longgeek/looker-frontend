@@ -1,0 +1,18 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.use')">账户与充值</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.use')"><a ui-sref="help.use.account">账户与充值</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.use.account.articles({'articles_name': 'billing-mode'})">Fuvism 的付费模式</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.account.articles({'articles_name': 'get-price'})">在线课程定价，课时</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.account.articles({'articles_name': 'how-to-time'})">“学习控制台” 中，如何计费</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.account.articles({'articles_name': 'how-to-deposit'})">如何充值，以及优惠</a>
+        </li>
+    </ul>
+</div>

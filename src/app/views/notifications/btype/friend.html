@@ -1,0 +1,7 @@
+<div class="details" ng-if="n.ctype === 'friend:followed'">
+    <h6>
+        <i class="fa fa-eye m-r-8"></i>
+        有人 "关注" 了你
+    </h6>
+    <span class="time">关注于: {{ n.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</span>
+</div>

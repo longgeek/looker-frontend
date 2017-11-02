@@ -1,0 +1,43 @@
+/* image dialog */
+/* click image the open dialog show zoom image */
+.image-preview-window {
+    .modal-body {
+        padding: 30px 30px 40px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    img {
+        max-width: 100%;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+    .zoom {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 30px;
+        color: @navy;
+        opacity: .5;
+        cursor: pointer;
+        font-family: Entypo;
+        z-index: 9999;
+        .fa {
+            position: absolute;
+            bottom: 7px;
+            right: 7px;
+        }
+    }
+    .zoom:hover {
+        opacity: 1;
+    }
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 660px;
+    }
+}

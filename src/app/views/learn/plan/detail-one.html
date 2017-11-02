@@ -1,0 +1,85 @@
+<div class="bubbles">
+    <div class="bubble-container" style="left: 58%; top: 15%; opacity: 0.12; animation-delay: 0s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 23%; top: 23%; opacity: 0.06; animation-delay: 4s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 62%; top: 33%; opacity: 0.06; animation-delay: 14s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 85%; top: 33%; opacity: 0.12; animation-delay: 8s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 93%; top: 60%; opacity: 0.06; animation-delay: 15s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 60%; top: 70%; opacity: 0.06; animation-delay: 4s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 39%; top: 46%; opacity: 0.12; animation-delay: 10s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 34%; top: 96%; opacity: 0.06; animation-delay: 15s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 3%; top: 32%; opacity: 0.12; animation-delay: 9s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 99%; top: 79%; opacity: 0.06; animation-delay: 10s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 13%; top: 38%; opacity: 0.12; animation-delay: 3s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 68%; top: 66%; opacity: 0.12; animation-delay: 13s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 21%; top: 83%; opacity: 0.12; animation-delay: 14s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 20%; top: 45%; opacity: 0.12; animation-delay: 0s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 22%; top: 91%; opacity: 0.12; animation-delay: 1s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 16%; top: 99%; opacity: 0.12; animation-delay: 0s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 91%; top: 3%; opacity: 0.06; animation-delay: 11s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 3%; top: 33%; opacity: 0.06; animation-delay: 4s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 54%; top: 67%; opacity: 0.06; animation-delay: 0s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 9%; top: 90%; opacity: 0.12; animation-delay: 4s;">
+        <div class="bubble" style="width: 20px; height: 20px;"></div>
+    </div>
+    <div class="bubble-container" style="left: 7%; top: 12%; opacity: 0.06; animation-delay: 7s;">
+        <div class="bubble" style="width: 30px; height: 30px;"></div>
+    </div>
+</div>
+<div class="container vertically-aligned">
+    <!-- div class="icon-container">
+        <img src="assets/icons/plan.svg" class="m-b-md" width="120" height="120">
+    </div -->
+    <h2 class="m-b-md animated fadeInDown" style="font-size: 24px;">{{ plan.name }}</h2>
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <p class="animated fadeInDown course-description">{{ plan.description }}</p>
+        </div>
+        <div class="col-xs-12 col-md-6 col-md-offset-3 animated fadeIn">
+            <span class="pull-right m-l-sm m-t-n-2 text-navy" ng-if="planProgress.completed_percentage >= 0">{{ planProgress.completed_percentage }}%</span>
+            <uib-progressbar class="progress-mini" ng-if="planProgress.completed_percentage >= 0" value="planProgress.completed_percentage"></uib-progressbar>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 animated fadeIn header-btn">
+            <button type="button" class="btn btn-lg btn-primary m-t" ng-if="planProgress && planProgress.plan.uuid === plan.uuid" ng-click="scrollGo('plan-detail')"><span ng-if="planProgress.prepaid.is_prepaid === true">已购买，</span>选课，开始职业规划！</button>
+            <button type="button" class="ladda btn btn-lg btn-danger m-t" ng-if="isAuthenticated() && planProgress.plan.uuid !== plan.uuid" ng-click="join_plan()" ladda="joinPlanLoading">加入计划，开启职业规划！</button>
+            <button type="button" class="ladda btn btn-lg btn-danger m-t" ng-if="!isAuthenticated()" ui-sref="auth.login">加入计划，开启职业规划！</button>
+        </div>
+    </div>
+</div>

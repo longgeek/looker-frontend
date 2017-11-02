@@ -1,0 +1,52 @@
+<div class="moments-item system" ng-if="m.ctype === 'learn:joined' || m.ctype === 'learn:studying' || m.ctype === 'learn:finished'">
+    <div class="moments-avatar">
+        <a ui-sref="home.moments.detail({ud: m.id})"><span class="fa fa-star"></span></a>
+    </div>
+    <div class="moments-box">
+        <div class="moments-content">
+            <p>
+                <div class="dropup m-r-xs" uib-dropdown style="display: inline;">
+                    <a ng-mouseenter="showUserDropdown($event, m.created_by.uuid, m)" uib-dropdown-toggle>
+                        @{{ m.created_by.nickname }}
+                    </a>
+                    <ul class="dropdown-menu user-dropdown-menu dropdown-menu-right" role="menu">
+                        <div class="dropdown-content" ng-include="'app/views/moments/dropdown.html'"></div>
+                    </ul>
+                </div>
+                <span ng-if="m.ctype === 'learn:joined'">加入了一门新的课程</span>
+                <span ng-if="m.ctype === 'learn:studying'">正在学习课程</span>
+                <span ng-if="m.ctype === 'learn:finished'">完成了一门课程</span>
+                <a class="m-l-xs" ui-sref="learn.{{ m.params.learn_type }}.detail({ud: m.params.learn_uuid})" target="_blank">
+                    "{{ m.params.learn_name }}"
+                </a>
+                <span class="text-muted m-l-xs">{{ m.created_at | convertZone | toChinaTimeLine }}</span>
+                <button class="action" moments-action-collapse>
+                    <svg aria-hidden="true" class="expand" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill="#204056" fill-rule="evenodd" d="M7 9l3 3H8v3H6v-3H4l3-3zm3-6H8V0H6v3H4l3 3 3-3zm4 2c0-.55-.45-1-1-1h-2.5l-1 1h3l-2 2h-7l-2-2h3l-1-1H1c-.55 0-1 .45-1 1l2.5 2.5L0 10c0 .55.45 1 1 1h2.5l1-1h-3l2-2h7l2 2h-3l1 1H13c.55 0 1-.45 1-1l-2.5-2.5L14 5z"></path></svg>
+                    <svg aria-hidden="true" class="reduce" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill="#204056" fill-rule="evenodd" d="M11.5 7.5L14 10c0 .55-.45 1-1 1H9v-1h3.5l-2-2h-7l-2 2H5v1H1c-.55 0-1-.45-1-1l2.5-2.5L0 5c0-.55.45-1 1-1h4v1H1.5l2 2h7l2-2H9V4h4c.55 0 1 .45 1 1l-2.5 2.5zM6 6h2V3h2L7 0 4 3h2v3zm2 3H6v3H4l3 3 3-3H8V9z"></path></svg>
+                </button>
+                <div class="hide-content">
+                    <p>
+                        <span class="fa fa-book m-r-8"></span>课程类型：
+                        <a ui-sref="learn.{{ m.params.learn_type }}" target="_blank">
+                            <span ng-if="m.params.learn_type === 'plan'">职业规划</span>
+                            <span ng-if="m.params.learn_type === 'course'">在线课程</span>
+                            <span ng-if="m.params.learn_type === 'project'">项目实战</span>
+                            <span ng-if="m.params.learn_type === 'lab'">实验室</span>
+                            <span ng-if="m.params.learn_type === 'exercise'">练习题库</span>
+                            <span ng-if="m.params.learn_type === 'quiz'">阶段测评</span>
+                        </a>
+                    </p>
+                    <p ng-if="m.ctype === 'learn:studying'">
+                        <span class="fa fa-sliders m-r-8"></span>当前进度：
+                        <span class="text-navy">{{ m.params.percentage }}%</span>
+                    </p>
+                    <p>
+                        <span class="fa fa-clock-o m-r-8"></span>学习时间：
+                        {{ m.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}
+                    </p>
+                </div>
+            </p>
+        </div>
+        <ng-include src="'app/views/moments/ctype/comment.html'"></ng-include>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+.study-wrapper {
+    padding: 50px 0 0 0;
+}
+.padding-left-bar {
+    padding-left: 50px;
+}
+.study-left-box .rg-right {
+    margin-right: 0px;
+    width: 8px;
+}
+.study .rg-right span,
+.study .rg-top span,
+.study .rg-left span,
+.study .rg-bottom span {
+    display: none;
+}
+.study {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    overflow: auto;
+}
+.study-top-50 {
+    top: 50px;
+}
+.study-layer {
+    z-index: 3000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.8;
+    background: @black-dark;
+    display: flex;
+    align-items: center;
+    -webkit-justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition-delay: 0, 0.01s;
+    transition-delay: 0, 0.01s;
+    -webkit-transition: visibility 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    transition: visibility 0.25s ease-in-out, opacity 0.25s ease-in-out;
+}
+.study-layer.full {
+    opacity: 1;
+}
+.study-layer.top {
+    z-index: 99999;
+}
+.study-layer.docs {
+    margin-left: 50px;
+    margin-right: 8px;
+}
+.study-layer.django-run {
+    margin-bottom: 8px;
+}
+.study-left-box {
+    min-width: 310px;
+    max-width: 50%;
+    padding-right: 8px;
+    display: flex;
+    flex: 0 0 33.5%;
+    flex-flow: column nowrap;
+}
+.study-left-box-hidden {
+    width: 42px
+}
+.study-workspace-box {
+    display: flex;
+    flex: 1 1 66.5%;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    margin-right: 8px;
+    position: relative;
+    overflow: hidden;
+}
+.study-frame-status {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    width: 13px;
+    height: 13px;
+    border-radius: 25px;
+    cursor: pointer;
+    z-index: 20;
+    opacity: 0.5;
+}
+.study-frame-status.true {
+    background: @navy;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #228274;
+}
+.study-frame-status.false {
+    background: @red;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #b35658;
+}
+.study-frame-status:hover {
+    opacity: 1;
+}

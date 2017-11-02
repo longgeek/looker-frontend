@@ -1,0 +1,42 @@
+<form role="form" class="moments-comment" ng-if="isAuthenticated()">
+    <textarea msd-elastic ng-model="aa" placeholder="在此输入评论内容" emoji-picker="emoji-picker" emoji-attachment-location="top right" emoji-menu-location="bottom right"></textarea>
+    <span class="fa fa-reply right" ng-click="moment_reply(m.id, $index, $event)"></span>
+</form>
+<div class="moments-footer" ng-if="m.replies_count > 0">
+    <div class="comment" ng-repeat="c in m.replies track by $index">
+        <div class="avatar dropup" uib-dropdown>
+            <a class="pull-left" ng-mouseenter="showUserDropdown($event, c.created_by.uuid, c)" uib-dropdown-toggle>
+                <img alt="image" gravatar-src="c.created_by.gravatar">
+            </a>
+            <ul class="dropdown-menu user-dropdown-menu dropdown-menu-right" role="menu">
+                <div class="dropdown-content" ng-include="'app/views/moments/dropdown.html'"></div>
+            </ul>
+        </div>
+        <div class="content" ng-bind-html="c.content"></div>
+        <!-- div class="content" ng-bind-html="c.content | atUsername"></div -->
+        <div class="info">
+            <a class="hover" ui-sref="u.homepage({username: c.created_by.uuid})" target="_blank">{{ c.created_by.nickname }}</a>
+            <a>{{ c.created_at | convertZone | toChinaTimeLine }}</a>
+            <!-- a class="pull-right hover animated fadeIn"
+               ng-click="moment_reply_at($parent.$index, c.created_by.username)">
+                <i class="fa fa-at m-r-xs"></i>Ta
+            </a -->
+            <a class="pull-right hover animated fadeIn"
+               ng-click="moment_reply_delete(c.id, m.id, $index, $parent.$parent.$index)"
+               ng-if="user.user.uuid === m.created_by.uuid || user.user.uuid === c.created_by.uuid">
+                <i class="fa fa-trash-o m-r-xs"></i>删除
+            </a>
+            <a class="pull-right hover animated fadeIn"
+               ng-click="moment_report(m.id, c.id)"
+               ng-if="user.user.uuid !== m.created_by.uuid && user.user.uuid !== c.created_by.uuid">
+                <i class="fa fa-info m-r-xs"></i>举报
+            </a>
+        </div>
+    </div>
+</div>
+<div class="moments-load-replies" ng-if="m.replies_count > m.replies.length">
+    <span class="load">正在加载...</span>
+    <span ng-click="loadReplyComments(m.id, $index, $event)" data-pos="0">
+        <i class="fa fa-angle-double-down m-r-8"></i>查看更多
+    </span>
+</div>

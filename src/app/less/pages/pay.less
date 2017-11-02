@@ -1,0 +1,111 @@
+.pay-order {
+    background: linear-gradient(to top right, #35ad9b 0%, #213f54 100%);
+    background: #f1f2f2;
+    padding: 50px 0;
+
+    .pay-order__content {
+        text-align: center;
+        img {
+            width: 200px;
+        }
+        p {
+            margin-top: 20px;
+        }
+    }
+}
+.pay-content {
+    background: #FFF;
+    .container {
+        background: #FFF;
+        padding: 100px 0;
+    }
+    .base-item {
+        margin-left: 40px;
+
+        .title {
+            padding: 40px 30px 20px;
+        }
+        .content {
+            padding: 10px 30px 30px;
+        }
+        .pay-content__amount {
+            border-top: 1px solid #cccccc;
+            .text {
+                padding: 25px;
+                font-size: 18px;
+                text-align: center;
+                font-weight: 700;
+            }
+        }
+    }
+    .pay-content__qrcode {
+        img {
+            width: 240px;
+        }
+        .qrcode {
+            margin: auto;
+            width: 240px;
+            height: 240px;
+            background-color: @light-gray;
+
+        }
+        .qrcode.img {
+            background: url('/api/v1/views/pay/wxpay/qrcode') no-repeat 0 0;
+        }
+    }
+
+    .wechat-phone {
+        width: 175px;
+        height: 354px;
+        background: url('/assets/images/wechat/phone.png') no-repeat 0 0;
+        position: absolute;
+        top: -20px;
+        left: 35px;
+        -webkit-animation: slidePhoneIn .5s 1;
+        -moz-animation: slidePhoneIn .5s 1;
+        -o-animation: slidePhoneIn .5s 1;
+        animation: slidePhoneIn .5s 1;
+    }
+    .wechat-phone-zoom {
+        width: 236px;
+        height: 210px;
+        background: url('/assets/images/wechat/phone-zoom.png') no-repeat 0 0;
+        position: absolute;
+        top: 45px;
+        left: 105px;
+        -webkit-animation: slideZoomIn 1.2s 1;
+        -moz-animation: slideZoomIn 1.2s 1;
+        -o-animation: slideZoomIn 1.2s 1;
+        animation: slideZoomIn 1.2s 1;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+}
+
+@media (max-width: 414px) {
+    .pay-content {
+        .wechat-phone,
+        .wechat-phone-zoom {
+            display: none;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .pay-content {
+        .container {
+            padding: 40px 0;
+        }
+        .base-item {
+            margin-left: 0;
+            margin-bottom: 40px;
+        }
+    }
+}
+@-webkit-keyframes slidePhoneIn { 0% {-webkit-transform:translateX(200px);opacity:0} 100% {-webkit-transform:translateX(0);opacity:1}}
+@-moz-keyframes slidePhoneIn { 0% {-moz-transform:translateX(200px);opacity:0} 100% {-moz-transform:translateX(0);opacity:1}}
+@-o-keyframes slidePhoneIn { 0% {-o-transform:translateX(200px);opacity:0} 100% {-o-transform:translateX(0);opacity:1}}
+@keyframes slidePhoneIn { 0% {transform:translateX(200px);opacity:0} 100% {transform:translateX(0);opacity:1}}
+@-webkit-keyframes slideZoomIn { 0% {-webkit-transform:scale(0);opacity:0} 50%{opacity:0;} 100% {-webkit-transform:scale(1);opacity:1}}
+@-moz-keyframes slideZoomIn { 0% {-moz-transform:scale(0);opacity:0} 50%{opacity:0;} 100% {-moz-transform:scale(1);opacity:1}}
+@-o-keyframes slideZoomIn { 0% {-o-transform:scale(0);opacity:0} 50%{opacity:0;} 100% {-o-transform:scale(1);opacity:1}}
+@keyframes slideZoomIn { 0% {transform:scale(0);opacity:0} 50%{opacity:0;} 100% {transform:scale(1);opacity:1}}

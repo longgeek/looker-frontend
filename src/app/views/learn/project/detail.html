@@ -1,0 +1,65 @@
+<div class="loading-layer margin-header" ng-if="projectDetailLoading">正在加载...</div>
+<div class="loading-layer margin-header" ng-if="!projectDetailLoading && !project">没有找到该项目，请选择其它课程学习。</div>
+<div ng-if="!projectDetailLoading && project">
+<div class="bsection one" ng-include="'app/views/learn/project/detail-one.html'"></div>
+<section class="plan-detail-info">
+    <div class="container">
+        <div class="row col-xs-12 col-md-10 col-md-offset-1 animated fadeInDown text-center">
+            <div class="col-xs-12 col-sm-3">
+                <p ng-if="project.level_required">{{ project.level_required }}</p>
+                <p ng-if="!project.level_required">Beginner</p>
+                <small>难度|级别</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p style="font-size: 16px;">0.0028/s | RMB {{ project.estimated_lesson_expense | number:1 }}</p>
+                <small>单价 | 预估花费</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p style="font-size: 16px;" class="text-navy">{{ projectStageCount }}/{{ projectTaskCount }} | {{ project.estimated_lesson_period / 3600 | number:2 }} h</p>
+                <small>节/课 | 预估课时</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <!-- p>{{ project.cloud_flavor.quota.cpus }}CPU {{ project.cloud_flavor.quota.mem }}MB {{ project.cloud_flavor.quota.disk }}GB</p -->
+                <p style="font-size: 16px;">1CPU 512MB 12GB</p>
+                <small>云配额</small>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="course-detail-path">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
+                <div class="p-b-lg p-t-lg">
+                    <div ng-repeat="stage in project.stages">
+                        <ul class="stage-list">
+                            <li>
+                                <div class="lock m-l-md m-r-md" ng-if="!projectProgress.progress.stages_achievement.hasOwnProperty(stage.uuid) && $index != 0"></div>
+                                <a ng-click="goToStudy({'origin': 'project', 'source': {'project': project.uuid, 'stage': stage.uuid}})" ng-class="{'completed': projectProgress.progress.stages_achievement[stage.uuid].is_completed}">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <div class="stage-status">
+                                                <span ng-if="!projectProgress.progress.stages_achievement.hasOwnProperty(stage.uuid)">0|{{ stage.tasks_index.length }}</span>
+                                                <span ng-if="projectProgress.progress.stages_achievement.hasOwnProperty(stage.uuid)">{{ projectProgress.progress.stages_achievement[stage.uuid].completed_tasks_uuid.length }}|{{ stage.tasks_index.length }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="small pull-right m-t-xs text-center" style="width: 80px;">
+                                                <uib-progressbar class="progress-mini" value="projectProgress.progress.stages_achievement[stage.uuid].completed_percentage" ng-if="projectProgress.progress.stages_achievement[stage.uuid]"></uib-progressbar>
+                                                <uib-progressbar class="progress-mini" value="0" ng-if="!projectProgress.progress.stages_achievement.hasOwnProperty(stage.uuid) && projectProgress.progress.parts_achievement.hasOwnProperty(part.uuid) && $index === 0"></uib-progressbar>
+                                                <span class="fa fa-lock" ng-if="!projectProgress.progress.stages_achievement.hasOwnProperty(stage.uuid)"></span>
+                                            </div>
+                                            <h3 class="m-t-none"><span class="text-muted">项目阶段 {{ $index + 1 }}：</span>{{ stage.name }}</h3>
+                                            <p>{{ stage.description }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>

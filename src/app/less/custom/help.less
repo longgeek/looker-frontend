@@ -1,0 +1,123 @@
+.help-header {
+    background: #edf2f7;
+}
+.help-header .section-arrow {
+    margin-top: 40px;
+}
+.help-header .section-bottom-arrow {
+    border-top-color: #edf2f7;
+}
+.help-header hr {
+    border-color: #b1c9da;
+    margin: 30px 0;
+}
+.help-header h2 {
+    text-align: left;
+    text-transform: capitalize;
+    font-weight: 300;
+    font-size: 24px;
+}
+.help-content {
+    min-height: 300px;
+    h2 {
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        font-size: 20px;
+        margin: 25px 0;
+        padding-bottom: 18px;
+        color: #2f4050;
+    }
+    h2 > a {
+        color: #204056;
+    }
+    h2 > a:hover {
+        text-decoration: underline;
+    }
+    .study-page {
+        color: inherit;
+        background: #FFF;
+    }
+    .hljs {
+        background: transparent;
+    }
+    img {
+        border-radius: 4px;
+        box-shadow: 0 0 30px @dark-gray;
+        margin-bottom: 10px;
+    }
+}
+.help-item {
+    line-height: 1.5;
+    h3 {
+        color: #3e3e40;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 10px 0 30px;
+    }
+    h3 > a {
+        color: #204056;
+    }
+    h3 > a:hover {
+        text-decoration: underline;
+    }
+    .help-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .help-list > li {
+        margin-bottom: 10px;
+    }
+    .help-list > li > a {
+        color: #52b1db;
+        text-decoration: none;
+    }
+    .help-list > li > a:hover {
+        text-decoration: underline;
+    }
+    .help-list > li > a.current {
+        color: #bebebe;
+    }
+    .help-list > li > a.current:hover {
+        text-decoration: none;
+    }
+}
+.sub-nav {
+    margin-bottom: 25px;
+    height: 60px;
+    table-layout: fixed;
+    background-color: #F1F2F3;
+    width: 100%;
+    z-index: 0;
+
+    .container > * {
+        float: left;
+        height: 34px;
+        margin-top: 13px;
+    }
+    .breadcrumbs {
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 34px;
+        padding-left: 0;
+    }
+    .breadcrumbs li {
+        color: #bebebe;
+        display: inline-block;
+        font-size: 14px;
+        max-width: 450px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    a {
+        color: #52b1db;
+        text-decoration: none;
+    }
+    .breadcrumbs li + li:before {
+        content: ">";
+        margin: 0 4px;
+    }
+    .breadcrumbs li.text {
+        color: @flat-color;
+    }
+}

@@ -1,0 +1,16 @@
+<div class="inmodal">
+    <div class="modal-header">
+        提示
+        <a class="close" ng-click="close()">×</a>
+    </div>
+    <div class="modal-body white-bg no-paddings">
+        <div class="alert alert-info m-t-sm m-r-sm m-l-sm m-b-none">
+            <i class="fa fa-info-circle m-r-8"></i>
+            <span class="m-r-8">确定要把</span><span class="m-r-8 id">{{ qa.title }}</span>标记为已解决？
+        </div>
+    </div>
+    <div class="modal-footer no-borders p-t-none">
+        <button type="button" class="btn btn-flat-dark" ng-click="close()" ng-disabled="submitLoading">取消</button>
+        <button type="button" class="ladda btn btn-primary" ng-click="submit_resolved_qa()" ladda="submitLoading">确认</button>
+    </div>
+</div>

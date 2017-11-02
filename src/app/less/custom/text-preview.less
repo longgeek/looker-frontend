@@ -1,0 +1,45 @@
+/* text dialog */
+/* click text the open dialog show zoom text */
+.text-preview-window {
+    .modal-body {
+        padding: 30px 30px 40px;
+        margin: 0 auto;
+    }
+    pre {
+        color: @flat-color;
+        background: #FFF;
+        margin: 0;
+        padding: 0;
+        border: none;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 12px;
+    }
+    .zoom {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 30px;
+        color: @flat-color;
+        opacity: .5;
+        cursor: pointer;
+        font-family: Entypo;
+        z-index: 9999;
+        .fa {
+            position: absolute;
+            bottom: 7px;
+            right: 7px;
+        }
+    }
+    .zoom:hover {
+        opacity: 1;
+    }
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 660px;
+    }
+}

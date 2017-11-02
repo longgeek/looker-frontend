@@ -1,0 +1,10 @@
+<div class="col-xs-12 col-md-8 profile-box p-md">
+    <h2 class="m-t-sm">个人标签</h2>
+    <form role="form">
+        <p>每个标签限 12 个字，最多 10 个标签。</p>
+        <div class="form-group" ng-if="tags">
+            <tags-input ng-model="tags" placeholder="请输入标签" min-length=1 max-length=10 max-tags=10></tags-input>
+        </div>
+        <button type="submit" class="ladda btn btn-lg btn-danger btn-w-m profile-submit-btn" ladda="setNicknameLoading" ng-click="settagsForm()">设置</button>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+<div id="wrapper" ng-class="{'tickets-page': $state.is('home.tickets'), 'qas-detail-page': $state.is('home.qas.detail')}">
+    <div ng-include="'app/views/topnavbar/topnavbar.html'"></div>
+    <div class="wrapper wrapper-content no-paddings">
+        <div ui-view autoscroll="true">
+            <div class="bsection one" ng-include="'app/views/home/one.html'"></div>
+            <div class="bsection two" ng-include="'app/views/home/two.html'"></div>
+            <div class="bsection three" ng-include="'app/views/home/three.html'"></div>
+            <div class="bsection four" ng-include="'app/views/home/four.html'"></div>
+        </div>
+    </div>
+    <div ng-include="'app/views/footer.html'"></div>
+</div>

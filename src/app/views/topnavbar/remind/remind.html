@@ -1,0 +1,22 @@
+<li>
+    <div class="p-md text-center" ng-if="remindLearn.status && !remindLearn.quit">
+        <h3 class="m-t-none" ng-if="remindLearn.content">
+            <a ui-sref="learn.plan.detail({ ud: remindLearn.content.uuid })" class="text-navy" ng-if="remindLearn.origin === 'plan'">[&nbsp;{{ remindLearn.content.name }}&nbsp;]</a>
+            <a ui-sref="learn.course.detail({ ud: remindLearn.content.uuid })" class="text-navy" ng-if="remindLearn.origin === 'course'">[&nbsp;{{ remindLearn.content.name }}&nbsp;]</a>
+            <a ui-sref="learn.project.detail({ ud: remindLearn.content.uuid })" class="text-navy" ng-if="remindLearn.origin === 'project'">[&nbsp;{{ remindLearn.content.name }}&nbsp;]</a>
+            <a ui-sref="learn.lab.detail({ ud: remindLearn.content.uuid })" class="text-navy" ng-if="remindLearn.origin === 'lab'">[&nbsp;{{ remindLearn.content.name }}&nbsp;]</a>
+            <a ui-sref="learn.quiz.detail({ ud: remindLearn.content.uuid })" class="text-navy" ng-if="remindLearn.origin === 'quiz'">[&nbsp;{{ remindLearn.content.name }}&nbsp;]</a>
+            <a ui-sref="learn.exercise.detail({ ud: remindLearn.content.uuid })" class="text-navy" ng-if="remindLearn.origin === 'exercise'">[&nbsp;{{ remindLearn.content.name }}&nbsp;]</a>
+        </h3>
+        <p class="cyan-gray-bg p-xs font-oblique small text-left">你有正在学习的课程，如果 5 分钟之内没有任何操作，系统将自动停止计费。或直接&nbsp;<a ng-click="studyQuit()" class="text-navy">退出学习</a>。</p>
+        <button class="btn btn-primary btn-block btn-sm" ng-click="goToStudy()">返回学习</button>
+    </div>
+    <div class="p-xs small" ng-if="!remindLearn.status && !remindLearn.quit">当前没有正在学习的课程。</div>
+    <div class="p-md text-center" ng-if="remindLearn.status && remindLearn.quit">
+        <h3 class="m-t-none text-danger">Hi, 你还在这里吗?</h3>
+        <p class="cyan-gray-bg p-xs font-oblique small">
+            你目前有正在学习的课程，系统检测到你长时间没有学习。我们将在&nbsp;<timer interval="1000" countdown="61" class="text-navy">{{countdown}}s</timer>&nbsp;后自动关闭你的学习, 并停止计费。
+        </p>
+        <button class="btn btn-danger btn-block btn-sm" ui-sref="study">返回学习</button>
+    </div>
+</li>

@@ -1,0 +1,26 @@
+<section class="help-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 ng-if="!$state.is('help')">用户指导</h2>
+                <h2 ng-if="$state.is('help')"><a ui-sref="help.use">用户指导</a></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/use/start/start-content.html'"></div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/use/course/course-content.html'"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/use/how-to/how-to-content.html'"></div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 p-b-lg">
+                <div ng-include="'app/views/help/use/account/account-content.html'"></div>
+            </div>
+        </div>
+    </div>
+</section>

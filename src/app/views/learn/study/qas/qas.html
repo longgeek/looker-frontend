@@ -1,0 +1,77 @@
+<div ng-controller="StudyQasController" class="study-qa-container animated fadeInLeft" data-drag="true" jqyoui-draggable data-jqyoui-options="{containment: '.study', handle: '.code-label', cursor: 'move'}" ng-if="showStudyQa">
+    <div class="code-header">
+        <div class="code-header__controller">
+            <span class="pull-left">
+                <span class="study-console-close" ng-click="showStudyQaBox()"><i class="fa fa-square text-danger"></i></span>
+            </span>
+            <div class="code-label"><span>&nbsp; Q & A</span></div>
+        </div>
+    </div>
+    <div class="study-qa-list">
+        <h3 class="m-t-none">在学习中遇到问题?</h3>
+        <p>请在已有的问答列表中检索相近提问，快速获取答案。也可提交新的问题，系统将自动派发给专业相符的老师实时作答。</p>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="在这里输入你所遇到的问题。" ng-model="newQa.title" required>
+        </div>
+        <div class="form-group" ng-if="newQa.title">
+            <textarea class="form-control"
+                rows="6"
+                ng-model="newQa.content"
+                textarea-tab></textarea>
+        </div>
+        <div class="text-center p-b-m" ng-if="newQa.title">
+            <button type="submit" class="ladda btn btn-block btn-primary" ng-model="newQa.content" ng-disabled="!newQa.content || !newQa.title" ng-click="submitNewQa()" ladda="newQaLoading">提交问题</button>
+        </div>
+        <div class="section-qas-content">
+            <div class="qas-controller">
+                <ul ng-init="classify = 'stage'">
+                    <li><a ng-click="study_qas_list(); classify = 'stage'" ng-class="{active: classify === 'stage'}">本节所有问答</a></li>
+                    <li><a ng-click="my_qas_list(); classify = 'my'" ng-class="{active: classify === 'my'}">我提交的问答</a></li>
+                </ul>
+            </div>
+            <div class="qas-list">
+                <table class="table table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th>问题描述</th>
+                            <th class="text-center status">状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="qa in qas"
+                            ng-if="!qasLoading && classify === 'stage' ||
+                                   !qasLoading && classify === 'my'"
+                            ng-click="get_study_qa_detail(qa.uuid)">
+                            <td class="title">
+                                <a><span class="fa fa-question-circle m-r-8"></span>{{ qa.title | limitTo: 20 }}...</a>
+                                <div class="content">{{ qa.content | filterHtmlTags | limitTo: 50 }}...</div>
+                                <div class="content" ng-if="classify === 'my'"><i class="fa fa-tag m-r-8"></i>{{ qa.learn.name }}<div>
+                            </td>
+                            <td class="text-center status">
+                                <span class="text-navy" ng-if="qa.accepted_by && !qa.is_resolved">
+                                    <span class="fa fa-circle m-r-8"></span>
+                                    处理中
+                                </span>
+                                <span class="text-warning" ng-if="!qa.accepted_by && !qa.is_resolved">
+                                    <span class="fa fa-circle m-r-8"></span>
+                                    派送中
+                                </span>
+                                <span ng-if="qa.is_resolved">
+                                    <span class="fa fa-circle m-r-8"></span>
+                                    已解决
+                                </span>
+                            </td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="m-t-md font-oblique small" ng-if="qasLoading">正在加载...</div>
+                <div class="m-t-md font-oblique small" ng-if="!qasLoading && qas.length === 0">
+                    <span ng-if="classify === 'stage'">本节没有提交问题。</span>
+                    <span ng-if="classify === 'my'">你在学习过程中还没有提交过任何问题, 继续努力...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

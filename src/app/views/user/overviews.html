@@ -1,0 +1,103 @@
+<div class="small font-oblique text-flat text-center" ng-if="overviewLoading" style="margin-left: 62px;">正在加载...</div>
+<div class="homepage-learnings" ng-if="overview && !overviewLoading">
+    <div class="title"><span class="fa fa-ellipsis-h m-r-8"></span>最后所学</div>
+    <div class="content">
+        <div class="row m-b-md">
+            <div class="col-md-6">
+                <dl class="learn-progress" ng-repeat="learn in overview.learnings.sorted track by $index" ng-if="$index === 0">
+                    <dt>
+                        <span>
+                            {{ overview.learnings.values[learn].name }}
+                        </span>
+                    </dt>
+                    <dd>
+                        <span class="total"
+                            tooltip-placement="top"
+                            tooltip-class="tooltip-dark tooltip-mini"
+                            uib-tooltip="{{ overview.learnings.values[learn].completed_percentage }}%"
+                            ui-sref="learn.{{ overview.learnings.values[learn].learn_type }}.detail({ud: overview.learnings.values[learn].learn_uuid})">
+                            <span class="progress" style="width: {{  overview.learnings.values[learn].completed_percentage }}%;"></span>
+                        </span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="title"><span class="fa fa-bars m-r-8"></span>历史所学</div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="learn-progress" ng-repeat="learn in overview.learnings.sorted track by $index" ng-if="$index % 2 !== 0 && $index !== 0">
+                    <dt>
+                        <span>
+                            {{ overview.learnings.values[learn].name }}
+                        </span>
+                    </dt>
+                    <dd>
+                        <span class="total"
+                            tooltip-placement="top"
+                            tooltip-class="tooltip-dark tooltip-mini"
+                            uib-tooltip="{{ overview.learnings.values[learn].completed_percentage }}%"
+                            ui-sref="learn.{{ overview.learnings.values[learn].learn_type }}.detail({ud: overview.learnings.values[learn].learn_uuid})">
+                            <span class="progress" style="width: {{  overview.learnings.values[learn].completed_percentage }}%;"></span>
+                        </span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="learn-progress" ng-repeat="learn in overview.learnings.sorted track by $index" ng-if="$index % 2 === 0 && $index !== 0">
+                    <dt>
+                        <span>
+                            {{ overview.learnings.values[learn].name }}
+                        </span>
+                    </dt>
+                    <dd>
+                        <span class="total"
+                            tooltip-placement="top"
+                            tooltip-class="tooltip-dark tooltip-mini"
+                            uib-tooltip="{{ overview.learnings.values[learn].completed_percentage }}%"
+                            ui-sref="learn.{{ overview.learnings.values[learn].learn_type }}.detail({ud: overview.learnings.values[learn].learn_uuid})">
+                            <span class="progress" style="width: {{  overview.learnings.values[learn].completed_percentage }}%;"></span>
+                        </span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="title"><span class="fa fa-trophy m-r-8"></span>技能清单</div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="learn-progress" ng-repeat="skill in overview.skills track by $index" ng-if="$index % 2 !== 0 && $index !== 0">
+                    <dt>
+                        <span class="skill-name">{{ skill.tech_type }}</span>
+                    </dt>
+                    <dd>
+                        <span class="total"
+                            tooltip-placement="top"
+                            tooltip-class="tooltip-dark tooltip-md"
+                            uib-tooltip="{{ skill.completed_numbers }} / {{ skill.total_numbers }} (个)">
+                            <span class="progress" style="width: {{ skill.completed_numbers / skill.total_numbers * 100 }}%;"></span>
+                        </span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="learn-progress" ng-repeat="skill in overview.skills track by $index" ng-if="$index % 2 === 0 && $index !== 0">
+                    <dt>
+                        <span class="skill-name">{{ skill.tech_type }}</span>
+                    </dt>
+                    <dd>
+                        <span class="total"
+                            tooltip-placement="top"
+                            tooltip-class="tooltip-dark tooltip-md"
+                            uib-tooltip="{{ skill.completed_numbers }} / {{ skill.total_numbers }} (个)">
+                            <span class="progress" style="width: {{ skill.completed_numbers / skill.total_numbers * 100 }}%;"></span>
+                        </span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- calendar-heatmap data="example_data" color="color" overview="overview" handler="print" style="overflow: auto; background: #FFF; margin-bottom: 40px;"></calendar-heatmap -->

@@ -1,0 +1,36 @@
+<div class="inmodal full-height">
+    <div class="modal-body subcourse-detail no-margins">
+        <nav class="study-detail-list" role="navigation">
+            <div class="sidebar-collapse full-height">
+                <ul side-navigation class="study-detail-list__nav metismenu full-height">
+                    <li class="nav-header p-lg">
+                        <span class="label label-info pull-right">EXERCISE</span>
+                        <h3 class="text-white">{{ exercise.name }} &nbsp; &nbsp;<span class="fa fa-check-square text-navy" ng-if="currentStudyProgress.is_completed"></span></h3>
+                        <small>{{ exercise.description }}</small>
+                        <div class="p-t-xs">
+                            <span class="pull-right text-navy m-l-sm">{{ currentStudyProgress.completed_percentage }}%</span>
+                            <uib-progressbar class="progress-mini" value="currentStudyProgress.completed_percentage"></uib-progressbar>
+                        </div>
+                    </li>
+                    <li class="study-detail-guide no-margins">
+                        <h5 class="text-success">所有任务</h5>
+                    </li>
+                    <li ng-repeat="detail_task in tasks" ng-class="{'active': detail_task.uuid === taskSession.source.current_task_uuid}">
+                        <div class="study-layer" ng-if="studyLayer"></div>
+                        <a ng-click="loadTask({'task':detail_task.uuid})">
+                            <div class="col-xs-8">
+                                <small>{{ $index + 1 }}. {{ detail_task.name }}</small>
+                            </div>
+                            <div class="col-xs-2 text-left">
+                                <span class="small">[{{ detail_task.tringtype }}]</span>
+                            </div>
+                            <div class="col-xs-2 text-right">
+                                <span class="fa fa-square" ng-class="{'text-navy': currentStudyProgress.progress.tasks_achievement.hasOwnProperty(detail_task.uuid) && currentStudyProgress.progress.tasks_achievement[detail_task.uuid].is_completed}"></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

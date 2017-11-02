@@ -1,0 +1,75 @@
+<section class="course-detail-desc">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
+                <div class="text-center">
+                    <img src="assets/icons/exercise.svg" width="120" height="120">
+                    <h2 class="m-b-md animated fadeInDown" style="font-size: 24px;">{{ exercise.name }}</h2>
+                    <p class="animated fadeInDown course-description">{{ exercise.description }}</p>
+                    <div class="text-uppercase m-b-md">
+                        <span>{{ exercise.ctype }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+                <button type="button" class="btn btn-w-m btn-block btn-primary" ng-click="goToStudy({'origin': 'exercise', 'source': {'exercise': exercise.uuid}})" ng-if="exerciseProgress.completed_percentage === 0 || !exerciseProgress">Start Learn</button>
+                <button type="button" class="btn btn-w-m btn-block btn-primary" ng-click="goToStudy({'origin': 'exercise', 'source': {'exercise': exercise.uuid}})" ng-if="exerciseProgress.completed_percentage > 0">Continue</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="plan-detail-info">
+    <div class="container">
+        <div class="row col-xs-12 col-md-10 col-md-offset-1 animated fadeInDown text-center">
+            <div class="col-xs-12 col-sm-3">
+                <p ng-if="exercise.level_required">{{ exercise.level_required }}</p>
+                <p ng-if="!exercise.level_required">Beginner</p>
+                <small>难度|级别</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p>¥ 0.001/s</p>
+                <small>单价/每秒</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <p ng-if="exerciseProgress.completed_percentage < 100">已完成 <span class="fa fa-level-up text-warning"> {{ exerciseProgress.completed_percentage }}%</span></p>
+                <p ng-if="exerciseProgress.completed_percentage === 100">已完成 <span class="fa fa-level-up text-navy"> {{ exerciseProgress.completed_percentage }}%</span></p>
+                <p ng-if="!exerciseProgress">未学习</p>
+                <small>完成进度</small>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <!-- p>{{ exercise.cloud_flavor.quota.cpus }}CPU {{ exercise.cloud_flavor.quota.mem }}MB {{ exercise.cloud_flavor.quota.disk }}GB</p -->
+                <p>1CPU 512MB 12GB</p>
+                <small>云配额</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="course-detail-path">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                <div class="p-b-lg p-t-lg">
+                    <ul class="stage-list">
+                        <li ng-repeat="task in exercise.tasks">
+                            <a ng-click="goToStudy({'origin': 'exercise', 'source': {'exercise': exercise.uuid, 'part': part.uuid, 'stage': stage.uuid}})" ng-class="{'completed': exerciseProgress.progress.stages_achievement[stage.uuid].is_completed}">
+                                <div class="row">
+                                    <div class="col-xs-11">
+                                        <h3><span class="text-gray">{{ $index + 1 }}. {{ task.tringtype }}</span>: {{ task.name }}</h3>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <div style="padding-top: 5px;">
+                                            <span class="fa fa-check text-navy"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

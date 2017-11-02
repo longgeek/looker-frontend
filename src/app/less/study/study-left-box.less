@@ -1,0 +1,156 @@
+.study-page {
+    .study-left-nav {
+        width: 50px;
+        z-index: 998;
+        background-color: transparent;
+        border-color: #2f4050;
+        position: absolute;
+        top: 50px;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+    }
+    .study-left-nav__container {
+        background: #F1F1F1;
+        overflow: auto;
+        height: 100%;
+        margin-left: 50px;
+        margin-bottom: 8px;
+    }
+    .study-left-nav__container .ibox-title {
+        border-radius: 0;
+        min-height: 40px;
+        background: #D4D4D4;
+        border-color: #E3E6E6;
+        border-width: 0 0 1px;
+        cursor: pointer;
+    }
+    .study-left-nav__container .ibox-title > h5 {
+        color: @flat-color !important;
+        font-weight: 400 !important;
+    }
+    .study-left-nav__container .ibox-title > h5 > .fa-file-text-o {
+        margin-right: 17px;
+    }
+    .study-left-nav__container .ibox-title > h5 > .fa-check-square-o {
+        margin-right: 15px;
+    }
+    .study-left-nav__container .ibox-content {
+        background: #F1F1F1;
+        padding-bottom: 0 !important;
+    }
+    .study-left-nav__container .task-status {
+        border-radius: 0;
+        padding-top: 4px;
+        margin-top: -3px;
+    }
+    .study-left-nav .study-left-nav__bar {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+    .study-left-nav .study-left-nav__bar > li {
+        position: relative;
+        display: block;
+        text-align: center;
+    }
+    .study-left-nav .study-left-nav__bar > li a.active {
+        color: @navy;
+    }
+    .study-left-nav .study-left-nav__bar > li a:hover {
+        background: #293846;
+        color: @navy;
+    }
+    .study-left-nav .study-left-nav__bar > li a:focus {
+        background: transparent;
+    }
+    .study-left-nav .study-left-nav__bar > li > a {
+        font-size: 20px;
+        color: #4f5f6a;
+        font-weight: 600;
+        padding: 10px 15px;
+        position: relative;
+        display: block;
+        cursor: pointer;
+    }
+    .study-fixed-docs {
+        position: absolute;
+        top: 0;
+        left: 50px;
+        right: 8px;
+        z-index: 900;
+        height: 40px;
+    }
+    .study-fixed-task {
+        position: absolute;
+        top: 40px;
+        left: 50px;
+        right: 8px;
+        z-index: 900;
+        height: 40px;
+        border-width: 1px 0 !important;
+    }
+    .reply-qa-count {
+        line-height: 12px;
+        padding: 2px 5px;
+        position: absolute;
+        right: 6px;
+        top: 8px;
+    }
+    .study-docs-content {
+        line-height: 22px;
+    }
+    .study-docs-content p:not(:last-child) {
+        margin-bottom: 20px;
+        line-height: 22px;
+    }
+    .study-docs-content pre {
+        background: #213140;
+        border: none;
+        border-radius: 0;
+        padding: 20px;
+        color: #FFF;
+        vertical-align: baseline;
+        word-break: break-word;
+        text-shadow: 1px 1px 1px rgba(43,56,66,0.3);
+        margin: 20px 0;
+    }
+    .study-docs-content pre code {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 14px;
+        font-family: monospace;
+    }
+    .study-docs-content :not(pre) > code {
+        padding: 2px 4px;
+        margin: 0 3px;
+        border-radius: 3px;
+        color: @flat-color;
+        font-weight: 600;
+        background: #d4d4d4;
+        white-space: pre-wrap;
+        vertical-align: baseline;
+        word-break: break-word;
+        box-sizing: border-box;
+    }
+    .study-docs-content ol,
+    .study-docs-content ul {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .study-docs-content ol > li,
+    .study-docs-content ul > li {
+        position: relative;
+        margin-left: 2rem;
+        margin-bottom: 0.5rem;
+        color: @flat-color;
+    }
+    .study-docs-content b,
+    .study-docs-content strong {
+        color: @flat-color;
+        font-weight: 700;
+    }
+    .study-docs-content blockquote {
+        border-color: #ddd;
+    }
+}

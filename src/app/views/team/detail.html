@@ -1,0 +1,67 @@
+<div class="loading-layer margin-header" ng-if="teamDetailLoading">正在加载...</div>
+<div class="loading-layer margin-header" ng-if="!teamDetailLoading && !team">没有找到该小组。</div>
+<div ng-if="!teamDetailLoading && team">
+<section class="p-h-xxl text-center white-bg">
+    <div class="container">
+        <div class="row">
+            <span class="fa fa-group fa-5x text-flat m-b-lg animated fadeInDown"></span>
+            <h1 class="m-t-none animated fadeInDown">{{ team.name }}</h1>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" ng-if="team.description">
+                <div class="section-text animated fadeInDown">{{ team.description }}</div>
+                <h4 class="font-oblique m-b-none animated fadeInDown">by: {{ team.group_by.name }}</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-member-section">
+    <div class="container">
+        <div class="team-member animated fadeIn">
+            <div class="title">小组共有<span class="text-navy font-bold">（{{ team.members.sorted.length }}）</span>名成员<span ng-if="false">，从左至右为学习进度排名。</span></div>
+            <div class="team-member-list" ng-repeat="member in team.members.sorted">
+                <img class="img-circle" gravatar-src="team.members.values[member].gravatar">
+                <!-- div class="progress-number font-bold" ng-class="{'true': 'text-navy', 'false': 'text-warning'}[team.members.values[member].percentage > 0]">{{ team.members.values[member].percentage }}%</div -->
+                <div class="name">{{ team.members.values[member].member_nickname }}({{ team.members.values[member].nickname }})</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="team-course-section">
+    <div class="container">
+        <div class="row">
+            <div class="title">小组共有<span class="text-navy font-bold">（{{ team.learnings.sorted.length }}）</span>门课程。
+                <div class="tags">
+                    <span class="fa fa-ban m-r-8"></span>
+                    <span class="m-r">未分配</span>
+                    <span class="fa fa-star-o m-r-8"></span>
+                    <span class="m-r">自付费</span>
+                    <span class="fa fa-star m-r-8"></span>
+                    <span class="m-r">未支付</span>
+                    <span class="fa fa-star text-navy m-r-8"></span>
+                    <span class="m-r">已支付</span>
+                    <span class="fa fa-facebook text-navy m-r-8"></span>
+                    <span>免费</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6" ng-repeat="c in team.team_learnings.sorted">
+                <div class="team-course-list animated fadeIn" ui-sref="learn.{{ team.team_learnings.values[c].learn_type }}.detail({'ud': team.team_learnings.values[c].uuid})">
+                    <div class="tags">
+                        <span class="fa fa-ban" ng-if="team.learnings.sorted.indexOf(c) === -1"></span>
+                        <span class="fa fa-star-o" ng-if="team.team_learnings.values[c].pay_by === 'self-pay'"></span>
+                        <span class="fa fa-star" ng-if="team.team_learnings.values[c].pay_by === 'pre-paid' && !team.learnings.values[c].is_paid && team.learnings.sorted.indexOf(c) !== -1"></span>
+                        <span class="fa fa-star text-navy" ng-if="team.team_learnings.values[c].pay_by === 'pre-paid' && team.learnings.values[c].is_paid && team.learnings.sorted.indexOf(c) !== -1"></span>
+                        <span class="fa fa-facebook text-navy" ng-if="team.team_learnings.values[c].is_free"></span>
+                    </div>
+                    <img ng-src="assets/icons/{{ team.team_learnings.values[c].learn_type }}.svg" width="70">
+                    <div class="name">{{ team.team_learnings.values[c].name }}</div>
+                    <uib-progressbar class="progress-mini m-t-lg" value="team.team_learnings.values[c].percentage" ng-if="team.team_learnings.values[c].percentage"></uib-progressbar>
+                    <uib-progressbar class="progress-mini m-t-lg m-r-none" value="0" ng-if="!team.team_learnings.values[c].percentage"></uib-progressbar>
+                    <span class="progress-number" ng-if="team.team_learnings.values[c].percentage">
+                        {{ team.team_learnings.values[c].percentage }}%
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>

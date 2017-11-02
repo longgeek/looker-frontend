@@ -1,0 +1,124 @@
+/* Full Footer */
+.footer {
+    border: none;
+    position: relative;
+    padding: 0;
+    background: transparent;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+// Top
+.footer-top {
+    padding: 40px 0 0;
+    z-index: 5;
+    position: relative;
+}
+.footer-top .container {
+    position: relative;
+    text-align: center;
+    padding: 40px 15px 80px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+// Content
+.footer-content {
+    width: 100%;
+    padding: 60px 0;
+}
+.footer-title {
+    font-size: 18px;
+}
+.footer-bottom-bar {
+    border-top: 1px solid #ddd;
+}
+.footer a {
+    color: @flat-color;
+}
+.footer ul {
+    padding-left: 0;
+}
+.footer a:hover,
+.footer a:focus {
+    color: @navy;
+}
+.footer-scroll {
+    position: fixed;
+    right: 20px;
+    bottom: 35px;
+    opacity: 0.7;
+    z-index: 10;
+}
+.footer-scroll > .btn {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-decoration: none;
+    padding: 6px 18px;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: background 200ms ease;
+    transition: background 200ms ease;
+}
+.footer-scroll:hover {
+    opacity: 1;
+}
+.footer {
+    h1, h2, h3, h4, h5 {
+        font-weight: 400;
+    }
+}
+
+// Bottom
+.footer-bottom {
+    color: @flat-color;
+    font-size: 13px;
+    border-top: 1px solid #eee;
+}
+.footer-bottom .container {
+    padding: 40px 15px;
+}
+
+
+// Navy Style
+.footer.navy {
+    background: linear-gradient(to top right, #35ad9b 0%, #213f54 100%);
+    a,
+    h3,
+    .footer-top p,
+    .footer-top h2 {
+        color: #FFF;
+    }
+    .footer-bottom {
+        border: none;
+        color: #edeff1;
+        background-color: rgba(0,0,0,.1);
+    }
+}
+
+// Dark Style
+.footer.dark {
+    background: linear-gradient(117deg, #26394a, #192e3c 43%, #213140);
+    a,
+    h3,
+    .footer-top p,
+    .footer-top h2 {
+        color: #FFF;
+    }
+    .footer-bottom {
+        border: none;
+        color: #edeff1;
+        background-color: rgba(0,0,0,.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        .row {
+            text-align: center;
+        }
+        .col-xs-12 {
+            margin-bottom: 30px;
+        }
+    }
+}

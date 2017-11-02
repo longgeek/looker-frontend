@@ -1,0 +1,40 @@
+<div class="moments-item" ng-if="m.ctype === 'post:tweet'">
+    <div class="moments-avatar dropup" uib-dropdown>
+        <a ng-mouseenter="showUserDropdown($event, m.created_by.uuid, m)" uib-dropdown-toggle>
+            <img alt="img" gravatar-src="m.created_by.gravatar">
+        </a>
+        <ul class="dropdown-menu user-dropdown-menu dropdown-menu-right" role="menu">
+            <div class="dropdown-content" ng-include="'app/views/moments/dropdown.html'"></div>
+        </ul>
+    </div>
+    <div class="moments-box">
+        <div class="pull-right moments-action dropdown" ng-if="isAuthenticated()">
+            <a data-toggle="dropdown" class="dropdown-toggle">
+                <i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li ng-if="user.user.uuid !== m.created_by.uuid"><a ng-click="moment_report(m.id)">举报</a></li>
+                <li ng-if="user.user.uuid === m.created_by.uuid"><a ng-click="moment_delete(m.id, $index)">删除</a></li>
+            </ul>
+        </div>
+        <div class="moments-content" btf-markdown="m.content" markdown-image-preview></div>
+        <!-- div class="moments-content" btf-markdown="m.content | atUsername" markdown-image-preview></div -->
+        <div class="moments-info">
+            <a ui-sref="u.homepage({username: m.created_by.uuid})" target="_blank">{{ m.created_by.nickname }}</a>
+            <a ui-sref="home.moments.detail({ud: m.id})">{{ m.created_at | convertZone | toChinaTimeLine }}</a>
+            <!-- a><i class="fa fa-heart-o m-r-8"></i>0</a -->
+            <a ui-sref="home.moments.detail({ud: m.id})"><i class="fa m-r-8" ng-class="{true: 'fa-comment', false: 'fa-comment-o'}[m.replies_count > 0]"></i>{{ m.replies_count }}</a>
+        </div>
+        <!-- div class="moments-likes" ng-if="m.replies_count > 0">
+            <div class="avatar dropup" uib-dropdown ng-repeat="u in m.replies">
+                <a ng-mouseenter="showUserDropdown($event, u.created_by.uuid, u)" uib-dropdown-toggle>
+                    <img alt="img" gravatar-src="u.created_by.gravatar">
+                </a>
+                <ul class="dropdown-menu user-dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="dropdown-content" ng-include="'app/views/moments/dropdown.html'"></div>
+                </ul>
+            </div>
+        </div -->
+        <ng-include src="'app/views/moments/ctype/comment.html'"></ng-include>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.faq')">账户</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.faq')"><a ui-sref="help.faq.account">账户</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.faq.account.articles({'articles_name': 'account-1'})">注册账户收不到邮件？</a>
+        </li>
+        <li>
+            <a ui-sref="help.faq.account.articles({'articles_name': 'account-2'})">支持哪些邮箱注册用户？</a>
+        </li>
+    </ul>
+</div>

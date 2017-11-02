@@ -1,0 +1,13 @@
+<div class="details" ng-if="notice.ctype === 'moment:replied'">
+    <h3 class="title">
+        <i class="fa fa-comment-o m-r-8"></i>
+        你的 "圈子" 有新的评论
+    </h3>
+    <p class="time">评论于: {{ notice.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+    <div class="content">
+        你的圈子有新的评论: 
+        <a ui-sref="home.moments.detail({ud: notice.params.moment_id})">
+            {{ notice.params.content }}
+        </a>
+    </div>
+</div>

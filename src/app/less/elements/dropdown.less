@@ -1,0 +1,118 @@
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.user-dropdown-menu {
+    width: 360px;
+    border: 1px solid #edeff1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0 !important;
+    padding-top: 15px;
+
+    .dropdown-content {
+        width: 100%;
+        border: 1px solid #edeff1;
+        background: #FFF;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+        transition: 0.2s;
+        .inner {
+            padding: 15px;
+            .left {
+                width: 35%;
+                float: left;
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 15px 20px 20px 10px;
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        background: #edeff1;
+                    }
+                }
+            }
+            .right {
+                margin-left: 35%;
+                > a {
+                    display: block;
+                    margin: 10px 0;
+                    line-height: 1.1;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: @flat-color;
+                }
+                > a:hover {
+                    color: @navy;
+                }
+                p {
+                    font-size: 12px;
+                    margin-bottom: 20px;
+                    svg {
+                        margin-top: 3px;
+                        margin-right: 8px;
+                    }
+                }
+            }
+        }
+        .scoial {
+            font-size: 12px;
+            padding: 10px;
+            border-top: 1px solid #edeff1;
+            background: #fafbfc;
+            display: flex;
+            text-align: center;
+            a {
+                flex: 1;
+                color: @flat-color;
+                opacity: 0.5;
+                span {
+                    color: @navy;
+                    margin-right: 5px;
+                    font-weight: 500;
+                }
+            }
+            a:hover {
+                opacity: 1;
+            }
+            > span {
+                opacity: 0.5;
+                color: @flat-color;
+            }
+        }
+        .loading {
+            font-size: 12px;
+            padding: 10px;
+            background: #fafbfc;
+            text-align: center;
+            font-style: oblique;
+            color: @flat-color;
+        }
+    }
+    .dropdown-content:before {
+        margin-top: -6px;
+        margin-left: 14px;
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 10px;
+        background-image: none;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+        transition: background .1s linear;
+        background: #FFF;
+        border-left: 1px solid #EEE;
+        border-bottom: 1px solid #EEE;
+    }
+}
+.dropup .user-dropdown-menu {
+    padding-top: 0;
+    padding-bottom: 15px;
+    .dropdown-content:before {
+        bottom: 10px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+}

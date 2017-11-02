@@ -1,0 +1,30 @@
+<script type="text/javascript" src="bower_components/MessengerJs/index.js"></script>
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ace.js"></script>
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ext-language_tools.js"></script>
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ext-modelist.js"></script>
+<div ng-controller="LinuxBashController" style="width: 100%; height: 100%;">
+    <div class="linuxbash animated fadeIn">
+        <div class="code-editor-container">
+            <div class="linuxbash-tab-content" ng-if="linuxbashUrl">
+                <div class="study-layer" ng-if="studyLayer || frameLayer"></div>
+                <div class="study-frame-status" ng-class="{'true': !studyLayer && !frameLayer, 'false': studyLayer || frameLayer }" ng-click="refreshLinuxbashFrame()"></div>
+                <iframe id="code-interaction-frame" class="study-console-iframe" ng-src="{{ linuxbashUrl }}" check-required-iframe="iframeLoadedCallBack()"></iframe>
+            </div>
+            <div class="linuxbash-tab-content absolute-center" ng-if="!linuxbashUrl">
+                <div class="text-center">
+                    <div class="m-b-sm"><img src="assets/icons/terminal.svg" width="50" height="50"></div>
+                    <p class="text-gray">Bash 终端</p>
+                </div>
+            </div>
+        </div>
+        <div class="code-editor-footer-container">
+            <div ng-include="'app/views/learn/study/study-checklist-output.html'"></div>
+            <div ng-include="'app/views/learn/study/trings/will-done-code.html'"></div>
+        </div>
+    </div>
+    <div class="study-footer-btn">
+        <div class="study-layer" ng-if="studyLayer || frameLayer"></div>
+        <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="linuxbashSubmit()" ng-if="task.check_lists && task.check_lists.length !== 0 && completed_tasks.indexOf(task.uuid) === -1 && !showWillDone">提交</button>
+        <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="gotIt(true)" ng-if="!task.check_lists || task.check_lists.length === 0 || completed_tasks.indexOf(task.uuid) !== -1 && !showWillDone">提交</button>
+    </div>
+</div>

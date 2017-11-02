@@ -1,0 +1,69 @@
+<div class="user-header">
+    <div class="left">
+        <a ui-sref="u.homepage({username: userinfo.username})" ui-sref-opts="{reload: true}">
+            <img class="img-circle img-responsive" gravatar-src="userinfo.gravatar">
+        </a>
+    </div>
+    <div class="right">
+        <a ui-sref="u.homepage({username: userinfo.username})" ui-sref-opts="{reload: true}">
+            {{ userinfo.nickname }}
+        </a>
+        <p>
+            <svg aria-hidden="true" class="octicon" height="12" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M6 0C2.69 0 0 2.5 0 5.5 0 10.02 6 16 6 16s6-5.98 6-10.5C12 2.5 9.31 0 6 0zm0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61.48 3.56 1.36.92.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05zM8 5.5c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+            {{ userinfo.location }}
+        </p>
+        <div class="m-b-xs">
+            <a class="btn btn-xs btn-white m-r-8" ng-click="homepage_add_friend(userinfo.uuid)" ng-if="!userinfo.is_friend"><i class="fa fa-eye m-r-8"></i>关注 Ta</a>
+            <a class="btn btn-xs btn-white m-r-8" ng-click="homepage_remove_friend(userinfo.uuid)" ng-if="userinfo.is_friend === true"><i class="fa fa-eye-slash m-r-8"></i>取消关注</a>
+            <!-- a class="btn btn-xs btn-primary"><i class="fa fa-envelope m-r-8"></i>私信 Ta</a -->
+        </div>
+    </div>
+</div>
+<div class="scoial">
+    <a ui-sref="u.homepage.activity({username: userinfo.username})"><span>{{ userinfo.moment_count }}</span>动态</a><span>|</span>
+    <a ui-sref="u.homepage.following({username: userinfo.username})"><span>{{ userinfo.following_count }}</span>关注</a><span>|</span>
+    <a ui-sref="u.homepage.followers({username: userinfo.username})"><span>{{ userinfo.followers_count }}</span>粉丝</a>
+</div>
+<div class="ibox">
+    <div class="ibox-content">
+        <!--h4>基本信息</h4 -->
+        <p class="intro" ng-if="userinfo.intro">{{ userinfo.intro }}</p>
+        <ul class="list-group clear-list small m-b-none">
+            <li class="list-group-item fist-item">
+                <span class="pull-right">{{ userinfo.created_at | convertZone | date : 'yyyy-MM-dd HH:mm' }}</span>
+                加入时间
+            </li>
+            <li class="list-group-item">
+                <span class="pull-right">{{ userinfo.updated_at | convertZone | toChinaTimeLine }}</span>
+                最后活跃
+            </li>
+            <li class="list-group-item">
+                <a class="pull-right" href="{{ userinfo.domain_name }}" target="_blank">
+                    {{ userinfo.domain_name }}
+                </a>
+                个人网址
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="ibox">
+    <div class="ibox-content">
+        <h4>Ta 的朋友</h4>
+        <div class="user-friends">
+            <div class="small font-oblique" ng-if="userinfo.friends.follows.length === 0 && !userinfoLoading">暂无</div>
+            <a ng-repeat="f in userinfo.friends.follows" ng-if="$index < 14" ui-sref="u.homepage({username: f.uuid})" target="_blank">
+                <img alt="image" class="img-circle" gravatar-src="f.gravatar">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="ibox">
+    <div class="ibox-content">
+        <h4>个人标签</h4>
+        <div class="small font-oblique" ng-if="!userinfo.tags && !userinfoLoading">未填写</div>
+        <ul class="tag-list" ng-if="userinfo.tags">
+            <li ng-repeat="tag in userinfo.tags.split(',')"><a href=""><i class="fa fa-tag"></i> {{ tag }}</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>

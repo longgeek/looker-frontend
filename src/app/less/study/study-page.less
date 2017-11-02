@@ -1,0 +1,85 @@
+/*
+ *
+ *   INSPINIA Landing Page - Responsive Admin Theme
+ *   Copyright 2014 Webapplayers.com
+ *
+*/
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+/* PACE PLUGIN
+-------------------------------------------------- */
+.study-page.pace .pace-progress {
+  background: #fff;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+
+}
+.pace-inactive {
+  display: none;
+}
+
+.study-page {
+  color: @text-color;
+  font-family: @font-family;
+  background: @study-bg;
+}
+
+.study-page {
+    .navbar-brand {
+      color: #ffffff;
+      padding: 13px 15px;
+    }
+    .navbar-fixed-top {
+      background: @study-bg;
+      border: none !important;
+      height: 50px;
+    }
+    .navbar-nav {
+      height: 50px;
+    }
+    .navbar-scroll.navbar-default .nav li a {
+      color: @text-color;
+    }
+    .navbar-scroll.navbar-default .nav li a:hover {
+      color: @navy;
+    }
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+      color: @navy;
+      background: inherit;
+    }
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:hover,
+    .navbar-default .navbar-nav > .open > a:focus {
+      background-color: inherit;
+      color: #555555;
+    }
+    .navbar-default .navbar-collapse {
+      border-color: #eee;
+      z-index: 9999;
+      background: @study-bg;
+    }
+    h1, h2, h3, h4, h5 {
+      color: inherit;
+      font-weight: 700;
+    }
+    @media (max-width: 768px) {
+      .navbar .navbar-header {
+        display: block;
+        float: none;
+      }
+      .navbar .navbar-header .navbar-toggle {
+        background-color: inherit;
+        padding: 9px 10px;
+        border: none;
+      }
+    }
+}

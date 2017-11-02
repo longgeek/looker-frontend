@@ -1,0 +1,70 @@
+.homepage-learnings {
+    > .title {
+        font-size: 14px;
+        font-weight: 700;
+        border-bottom: 1px solid #edeff1;
+        margin: 20px 0;
+        line-height: 70px;
+        color: @flat-color;
+    }
+    > .title:first-child {
+        margin-top: -20px;
+    }
+    > .content {
+        .title {
+            font-size: 13px;
+            font-weight: 700;
+            color: @flat-color;
+            line-height: 20px;
+            margin: 8px 0 15px;
+        }
+        .learn-progress {
+            margin-top: 0;
+            margin-bottom: 0;
+            dt {
+                width: 120px;
+                float: left;
+                line-height: 28px;
+                vertical-align: middle;
+                font-size: 12px;
+                font-weight: 400;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                -webkit-font-smoothing: auto;
+                span.skill-name {
+                    background-color: #edeff1;
+                    padding: 2px 10px;
+                    color: #204056;
+                }
+            }
+            dd {
+                margin-left: 130px;
+                overflow: hidden;
+                .total {
+                    display: block;
+                    margin: 7px 0;
+                    height: 15px;
+                    min-width: 150px;
+                    width: 95%;
+                    border-radius: 2px;
+                    background: #f8f8f8;
+                    position: relative;
+                }
+                .total:hover {
+                    cursor: pointer;
+                    background: #eee;
+                }
+                .progress {
+                    display: block;
+                    height: 15px;
+                    width: 0;
+                    -webkit-border-radius: 2px 0 0 2px;
+                    -moz-border-radius: 2px 0 0 2px;
+                    border-radius: 2px 0 0 2px;
+                    background: #1abc9c;
+                }
+            }
+        }
+    }
+}

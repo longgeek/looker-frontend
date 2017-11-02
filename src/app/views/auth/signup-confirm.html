@@ -1,0 +1,45 @@
+<div class="signup-confirm">
+    <div class="container">
+        <div class="signup-content">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h1>完成注册, 开始学习.</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <div class="signup-form-div">
+                        <form role="form" name="signup_confirm_form" ng-submit="signupConfirmForm()" novalidate>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" placeholder="用户名" ng-model="SignUpUsername" ng-pattern="/^[a-z0-9_]{3,18}$/" ng-minlength="3" ng-maxlength="18" ng-class="{true: 'text-danger-important'}[signup_confirm_form.username.$invalid && signup_confirm_form.submitted]" required autofocus ng-disabled="signupConfirmLoading">
+                                <label class="fa fa-user"></label>
+                            </div>
+                            <div class="form-error-box" ng-show="signup_confirm_form.username.$invalid && signup_confirm_form.submitted">
+                                <small class="text-danger" ng-show="signup_confirm_form.username.$error.pattern && !signup_confirm_form.username.$error.minlength && !signup_confirm_form.username.$error.maxlength">用户名必须以字母开头, 只能包含小写字母、数字和下划线。</small>
+                                <small class="text-danger" ng-show="signup_confirm_form.username.$error.required">请输入用户名。</small>
+                                <small class="text-danger" ng-show="signup_confirm_form.username.$error.minlength">用户名太短，应不少于 3 个字符，请重新输入</small>
+                                <small class="text-danger" ng-show="signup_confirm_form.username.$error.maxlength">用户名太长，不能大于 18 个字符，请重新输入</small>
+                            </div>
+                            <div class="form-error-box" ng-show="SignUpUserError">
+                                <small class="text-danger">用户名必须以字母开头, 只能包含小写字母、数字和下划线。</small>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="密码" ng-model="SignUpPassword" ng-minlength="6" ng-maxlength="32" ng-class="{true: 'text-danger-important'}[signup_confirm_form.password.$invalid && signup_confirm_form.submitted]" required ng-disabled="signupConfirmLoading">
+                                <label class="fa fa-lock"></label>
+                            </div>
+                            <div class="form-error-box" ng-show="signup_confirm_form.password.$invalid && signup_confirm_form.submitted">
+                                <small class="text-danger" ng-show="signup_confirm_form.password.$error.required">请输入密码</small>
+                                <small class="text-danger" ng-show="signup_confirm_form.password.$error.minlength">密码太短，应不少于 6 个字符，请重新输入</small>
+                                <small class="text-danger" ng-show="signup_confirm_form.password.$error.maxlength">密码超过 32 个字符，请重新输入</small>
+                            </div>
+                            <div class="form-error-box" ng-show="SignUpPassError">
+                                <small class="text-danger">{{ SignUpPassError }}</small>
+                            </div>
+                            <button type="submit" class="ladda btn btn-lg btn-danger block full-width m-b" ladda="signupConfirmLoading">注册</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

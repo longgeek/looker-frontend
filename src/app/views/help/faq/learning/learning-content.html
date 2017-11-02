@@ -1,0 +1,18 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.faq')">课程，学习控制台，问答</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.faq')"><a ui-sref="help.faq.learning">课程，学习控制台，问答</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.faq.learning.articles({'articles_name':  'learning-1'})">Fuvism 能帮助我学会编程语言？</a>
+        </li>
+        <li>
+            <a ui-sref="help.faq.learning.articles({'articles_name':  'learning-2'})">学习一门课程需要多少钱？</a>
+        </li>
+        <li>
+            <a ui-sref="help.faq.learning.articles({'articles_name':  'learning-3'})">我没有退出学习，还会扣钱吗？</a>
+        </li>
+        <li>
+            <a ui-sref="help.faq.learning.articles({'articles_name':  'learning-4'})">进入下一节的条件是什么，是一节的进度大于80%？</a>
+        </li>
+    </ul>
+</div>

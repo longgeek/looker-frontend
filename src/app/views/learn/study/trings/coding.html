@@ -1,0 +1,123 @@
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ace.js"></script>
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ext-language_tools.js"></script>
+<script type="text/javascript" src="bower_components/ace-builds/src-min/ext-modelist.js"></script>
+
+<div class="code-workspace" ng-controller="CodingController">
+    <div id="code-workspace-editor" class="code-workspace-editor full-height animated fadeIn" resizable r-directions="['right']" r-flex="true">
+        <div class="code-editor-container">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="code-header">
+                <div class="code-header__controller">
+                    <div class="pull-left">
+                        <span>
+                            <i class="fa fa-square text-danger"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-square text-warning"></i>
+                        </span>
+                        <span>
+                            <i class="fa fa-square text-navy"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="code-header__tabs pull-left" ng-if="CodingDefaultData.files.length > 0">
+                    <div class="study-layer" ng-if="CodingConsoleLoad"></div>
+                    <scrollable-tabset show-tooltips="false" scroll-by="200" drop-down-menu-class="dropdown-menu-right angular-ui-tab-scroll-menu">
+                    <uib-tabset justified="true">
+                        <uib-tab ng-repeat="file in CodingDefaultData.files" select="codingSelectTab($index, file, CodingData.files[file.filename])" scrollable-tabset-font-size>
+                            <uib-tab-heading>
+                                <a class="code-header__tabs__close" ng-click="codingCloseFile($index)"></a>
+                                {{ file.filename }}
+                            </uib-tab-heading>
+                            <div id="editor_{{ $index }}" ui-ace="aceOptions" ng-model="CodingData.files[file.filename]"></div>
+                        </uib-tab>
+                    </uib-tabset>
+                    </scrollable-tabset>
+                </div>
+            </div>
+            <div class="absolute-center code-workspace-editor__none" ng-if="CodingDefaultData.files.length === 0 && task.topic_content.files.length !== 0">
+                <button class="btn btn-w-m btn-sm btn-outline btn-primary" ng-click="codingReopenFiles()">重新打开文件.</button>
+            </div>
+            <div class="absolute-center code-workspace-editor__none" ng-if="!task.topic_support || !task.topic_content || task.topic_content.files.length === 0">
+                <div class="font-oblique text-gray">这道题已创建，但是没有添加代码文件。</div>
+            </div>
+        </div>
+        <div class="code-editor-footer-container">
+            <div ng-if="task.topic_content && task.topic_content.files.length" ng-include="'app/views/learn/study/study-checklist-output.html'"></div>
+            <div ng-if="task.topic_content && task.topic_content.files.length" ng-include="'app/views/learn/study/trings/will-done-code.html'"></div>
+        </div>
+    </div>
+    <div class="coding-console-container animated fadeIn">
+        <div class="coding-console-container__layer">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="coding-console-container__output" ng-if="CodingDefaultData.files.length === 1">
+                <iframe class="coding-console-container__output__frame" ng-src="{{ CodingConsoleData.values[fileObj.filename].url }}" ng-if="CodingConsoleData.values[fileObj.filename].url"></iframe>
+            </div>
+            <div class="coding-console-container__output multiple animated fadeIn" ng-if="CodingDefaultData.files.length > 1 && CodingConsoleData.sorted.length > 0">
+                <div class="topbar">
+                    <div class="pull-left">
+                        <span class="output-close" ng-click="outputClose()">
+                            <i class="fa fa-square text-danger"></i>
+                        </span>
+                        <span class="output-refresh" ng-click="outputRefresh()">
+                            <i class="fa fa-square text-warning"></i>
+                        </span>
+                    </div>
+                    <img src="assets/icons/console.svg">代码输出</div>
+                <div class="output-tabs">
+                    <scrollable-tabset show-tooltips="false">
+                    <uib-tabset justified="true" active="currentConsoleIndex">
+                        <uib-tab ng-repeat="file in CodingConsoleData.sorted track by $index" select="outputSelect(file, $index)" scrollable-tabset-font-size class="animated fadeIn">
+                            <uib-tab-heading>
+                                <a class="x" ng-click="outputOneClose($index, file)"></a>
+                                {{ file }}
+                            </uib-tab-heading>
+                            <iframe class="coding-console-container__output__frame" ng-src="{{ CodingConsoleData.values[file].url }}" ng-if="CodingConsoleData.values[file].url"></iframe>
+                            <div class="absolute-center code-console-none animated fadeIn" ng-if="CodingConsoleLoad && fileObj.filename === file" style="top: 60px;">
+                                <div class="study-quit-load sk-spinner sk-spinner-three-bounce p-b-md">
+                                    <div class="sk-bounce1"></div>
+                                    <div class="sk-bounce2"></div>
+                                    <div class="sk-bounce3"></div>
+                                </div>
+                            </div>
+                            <div class="absolute-center code-console-none" ng-if="!CodingConsoleLoad && !CodingConsoleData.values[file].is_exec" style="top: 60px;">
+                                <div class="text-center" ng-if="!CodingConsoleLoad">
+                                    <div class="m-b-sm"><img src="assets/icons/console.svg" width="50" height="50"></div>
+                                    <p class="text-gray"><span class="text-navy">"{{ file }}"</span> 文件内容已保存成功。<br>在本题中，该文件无须执行，同时没有运行结果的输出。</span>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                    </scrollable-tabset>
+                </div>
+            </div>
+            <div class="absolute-center code-console-none" ng-if="CodingConsoleData.sorted.length === 0">
+                <div class="text-center" ng-if="!CodingConsoleLoad">
+                    <div class="m-b-sm"><img src="assets/icons/console.svg" width="50" height="50"></div>
+                    <p class="text-gray">代码输出</p>
+                </div>
+            </div>
+            <div class="absolute-center code-console-none" ng-if="CodingConsoleLoad && CodingConsoleData.sorted.length === 0 || CodingConsoleLoad && CodingDefaultData.files.length === 1">
+                <div class="study-quit-load sk-spinner sk-spinner-three-bounce p-b-md">
+                    <div class="sk-bounce1"></div>
+                    <div class="sk-bounce2"></div>
+                    <div class="sk-bounce3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="study-footer-btn animated fadeIn">
+        <div class="study-layer" ng-if="studyLayer"></div>
+        <button class="ladda-button btn btn-w-m btn-primary" ng-click="codingSaveCode()" ng-disabled="!task.topic_content || !task.topic_content.files.length" ng-if="fileObj.is_exec" ladda="disabledSaveBtn">保存 & 运行</button>
+        <button class="ladda-button btn btn-w-m btn-primary" ng-click="codingSaveCode()" ng-disabled="!task.topic_content || !task.topic_content.files.length" ng-if="!fileObj.is_exec" ladda="disabledSaveBtn">保存代码</button>
+        <div class="btn-group dropup m-l-sm" uib-dropdown>
+            <a class="btn btn-w-m study-btn-reset" ng-click="codingResetCode()" ng-disabled="!task.topic_content || !task.topic_content.files.length || disabledSaveBtn">默认代码</a>
+            <a class="btn dropdown-toggle study-btn-reset__dropdown" uib-dropdown-toggle ng-disabled="!task.topic_content || !task.topic_content.files.length || disabledSaveBtn">
+                <span class="fa fa-angle-up"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right study-btn-reset__dropdown__menu" role="menu">
+                <li ng-click="codeReset()"><a>重置本课</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

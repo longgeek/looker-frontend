@@ -1,0 +1,37 @@
+<div class="bsection one" ng-include="'app/views/learn/project/one.html'"></div>
+<section class="learn-section learn-list-section learn-course-section cyan-gray-bg" oc-lazy-load="wu.masonry">
+    <!-- div class="container text-center p-b-xl">
+        <div class="p-t-sm">
+            <ul class="learn-classify" ng-init="courseClassify = 'all'">
+                <li>
+                    <a ng-click="courseClassify = 'all'" ng-class="{'active': courseClassify === 'all' || !courseClassify}">All</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Python'" ng-class="{'active': courseClassify === 'Python'}">Python</a>
+                </li>
+                <li>
+                    <a ng-click="courseClassify = 'Web Front(HTML, CSS, Javascript)'" ng-class="{'active': courseClassify === 'Web Front(HTML, CSS, Javascript)'}">Web Front</a>
+                </li>
+            </ul>
+        </div>
+    </div -->
+    <div class="container">
+        <div class="row" ng-if="!projectLoading && projects.length">
+            <div class="col-md-12">
+                <div class="p-w-xl" masonry="{ gutter: 30, transitionDuration: '0.4s' }" load-images="false" preserve-order column-width="300" reload-on-resize>
+                    <div class="masonry-brick" ng-repeat="project in projects" ui-sref="learn.project.detail({ ud: project.uuid })">
+                        <div class="course-item white-bg text-center">
+                            <img src="assets/icons/project.svg" class="m-b-md" width="120" height="120">
+                            <div class="course-name">{{ project.name }}</div>
+                            <span class="course-progress-number" ng-if="joinedProjects.joined[project.uuid]">{{ joinedProjects.joined[project.uuid].completed_percentage }}%</span>
+                            <uib-progressbar class="progress-mini m-t-xl" value="joinedProjects.joined[project.uuid].completed_percentage" ng-if="joinedProjects.joined[project.uuid]"></uib-progressbar>
+                            <div class="course-description text-left" ng-if="!joinedProjects.joined[project.uuid]">{{ project.description | limitTo:50 }}<span ng-if="project.description.length > 50">...</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="font-oblique text-center" ng-if="projectLoading">正在加载...</div>
+        <div class="font-oblique text-center" ng-if="!projectLoading && !projects.length">没有找到项目实战课程。</div>
+    </div>
+</section>

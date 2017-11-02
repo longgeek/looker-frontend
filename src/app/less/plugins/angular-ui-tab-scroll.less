@@ -1,0 +1,131 @@
+.ui-tabs-scrollable {
+    position: inherit;
+}
+.ui-tabs-scrollable > .nav-button.left-nav-button {
+    border-top-left-radius: 0;
+}
+.ui-tabs-scrollable.show-drop-down > .nav-button.right-nav-button {
+    right: 20px;
+    border-radius: 0;
+}
+
+.ui-tabs-scrollable > .nav-button {
+    width: 20px;
+    height: 30px;
+    line-height: 30px;
+    color: @flat-color;
+    border: none;
+    top: 30px;
+    background: @dark-gray;
+}
+.ui-tabs-scrollable > .nav-button[disabled] {
+    color: #999999;
+}
+.ui-tabs-scrollable > .nav-button.left-nav-button:before {
+    content: "\f104";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+.ui-tabs-scrollable > .nav-button.right-nav-button:before {
+    content: "\f105";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+
+.ui-tabs-scrollable.show-drop-down > .spacer:not(.hidden-buttons) {
+    margin-right: calc(20px + 20px);
+}
+.ui-tabs-scrollable > .spacer:not(.hidden-buttons) {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.ui-tabs-scrollable > .spacer > div:first-child > .nav-tabs > li > a {
+    height: 30px;
+}
+
+.ui-tabs-scrollable > .dropdown > .dropdown-toggle {
+    width: 20px;
+    height: 30px;
+    line-height: 30px;
+    color: @flat-color;
+    text-align: center;
+    border: none;
+    border-left-width: 0;
+    padding: 1px 0 0;
+    background-color: @dark-gray;
+    z-index: 10;
+    border-radius: 0;
+    top: 30px;
+}
+.ui-tabs-scrollable > .nav-button:hover,
+.ui-tabs-scrollable > .dropdown > .dropdown-toggle:hover {
+    background: #e6e6e6;
+    color: @navy;
+}
+.ui-tabs-scrollable > .nav-button[disabled]:hover {
+    color: #999999;
+    cursor: no-drop;
+}
+
+.ui-tabs-scrollable > .dropdown > .dropdown-toggle:before {
+    content: "\f142";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+.ui-tabs-scrollable > .spacer > div:first-child > .tab-content {
+    margin-top: 0;
+    border-top: 0;
+}
+.ui-tabs-scrollable > .spacer > div:first-child > .tab-content > .active {
+    position: inherit;
+}
+.angular-ui-tab-scroll-menu {
+    overflow: auto;
+    min-width: 160px;
+    width: auto;
+    max-width: 554px;
+}
+body > ul.dropdown-menu.dropdown-menu-right {
+    top: 108px !important;
+    background: @dark-gray;
+    border-radius: 0;
+}
+body > ul.dropdown-menu > li > a {
+    font-size: 13px;
+    color: @flat-color;
+    font-weight: 600;
+}
+body > ul.dropdown-menu > li > a .dropDownTabActiveMark:before {
+    padding-right: 10px;
+    font-size: 12px;
+    content: "\f121";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+.ui-tabs-scrollable.show-drop-down > .spacer:not(.hidden-buttons) > div:first-child > .tab-content {
+    margin-right: calc(-20px - 20px);
+}
+.ui-tabs-scrollable > .spacer:not(.hidden-buttons) > div:first-child > .tab-content {
+    margin-left: -20px;
+    margin-right: -20px;
+}

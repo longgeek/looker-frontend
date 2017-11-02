@@ -1,0 +1,13 @@
+<div class="inmodal">
+    <div class="modal-body">
+        <div class="text-center">
+            <h2 class="m-t-none">恭喜!</h2>
+            <p class="p-xs cyan-gray-bg">本节已完成，下一节&nbsp;<span class="font-bold text-navy">[&nbsp;{{ nextStage.name }}&nbsp;]</span>&nbsp;自动解锁！</p>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <button type="button" class="btn btn-danger btn-block" ng-click="cancel(); loadTask({'stage': nextStage.uuid})">进入下一节</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

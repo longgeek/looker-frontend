@@ -1,0 +1,60 @@
+<section class="pay-order animated fadeIn">
+    <div class="container">
+        <div class="pay-order__content">
+            <img src="assets/images/wechat/logo.svg" width="170px">
+            <p class="animated fadeInDown" ng-if="pay.status && !payLoading">微信扫一扫订单已创建，二维码有效期为 2 小时，请在有效期内扫码并支付，否则将取消订单。</p>
+        </div>
+    </div>
+</section>
+<section class="pay-content animated fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                <div class="base-item light-gray-bg">
+                    <div class="title">
+                        <h3>充值订单详情</h3>
+                    </div>
+                    <div class="content">
+                        <p class="text-flat">请确认要充值的金额，并完成支付。</p>
+                        <table class="base-item-table table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-flat">订单类型</td>
+                                    <td>Fuvism 在线充值</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-flat">订单编号</td>
+                                    <td>{{ pay.order_id }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pay-content__amount p-lg font-oblique animated fadeIn" ng-if="payLoading">
+                        正在加载...
+                    </div>
+                    <div class="pay-content__amount animated fadeIn" ng-if="!payLoading">
+                        <div class="text text-navy" ng-if="pay.status">
+                            充值金额：<i class="fa fa-rmb m-r-8"></i>{{ pay.amount }}
+                        </div>
+                        <div class="text text-danger" ng-if="!pay.status">
+                            订单编号不存在，请重新提交。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-8">
+                <div class="col-xs-12 col-sm-6 text-center">
+                    <div class="pay-content__qrcode">
+                        <div class="qrcode img" ng-if="pay.status && !payLoading"></div>
+                        <div class="qrcode" ng-if="!pay.status"></div>
+                        <img src="assets/images/wechat/info.png">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="wechat-phone"></div>
+                    <div class="wechat-phone-zoom"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

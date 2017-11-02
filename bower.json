@@ -1,0 +1,98 @@
+{
+  "name": "appLooker",
+  "version": "3.0",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular-resource": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.6",
+    "angular-bootstrap": "~1.3.2",
+    "angular": "~1.5.0",
+    "pace": "~1.0.2",
+    "metisMenu": "~2.0.2",
+    "font-awesome": "~4.3.0",
+    "angular-translate": "~2.7.2",
+    "angular-cookie": "~4.0.9",
+    "iCheck": "~1.0.2",
+    "angular-resizable": "~1.2.0",
+    "animate.css": "~3.4.0",
+    "angular-ui-ace": "~0.2.3",
+    "angular-scroll": "~0.7.3",
+    "angular-dragdrop": "~1.0.12",
+    "angular-timer": "~1.3.3",
+    "satellizer": "~0.14.1",
+    "angular-scroll-glue": "~2.0.6",
+    "angular-gravatar": "~0.4.1",
+    "ngSmoothScroll": "~2.0.0",
+    "angular-ui-sortable": "~0.13.4",
+    "angular-slick": "~0.2.1",
+    "highlightjs": "~8.9.1",
+    "angular-highlightjs": "~0.5.1",
+    "angular-marked": "~1.2.0",
+    "masonry": "~3.3.2",
+    "angular-masonry": "~0.14.1",
+    "oclazyload": "~1.0.9",
+    "angular-summernote": "~0.8.1",
+    "angular-ladda": "~0.3.4",
+    "angular-bind-html-compile": "~1.2.1",
+    "angularjs-toaster": "~1.2.0",
+    "ace-diff": "master",
+    "MessengerJS": "https://raw.githubusercontent.com/biqing/MessengerJS/master/messenger.js",
+    "ngclipboard": "~1.1.1",
+    "jq-console": "~2.13.2",
+    "jsrepl": "https://github.com/thstack/jsrepl.git",
+    "socket.io-client": "1.4.6",
+    "angular-ui-tab-scroll": "~2.3.4",
+    "angular-tek-progress-bar": "~0.2.0",
+    "angular-chart.js": "~1.0.3",
+    "d3": "^3.5.16",
+    "moment": "^2.12.0",
+    "qiniu": "^1.0.19",
+    "angular-markdown-directive": "~0.3.1",
+    "inline-attachment": "~2.0.3",
+    "markdown-toolbar": "https://github.com/nikolas/markdown-toolbar.git",
+    "commonmark": "~0.27.0",
+    "angular-elastic": "~2.5.1",
+    "ng-emoji-picker": "https://github.com/longgeek/ng-emoji-picker.git#master",
+    "ngInfiniteScroll": "~1.3.4",
+    "ng-tags-input": "~3.2.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.5.0"
+  },
+  "resolutions": {
+    "jquery": "~2.1.4",
+    "angular": "~1.5.0"
+  },
+  "overrides": {
+    "masonry": {
+        "main": ["dist/masonry.pkgd.min.js"],
+        "dependencies": {}
+    },
+    "angular-resizable": {
+        "main": ["angular-resizable.min.css", "angular-resizable.min.js"]
+    },
+    "highlightjs": {
+        "main": ["highlight.pack.js", "styles/tomorrow-night.css"]
+    },
+    "bootstrap": {
+        "main": ["dist/js/bootstrap.min.js"]
+    },
+    "ace-diff": {
+        "main": []
+    },
+    "socket.io-client": {
+        "main": ["socket.io.js"]
+    },
+    "plupload": {
+        "main": ["js/plupload.full.min.js"]
+    },
+    "inline-attachment": {
+        "main": ["dist/inline-attachment.min.js", "dist/jquery.inline-attachment.min.js"]
+    },
+    "markdown-toolbar": {
+        "main": ["dist/markdown-toolbar.js", "dist/markdown-toolbar.css"]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div ui-view>
+<nav class="sub-nav">
+    <div class="container">
+        <ol class="breadcrumbs">
+            <li title="帮助中心">
+                <a ui-sref="help">帮助中心</a>
+            </li>
+            <li title="常见问题">
+                <a ui-sref="help.faq">常见问题</a>
+            </li>
+            <li title="消费，充值，邀请好友">消费，充值，邀请好友</li>
+        </ol>
+    </div>
+</nav>
+<section class="help-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div ng-include="'app/views/help/faq/billing/billing-content.html'"></div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>

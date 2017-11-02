@@ -1,0 +1,120 @@
+<div ng-controller="StudyConsoleController">
+    <div class="study-footer-console">
+        <div class="btn-group dropup" uib-dropdown>
+            <a class="btn" ng-class="{'open': StudyDesktopShow}" ng-click="studyDesktop()" ng-if="CurrentConsoleType === 'desktop'"><span class="fa fa-laptop"> 桌面</span></a>
+            <a class="btn" ng-class="{'open': StudyTerminalShow}" ng-click="studyTerminal()"
+                ng-if="
+                CurrentConsoleType === 'terminal' ||
+                CurrentConsoleType === 'terminal2' && task.tringtype !== 'webserver' &&
+                task.tringtype !== 'webfront' &&
+                task.tringtype !== 'javascript' &&
+                task.tringtype !== 'coding'
+                "><span class="fa fa-terminal"> 终端</span></a>
+            <a class="btn"
+                ng-class="{'open': StudyTerminal2Show}"
+                ng-click="studyTerminal2()"
+                ng-if="
+                    CurrentConsoleType === 'terminal2' && task.tringtype === 'webserver' ||
+                    CurrentConsoleType === 'terminal2' && task.tringtype === 'webfront' ||
+                    CurrentConsoleType === 'terminal2' && task.tringtype === 'javascript' ||
+                    CurrentConsoleType === 'terminal2' && task.tringtype === 'coding'
+                    "><span class="fa fa-terminal"> 终端 2</span></a>
+            <a class="btn dropdown-toggle" uib-dropdown-toggle>
+                <span class="fa fa-angle-up"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                <li ng-click="studyDesktop()"><a ng-class="{'open': StudyDesktopShow}"><span class="fa fa-laptop"></span>&nbsp;&nbsp;&nbsp;桌面</a></li>
+                <li ng-click="studyTerminal()"><a ng-class="{'open': StudyTerminalShow}"><span class="fa fa-terminal"></span>&nbsp;&nbsp;&nbsp;&nbsp;终端</a></li>
+                <li ng-click="studyTerminal2()"
+                    ng-if="
+                        task.tringtype === 'webserver' ||
+                        task.tringtype === 'webfront' ||
+                        task.tringtype === 'javascript' ||
+                        task.tringtype === 'coding'
+                        "><a ng-class="{'open': StudyTerminal2Show}"><span class="fa fa-terminal"></span>&nbsp;&nbsp;&nbsp;&nbsp;终端 2</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Terminal -->
+    <div class="study-terminal study-console-layer animated fadeInRight" ng-show="StudyTerminalShow" data-drag="true" jqyoui-draggable data-jqyoui-options="{containment: '.study', handle: '.code-label', cursor: 'move'}">
+        <div class="study-console-layer-header code-header">
+            <div class="code-header__controller text-center">
+                <span class="pull-left">
+                    <span class="study-console-close" ng-click="studyTerminal()"><i class="fa fa-square text-danger"></i></span>
+                    <span class="study-console-refresh" ng-click="terminalRefresh()"><i class="fa fa-square text-warning"></i></span>
+                    <span class="study-console-add-bash" ng-click="terminalAddTab()" ng-class="{'disabled': TerminalTabs.length === 4}">
+                        <i class="fa fa-square" ng-class="{'text-navy': TerminalTabs.length !== 4}"></i>
+                    </span>
+                </span>
+                <div class="code-label"><span class="fa fa-terminal">&nbsp; 终端</span></div>
+            </div>
+            <div class="code-header__tabs terminal pull-left" ng-if="TerminalTabs.length > 0">
+                <uib-tabset justified="true" active="TerminalIndex">
+                    <uib-tab ng-repeat="tab in TerminalTabs track by $index" select="terminalSelectTab(tab, $index)">
+                        <uib-tab-heading>
+                            <a class="code-header__tabs__close" ng-click="terminalCloseTab($index)"></a>
+                            bash [{{ tab + 1 }}]
+                        </uib-tab-heading>
+                        <div class="study-console-box">
+                            <iframe class="study-console-iframe" ng-src="{{ TerminalTabsUrl[tab] }}"></iframe>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+        <div class="absolute-center code-content-none" ng-if="TerminalTabs.length === 0">
+            <button class="btn btn-w-m btn-sm btn-outline btn-primary" ng-click="terminalAddTab(0)">打开一个 bash.</button>
+        </div>
+    </div>
+    <!-- Terminal2 -->
+    <div class="study-terminal terminal2 study-console-layer animated fadeInRight"
+        ng-show="
+            StudyTerminal2Show && task.tringtype === 'webserver' ||
+            StudyTerminal2Show && task.tringtype === 'webfront' ||
+            StudyTerminal2Show && task.tringtype === 'javascript' ||
+            StudyTerminal2Show && task.tringtype === 'coding'
+            " data-drag="true" jqyoui-draggable data-jqyoui-options="{containment: '.study', handle: '.code-label', cursor: 'move'}">
+        <div class="study-console-layer-header code-header">
+            <div class="code-header__controller text-center">
+                <span class="pull-left">
+                    <span class="study-console-close" ng-click="studyTerminal2()"><i class="fa fa-square text-danger"></i></span>
+                    <span class="study-console-refresh" ng-click="terminal2Refresh()"><i class="fa fa-square text-warning"></i></span>
+                    <span class="study-console-add-bash" ng-click="terminal2AddTab()" ng-class="{'disabled': Terminal2Tabs.length === 4}">
+                        <i class="fa fa-square" ng-class="{'text-navy': Terminal2Tabs.length !== 4}"></i>
+                    </span>
+                </span>
+                <div class="code-label"><span class="fa fa-terminal">&nbsp; 终端2</span></div>
+            </div>
+            <div class="code-header__tabs terminal pull-left" ng-if="Terminal2Tabs.length > 0">
+                <uib-tabset justified="true" active="Terminal2Index">
+                    <uib-tab ng-repeat="tab in Terminal2Tabs track by $index" select="terminal2SelectTab(tab, $index)">
+                        <uib-tab-heading>
+                            <a class="code-header__tabs__close" ng-click="terminal2CloseTab($index)"></a>
+                            bash [{{ tab + 1 }}]
+                        </uib-tab-heading>
+                        <div class="study-console-box">
+                            <iframe class="study-console-iframe" ng-src="{{ Terminal2TabsUrl[tab] }}" ng-if="Terminal2TabsUrl[tab]"></iframe>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+        <div class="absolute-center code-content-none" ng-if="Terminal2Tabs.length === 0">
+            <button class="btn btn-w-m btn-sm btn-outline btn-primary" ng-click="terminal2AddTab(0)">打开一个当前目录的 bash.</button>
+        </div>
+    </div>
+    <!-- Desktop -->
+    <div class="study-desktop study-console-layer animated fadeInRight" ng-show="StudyDesktopShow" data-drag="true" jqyoui-draggable data-jqyoui-options="{containment: '.study', handle: '.code-label', cursor: 'move'}">
+        <div class="study-console-layer-header code-header">
+            <div class="code-header__controller text-center">
+                <span class="pull-left">
+                    <span class="study-console-close" ng-click="studyDesktop()"><i class="fa fa-square text-danger"></i></span>
+                </span>
+                <div class="code-label"><span class="fa fa-laptop">&nbsp; 桌面</span></div>
+            </div>
+        </div>
+        <div class="absolute-center study-console__none text-white font-oblique">
+            当前课程不支持桌面模式.
+        </div>
+    </div>
+</div>

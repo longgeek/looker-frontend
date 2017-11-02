@@ -1,0 +1,63 @@
+<div class="col-xs-12 col-md-8 profile-box p-md">
+    <h2 class="m-t-sm">变更邮箱</h2>
+    <div ng-show="$state.is('home.profile.email')" ng-controller="ProfileEmailController">
+        <form role="form" name="verify_passwd_form" ng-submit="verifyPasswdForm()" novalidaten ng-show="!verifyPasswdSuccess">
+            <p>请填写当前账户密码，系统将会发送确认邮件到当前邮箱。</p>
+            <div class="form-group">
+                <input type="password" class="form-control profile-form-control" name="password" placeholder="当前密码" ng-model="password" ng-change="verifyPasswdError = false" ng-minlength="6" autofocus required>
+                <label class="fa fa-key"></label>
+            </div>
+            <div class="space-15" ng-show="verify_passwd_form.password.$invalid && verify_passwd_form.submitted">
+                <small class="text-danger" ng-show="verify_passwd_form.password.$error.required">请输入当前帐户的密码.</small>
+                <small class="text-danger" ng-show="verify_passwd_form.password.$error.minlength">密码不符合要求.</small>
+            </div>
+            <div class="text-danger p-b-sm animated fadeIn small" ng-if="verifyPasswdError">
+                {{ verifyPasswdError }}
+            </div>
+            <button type="submit" class="ladda btn btn-lg btn-danger btn-w-m profile-submit-btn" ladda="verifyPasswdLoading">发送邮件</button>
+        </form>
+        <div ng-show="verifyPasswdSuccess">
+            <div class="text-navy">
+                <p>变更邮箱邮件已发送，请在 10 分钟内查收邮件并设置新的邮箱.</p>
+                <p>{{ userProfile.email }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="$state.includes('home.profile.email.confirm')" ng-controller="ProfileEmailConfirmController">
+        <form role="form" name="verify_email_form" ng-submit="verifyEmailForm()" novalidaten ng-show="!verifyEmailSuccess">
+            <p class="text-navy">你已确认了旧的邮箱，请输入新的邮箱地址。</p>
+            <div class="form-group">
+                <input type="email" class="form-control profile-form-control" name="email" placeholder="新的邮箱" ng-model="email" ng-change="verifyEmailError = false" autofocus required>
+                <label class="fa fa-at"></label>
+            </div>
+            <div class="space-15" ng-show="verify_email_form.email.$invalid && verify_email_form.submitted">
+                <small class="text-danger" ng-show="verify_email_form.email.$error.required">请输入一个有效的邮箱地址.</small>
+            </div>
+            <div class="text-danger p-b-sm animated fadeIn small" ng-if="verifyEmailError">
+                {{ verifyEmailError }}
+            </div>
+            <button type="submit" class="ladda btn btn-lg btn-danger btn-w-m profile-submit-btn" ladda="verifyEmailLoading">发送邮件到新邮箱</button>
+        </form>
+        <div ng-show="verifyEmailSuccess">
+            <div class="text-center text-navy">
+                <p>新邮箱确认邮件已发送，请在 10 分钟内查收邮件并确认.</p>
+                <p>{{ email }}</p>
+            </div>
+        </div>
+    </div>
+    <div ng-show="$state.includes('home.profile.email.complete')" ng-controller="ProfileEmailCompleteController">
+        <div class="text-center text-navy" ng-if="verifyCompleteSuccess">
+            <p>你的邮箱账户已修改成功.</p>
+            <p>{{ email }}</p>
+        </div>
+        <div class="text-center" ng-if="!verifyCompleteError">
+            <p>正在验证邮箱是否修改成功!</p>
+            <p>{{ email }}</p>
+        </div>
+        <div class="text-center text-warning" ng-if="verifyCompleteError">
+            <p>{{ verifyCompleteError }}</p>
+            <p>{{ email }}</p>
+        </div>
+    </div>
+</div>

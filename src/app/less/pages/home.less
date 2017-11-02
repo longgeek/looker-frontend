@@ -1,0 +1,640 @@
+.bubbles {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+.bubbles .bubble-container {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    will-change: transform;
+    -webkit-animation: bubblemove 10s infinite linear;
+    -ms-animation: bubblemove 10s infinite linear;
+    animation: bubblemove 10s infinite linear;
+}
+.bubbles .bubble {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    opacity: .5;
+    background-color: #c8dae8;
+    border-radius: 50%;
+}
+.bsection.one {
+    color: #fff;
+    background: linear-gradient(to top right, #35ad9b 0%, #213f54 100%);
+}
+.bsection {
+    overflow: hidden;
+    position: relative;
+}
+.planets-jumbotron {
+    font-size: 100%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+}
+.planets-jumbotron .bubbles {
+    width: 50%;
+}
+.planets-jumbotron .circle-container {
+    float: right;
+    width: 40%;
+    margin-right: 10%;
+    height: 100%;
+    position: relative;
+    min-height: 250px;
+    font-size: 16px;
+    z-index: 100;
+}
+.planets-jumbotron .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+    margin-left: -40px;
+    border-radius: 50%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    z-index: 10;
+}
+.planets-jumbotron .orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-width: 1px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 50%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-animation-name: orbit;
+    animation-name: orbit;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+.planets-jumbotron .orbit#circle-1 {
+    z-index: 5;
+    width: 14em;
+    height: 14em;
+    margin-top: -7em;
+    margin-left: -7em;
+}
+.planets-jumbotron .orbit#circle-2 {
+    z-index: 4;
+    -webkit-animation-duration: 90s;
+    animation-duration: 90s;
+    width: 21em;
+    height: 21em;
+    margin-top: -10.5em;
+    margin-left: -10.5em;
+    border: 1px solid rgba(255,255,255,.08);
+}
+.planets-jumbotron .orbit#circle-3 {
+    z-index: 3;
+    width: 28em;
+    height: 28em;
+    margin-top: -14em;
+    margin-left: -14em;
+    -webkit-animation-duration: 150s;
+    animation-duration: 150s;
+    -webkit-animation-name: orbit;
+    animation-name: orbit;
+    border: 1px solid rgba(255,255,255,.06);
+}
+
+.planets-jumbotron .orbit#circle-4 {
+    z-index: 2;
+    width: 35em;
+    height: 35em;
+    margin-top: -17.5em;
+    margin-left: -17.5em;
+    -webkit-animation-duration: 200s;
+    animation-duration: 200s;
+    -webkit-animation-name: orbit;
+    animation-name: orbit;
+    border: 1px solid rgba(255,255,255,.04);
+}
+.planets-jumbotron .orbit#circle-5 {
+    z-index: 1;
+    width: 42em;
+    height: 42em;
+    margin-top: -21em;
+    margin-left: -21em;
+    border: 1px solid rgba(255,255,255,.02);
+}
+.planets-jumbotron .pulse {
+    border: .2em solid rgba(255,255,255,.4);
+    background: 0 0;
+    border-radius: 50%;
+    width: 42em;
+    height: 42em;
+    margin-top: -21em;
+    margin-left: -21em;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    opacity: 0;
+    -webkit-animation: Pulse 5s ease-out;
+    animation: Pulse 5s infinite ease-out;
+}
+// .planets-jumbotron .pulse.animated {
+//     -webkit-animation: pulse 1.5s ease-out;
+//     animation: pulse 1.5s ease-out;
+// }
+.planets-jumbotron .orbit .circle-container-inner {
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.planets-jumbotron .orbit .rotating-circle {
+    position: absolute;
+    border-radius: 50%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.planets-jumbotron .orbit#circle-2 .rotating-circle {
+    width: 3em;
+    height: 3em;
+    margin-top: -1.5em;
+    margin-bottom: -1.5em;
+    -webkit-animation-name: invert;
+    animation-name: invert;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-duration: 90s;
+    animation-duration: 90s;
+}
+.planets-jumbotron .orbit#circle-2 .rotating-circle#blue {
+    left: 33%;
+    top: 1%;
+    background-color: #82b0ff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2),inset 0 1px 2px 0 rgba(255,255,255,.3);
+}
+.planets-jumbotron .orbit#circle-2 .rotating-circle span.info {
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 5px;
+    text-align: center;
+    -webkit-transform-origin: 100% 100% 0;
+    transform-origin: 100% 100% 0;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.planets-jumbotron .orbit#circle-2 .rotating-circle span.info i {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    position: relative;
+    top: 52%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 18px;
+}
+
+.planets-jumbotron .orbit#circle-2 .rotating-circle {
+    width: 3em;
+    height: 3em;
+    margin-top: -1.5em;
+    margin-bottom: -1.5em;
+    -webkit-animation-name: invert;
+    animation-name: invert;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-duration: 90s;
+    animation-duration: 90s;
+}
+.planets-jumbotron .orbit#circle-2 .rotating-circle#violet {
+    left: 1%;
+    top: 78%;
+    background-color: #957fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2),inset 0 1px 2px 0 rgba(255,255,255,.3);
+}
+.planets-jumbotron .orbit#circle-2 .rotating-circle#orange {
+    left: 92%;
+    top: 48%;
+    background-color: #ffbe40;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2),inset 0 1px 2px 0 rgba(255,255,255,.3);
+}
+.planets-jumbotron .orbit#circle-3 .rotating-circle {
+    position: absolute;
+    border-radius: 50%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    width: 2em;
+    height: 2em;
+    margin-top: -1em;
+    margin-bottom: -1em;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    opacity: .4;
+    background-color: #889eb0;
+}
+.planets-jumbotron .orbit#circle-3 .rotating-circle#first {
+    left: 1%;
+    top: 30%;
+}
+.planets-jumbotron .orbit#circle-3 .rotating-circle#second {
+    left: 60%;
+    top: 98%;
+}
+.planets-jumbotron .orbit#circle-3 .rotating-circle#third {
+    left: 80%;
+    top: 12%;
+}
+.planets-jumbotron .orbit#circle-4 .rotating-circle {
+    position: absolute;
+    border-radius: 50%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: -.6em;
+    margin-bottom: -.6em;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    opacity: .4;
+    background-color: #889eb0;
+}
+.planets-jumbotron .orbit#circle-4 .rotating-circle#first {
+    left: 36%;
+    top: 1.5%;
+}
+.planets-jumbotron .orbit#circle-4 .rotating-circle#second {
+    left: 7%;
+    top: 78%;
+}
+.planets-jumbotron .orbit#circle-4 .rotating-circle#third {
+    left: 83%;
+    top: 86%;
+}
+.planets-jumbotron .orbit#circle-4 .rotating-circle#fourth {
+    left: 93.5%;
+    top: 28%;
+}
+.planets-jumbotron .pulse {
+    border: .2em solid rgba(255,255,255,.4);
+    background: 0 0;
+    border-radius: 50%;
+    width: 42em;
+    height: 42em;
+    margin-top: -21em;
+    margin-left: -21em;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    opacity: 0;
+}
+
+.bsection.one .container {
+    padding-top: 140px;
+}
+.bsection .container {
+    padding: 80px 15px;
+}
+.bsection.one .one-left {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    .btn {
+        font-family: 'Roboto',sans-serif;
+    }
+    .btn-white {
+        color: #208aa7;
+        border-radius: 4px;
+    }
+    .btn-outline.btn-white {
+        color: #FFF;
+        padding: 9px 35px;
+        border: 2px solid rgba(255,255,255,.5);
+    }
+    .btn-outline.btn-white:hover {
+        border: 2px solid #fff;
+    }
+}
+.bsection.one h1, .bsection.one p {
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.bsection.one h1 {
+    font-weight: 200;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+.bsection.one p {
+    opacity: .85;
+    font-size: 15px;
+    line-height: 1.3;
+    margin-bottom: 30px;
+}
+.bsection.one .one-right {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.bsection.one .btn-lg {
+    padding: 10px 35px;
+    font-weight: 500;
+    font-size: 15px;
+}
+.home {
+    .navbar-default {
+        background-color: transparent;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .navbar-default .navbar-brand {
+        color: #FFF;
+    }
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .navbar-default .navbar-nav > li > a {
+        color: #FFF;
+    }
+}
+
+
+// two.html
+.bsection.two {
+    .container {
+        padding: 60px 15px;
+    }
+    .section-course-item {
+        background: #FFF;
+        height: 210px;
+        border-radius: 5px;
+        text-align: center;
+        padding: 30px 15px 40px;
+        cursor: pointer;
+        -webkit-transform: scale(.85) translateY(10px);
+        transform: scale(.85) translateY(10px);
+        -webkit-transform-origin: bottom center;
+        transform-origin: bottom center;
+        transition: -webkit-transform .4s,background .2s ease-out;
+        transition: transform .4s,background .2s ease-out;
+    }
+    .section-course-item.lock {
+        cursor: no-drop;
+        opacity: 0.4;
+    }
+    .section-course-item > img {
+        width: 100%;
+        height: 100%;
+        max-width: 110px;
+        max-height: 110px;
+    }
+    .section-course-item:not(.lock):hover {
+        -webkit-transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0);
+        background: rgba(80,227,194,.19);
+    }
+    .section-course-item:not(.lock):hover > h3 {
+        color: @navy;
+    }
+}
+
+// three
+.bsection.three {
+    position: relative;
+    background-color: #f3f6fa;
+    border-top: solid 1px #E6EDF3;
+    border-bottom: solid 1px #E6EDF3;
+
+    .featured-image {
+        right: -7%;
+        position: absolute;
+        width: 45%;
+        top: 50%;
+        -webkit-transform: translateY(-40%);
+        transform: translateY(-40%);
+        display: none;
+        border-radius: 8px;
+        border: 15px solid #e6e6e6;
+    }
+    .three-main {
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+    }
+    .three-title {
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+     h2 {
+        font-family: 'Roboto',sans-serif;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 1.3;
+        color: #496174;
+        margin-top: 0;
+    }
+     p {
+        opacity: .9;
+        font-family: 'Roboto',sans-serif;
+        font-size: 18px;
+        line-height: 1.3;
+        color: #889eb0;
+    }
+    .three-left {
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .three-right {
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .three-box {
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+        margin: 30px 0;
+    }
+    .three-box .three-icon {
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .three-box svg {
+        margin-bottom: 10px;
+    }
+    .three-box .three-icon svg {
+        display: inline-block;
+    }
+    .three-box .three-content {
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+// four
+.bsection.four {
+    .container {
+        padding: 0 15px;
+    }
+    .row {
+        padding: 100px 0;
+        border-bottom: 1px solid #eee;
+    }
+    h2 {
+        font-weight: 300;
+    }
+}
+
+// response
+@media (min-width: 768px) {
+    .bubbles {
+        display: block;
+    }
+    .bsection.one .one-left {
+        margin-left: 16.66666667%;
+    }
+    .bsection.one .one-left {
+        float: left;
+        width: 66.66666667%;
+    }
+    .bsection.three {
+        .three-left {
+            float: left;
+            width: 66.66666667%;
+            margin-left: 16.66666667%;
+        }
+    }
+}
+@media (min-width: 992px) {
+    .bsection.one .one-left {
+        text-align: left;
+    }
+    .bsection.one .one-left {
+        float: left;
+        width: 41.66666667%;
+    }
+    .bsection.one .one-left {
+        margin-left: 0%;
+    }
+}
+@media (min-width: 992px) {
+    .bsection.one {
+        h1 {
+            font-size: 38px;
+            line-height: 62px;
+            font-weight: 500;
+            padding: 0;
+        }
+        p {
+            font-size: 18px;
+            line-height: 24px;
+        }
+        .one-right {
+            float: left;
+            width: 58.33333333%;
+        }
+        .container {
+            padding-top: 235px;
+            padding-bottom: 185px;
+        }
+    }
+    .bsection.three {
+        .featured-image {
+            display: block;
+        }
+        .three-main {
+            float: left;
+            width: 100%;
+            text-align: left;
+        }
+        .three-title {
+            float: left;
+            width: 100%;
+        }
+        .three-left {
+            float: left;
+            width: 50%;
+            margin-left: 0%;
+        }
+        .three-box {
+            float: left;
+            width: 100%;
+        }
+        .three-box .three-icon {
+            float: left;
+            width: 16.66666667%;
+        }
+        .three-box .three-icon svg {
+            float: right;
+            margin-right: 5px;
+        }
+        .three-box .three-content {
+            float: left;
+            width: 83.33333333%;
+            padding-left: 0;
+        }
+        h2 {
+            font-weight: 700;
+        }
+        p.title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #496174;
+        }
+        p.details {
+            font-size: 15px;
+        }
+    }
+    .bsection.four {
+        h2 {
+            font-weight: 700;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .bsection.one .btn-lg {
+        width: 74%;
+    }
+    .bsection.four {
+        .row {
+            padding: 50px 0;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,82 @@
+<div class="hidden-xs hidden-sm bubbles">
+        <div class="bubble-container" style="left: 64%; top: 83%; opacity: 0.06; animation-delay: 3s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 42%; top: 11%; opacity: 0.12; animation-delay: 5s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 5%; top: 62%; opacity: 0.12; animation-delay: 11s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 61%; top: 7%; opacity: 0.12; animation-delay: 9s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 68%; top: 55%; opacity: 0.06; animation-delay: 5s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 55%; top: 45%; opacity: 0.06; animation-delay: 0s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 2%; top: 35%; opacity: 0.06; animation-delay: 6s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 25%; top: 22%; opacity: 0.06; animation-delay: 7s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 0%; top: 67%; opacity: 0.12; animation-delay: 10s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 60%; top: 94%; opacity: 0.12; animation-delay: 5s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 22%; top: 44%; opacity: 0.12; animation-delay: 4s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 27%; top: 86%; opacity: 0.06; animation-delay: 10s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 99%; top: 3%; opacity: 0.06; animation-delay: 5s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 0%; top: 90%; opacity: 0.12; animation-delay: 11s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 88%; top: 94%; opacity: 0.12; animation-delay: 7s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 20%; top: 42%; opacity: 0.12; animation-delay: 8s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 87%; top: 91%; opacity: 0.12; animation-delay: 4s;">
+            <div class="bubble" style="width: 20px; height: 20px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 74%; top: 67%; opacity: 0.06; animation-delay: 0s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 100%; top: 5%; opacity: 0.12; animation-delay: 10s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 95%; top: 47%; opacity: 0.12; animation-delay: 10s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 87%; top: 5%; opacity: 0.12; animation-delay: 1s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+        <div class="bubble-container" style="left: 50%; top: 66%; opacity: 0.12; animation-delay: 15s;">
+            <div class="bubble" style="width: 30px; height: 30px;"></div>
+        </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="one-left">
+          <h1>推荐：{{ recommendedPlan.name }}</h1>
+          <p>{{ recommendedPlan.description }}</p>
+              <a class="btn btn-white btn-lg" ui-sref="learn.plan.detail({ ud: recommendedPlan.uuid })">进入这个职业规划</a>
+              <a class="btn btn-outline btn-white btn-lg" ui-sref="learn.plan">获取更多职业规划</a>
+        </div>
+        <div class="one-right text-center">
+            <img src="assets/icons/recommended-plan.svg" height="350" class="m-t-n-xl">
+        </div>
+    </div>
+</div>

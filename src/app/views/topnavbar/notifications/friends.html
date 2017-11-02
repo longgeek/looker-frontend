@@ -1,0 +1,12 @@
+<div ng-if="v.ctype === 'friend:followed'">
+    <div class="feed-element no-paddings">
+        <a class="pull-left">
+            <img alt="image" class="img-circle" gravatar-src="v.params.gravatar">
+        </a>
+        <div class="media-body">
+            <small class="pull-right">{{ v.created_at | convertZone | toChinaTime }}</small>
+            <strong class="text-flat">{{ v.params.nickname }}</strong> 关注了你<br>
+            <small class="text-muted">{{ v.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</small>
+        </div>
+    </div>
+</div>

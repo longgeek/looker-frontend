@@ -1,0 +1,28 @@
+<div class="m-md">
+    <h4 class="text-white">最近学习的课程</h4>
+    <small class="font-oblique" ng-if="lastLearn.joined_sort.length > 0">共有 <span class="text-navy">{{ lastLearn.joined_sort.length }}</span> 个学习记录.</small>
+    <small class="font-oblique" ng-if="lastLearn.joined_sort.length === 0">没有找到学习记录.</small>
+</div>
+<ul class="learn-list">
+    <li ng-repeat="learn in lastLearn.joined_sort">
+        <a>
+            <h5 class="m-t-none m-b-sm text-white text-ellipsis" ng-if="lastLearn.joined[learn].ctype === 'plan'">Plan:&nbsp;{{ lastLearn.joined[learn].plan.name }}</h5>
+            <h5 class="m-t-none m-b-sm text-white text-ellipsis" ng-if="lastLearn.joined[learn].ctype === 'course'">Course:&nbsp;{{ lastLearn.joined[learn].course.name }}</h5>
+            <h5 class="m-t-none m-b-sm text-white text-ellipsis" ng-if="lastLearn.joined[learn].ctype === 'project'">Project:&nbsp;{{ lastLearn.joined[learn].project.name }}</h5>
+            <h5 class="m-t-none m-b-sm text-white text-ellipsis" ng-if="lastLearn.joined[learn].ctype === 'lab'">Lab:&nbsp;{{ lastLearn.joined[learn].lab.name }}</h5>
+            <h5 class="m-t-none m-b-sm text-white text-ellipsis" ng-if="lastLearn.joined[learn].ctype === 'quiz'">Quiz:&nbsp;{{ lastLearn.joined[learn].quiz.name }}</h5>
+            <h5 class="m-t-none m-b-sm text-white text-ellipsis" ng-if="lastLearn.joined[learn].ctype === 'exercise'">Exercise:&nbsp;{{ lastLearn.joined[learn].exercise.name }}</h5>
+            <div class="small font-oblique m-t-xs m-b-xs">{{ lastLearn.joined[learn].updated_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}</div>
+            <small class="font-oblique learn-content-text" ng-if="lastLearn.joined[learn].ctype === 'plan'">{{ lastLearn.joined[learn].plan.description | limitTo: 50}}<span ng-if="lastLearn.joined[learn].plan.description.length > 50">...</span></small>
+            <small class="font-oblique learn-content-text" ng-if="lastLearn.joined[learn].ctype === 'course'">{{ lastLearn.joined[learn].course.description | limitTo: 50 }}<span ng-if="lastLearn.joined[learn].course.description.length > 50">...</span></small>
+            <small class="font-oblique learn-content-text" ng-if="lastLearn.joined[learn].ctype === 'project'">{{ lastLearn.joined[learn].project.description | limitTo: 50 }}<span ng-if="lastLearn.joined[learn].project.description.length > 50">...</span></small>
+            <small class="font-oblique learn-content-text" ng-if="lastLearn.joined[learn].ctype === 'lab'">{{ lastLearn.joined[learn].lab.description | limitTo: 50 }}<span ng-if="lastLearn.joined[learn].lab.description.length > 50">...</span></small>
+            <small class="font-oblique learn-content-text" ng-if="lastLearn.joined[learn].ctype === 'quiz'">{{ lastLearn.joined[learn].quiz.description | limitTo: 50}}<span ng-if="lastLearn.joined[learn].quiz.description.length > 50">...</span></small>
+            <small class="font-oblique learn-content-text" ng-if="lastLearn.joined[learn].ctype === 'exercise'">{{ lastLearn.joined[learn].exercise.description | limitTo: 50 }}<span ng-if="lastLearn.joined[learn].exercise.description.length > 50">...</span></small>
+            <div class="last-progress m-b-xs m-t-sm">
+                <span class="text-navy">{{ lastLearn.joined[learn].completed_percentage }}%</span>
+                <uib-progressbar class="progress-mini" value="lastLearn.joined[learn].completed_percentage"></uib-progressbar>
+            </div>
+        </a>
+    </li>
+</ul>

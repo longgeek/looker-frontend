@@ -1,0 +1,27 @@
+<h2 ng-if="!$state.is('help') && !$state.is('help.use')">新手上路</h2>
+<div class="help-item">
+    <h3 ng-if="$state.is('help') || $state.is('help.use')"><a ui-sref="help.use.start">新手上路</a></h3>
+    <ul class="help-list">
+        <li>
+            <a ui-sref="help.use.start.articles({'articles_name':  'learning-mode'})">Fuvism 在线学习模式</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.start.articles({'articles_name':  'how-to-join-learning'})">如何通过 Fuvism 加入学习</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.start.articles({'articles_name':  'browers-support'})">选择合适的浏览器</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.start.articles({'articles_name':  'boot-cloud-class'})">启动“学习控制台”，开始学习</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.start.articles({'articles_name':  'qa-in-learning'})">在学习中，如何获取老师指导</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.start.articles({'articles_name':  'how-to-finish'})">如何结束 Fuvism 在线学习</a>
+        </li>
+        <li>
+            <a ui-sref="help.use.start.articles({'articles_name':  'overview-after-learning'})">学习结束后，获取消费金额，学习进度</a>
+        </li>
+    </ul>
+</div>

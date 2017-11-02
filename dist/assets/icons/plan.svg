@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="162px" height="162px" viewBox="0 0 162 162" enable-background="new 0 0 162 162" xml:space="preserve">
+<g>
+	<g>
+		<polygon fill="#204056" points="2,11 0,11 0,0 11,0 11,2 2,2 		"/>
+	</g>
+	<g>
+		<polygon fill="#204056" points="11,162 0,162 0,151 2,151 2,160 11,160 		"/>
+	</g>
+	<g>
+		<polygon fill="#204056" points="162,162 151,162 151,160 160,160 160,151 162,151 		"/>
+	</g>
+	<g>
+		<polygon fill="#204056" points="162,11 160,11 160,2 151,2 151,0 162,0 		"/>
+	</g>
+</g>
+<g>
+	<g>
+		<rect x="66" y="69" fill="#E4E5E6" width="30" height="30"/>
+	</g>
+	<g>
+		<rect x="66" y="24" fill="#2FB18A" width="30" height="30"/>
+	</g>
+	<g>
+		<rect x="111" y="114" fill="#2FB18A" width="30" height="30"/>
+	</g>
+	<g>
+		<rect x="21" y="114" fill="#46B898" width="30" height="30"/>
+	</g>
+	<g>
+		<rect x="21" y="24" fill="#46B898" width="30" height="30"/>
+	</g>
+	<g>
+		<circle fill="#46B898" cx="126" cy="39" r="15"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M52,142H20v-32h32V142z M22,140h28v-28H22V140z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M97,97H65V65h32V97z M67,95h28V67H67V95z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M97,52H65V20h32V52z M67,50h28V22H67V50z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M52,52H20V20h32V52z M22,50h28V22H22V50z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M142,97h-32V65h32V97z M112,95h28V67h-28V95z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M142,142h-32v-32h32V142z M112,140h28v-28h-28V140z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M81,142c-8.822,0-16-7.178-16-16s7.178-16,16-16c8.822,0,16,7.178,16,16S89.822,142,81,142z M81,112
+			c-7.72,0-14,6.28-14,14s6.28,14,14,14c7.72,0,14-6.28,14-14S88.721,112,81,112z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M36,97c-8.822,0-16-7.178-16-16s7.178-16,16-16s16,7.178,16,16S44.823,97,36,97z M36,67
+			c-7.72,0-14,6.28-14,14s6.28,14,14,14s14-6.28,14-14S43.72,67,36,67z"/>
+	</g>
+	<g>
+		<path fill="#204056" d="M126,52c-8.822,0-16-7.178-16-16s7.178-16,16-16s16,7.178,16,16S134.822,52,126,52z M126,22
+			c-7.719,0-14,6.28-14,14s6.281,14,14,14c7.721,0,14-6.28,14-14S133.721,22,126,22z"/>
+	</g>
+	<g>
+		<rect x="45" y="116" fill="#FFFFFF" width="2" height="20"/>
+	</g>
+	<g>
+		<rect x="90" y="71" fill="#FFFFFF" width="2" height="20"/>
+	</g>
+	<g>
+		<rect x="116" y="135" fill="#FFFFFF" width="20" height="2"/>
+	</g>
+	<g>
+		<rect x="116" y="70" fill="#C4C4C4" width="20" height="2"/>
+	</g>
+	<g>
+		<rect x="71" y="26" fill="#FFFFFF" width="20" height="2"/>
+	</g>
+	<g>
+		<rect x="26" y="45" fill="#FFFFFF" width="20" height="2"/>
+	</g>
+	<g>
+		<path fill="#C4C4C4" d="M69,12h-2v-2h2V12z M63,12h-2v-2h2V12z M57,12h-2v-2h2V12z M51,12h-2v-2h2V12z M45,12h-2v-2h2V12z M39,12
+			h-2v-2h2V12z M33,12h-2v-2h2V12z"/>
+	</g>
+	<g>
+		<path fill="#C4C4C4" d="M129,152h-2v-2h2V152z M123,152h-2v-2h2V152z M117,152h-2v-2h2V152z M111,152h-2v-2h2V152z M105,152h-2v-2
+			h2V152z M99,152h-2v-2h2V152z M93,152h-2v-2h2V152z"/>
+	</g>
+	<g>
+		<circle fill="#C4C4C4" cx="103.5" cy="13.5" r="2.5"/>
+	</g>
+	<g>
+		<circle fill="#C4C4C4" cx="63.5" cy="148" r="2.5"/>
+	</g>
+</g>
+</svg>

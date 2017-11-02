@@ -1,0 +1,89 @@
+<div class="col-xs-12 full-height no-paddings" ng-controller="FillinController">
+    <ng-include src="'app/views/learn/study/trings/docs.html'"></ng-include>
+
+    <div class="full-height animated fadeIn" ng-class="{'col-xs-8': task.reference_material, 'col-xs-12': !task.reference_material}">
+        <div class="study-tring-content" ng-show="!task.topic_content">
+            <div class="col-xs-12 full-height" ng-class="{ 'col-md-8 col-md-offset-2': !showFillinSuccess && !showFillinError && !showFillinAnswer, 'col-md-10 col-md-offset-1': showFillinSuccess || showFillinError || showFillinAnswer}">
+                <div class="fillin full-height">
+                    <div class="fillin-info font-oblique font-bold text-white">这道题已创建，但是没有内容。</div>
+                </div>
+            </div>
+        </div>
+        <div class="study-tring-content" ng-show="task.topic_content">
+            <div class="study-layer" ng-if="studyLayer"></div>
+            <div class="col-xs-12 full-height" ng-class="{ 'col-md-8 col-md-offset-2': !showFillinSuccess && !showFillinError && !showFillinAnswer, 'col-md-10 col-md-offset-1': showFillinSuccess || showFillinError || showFillinAnswer}">
+                <div class="study-tring-content__container">
+                    <div class="absolute-center full-height">
+                        <div class="fillin-info font-oblique font-bold animated fadeIn text-navy" ng-show="!showFillinSuccess && !showFillinError && !showFillinAnswer">请在空白处填写正确答案</div>
+                        <div class="fillin-info font-oblique font-bold animated fadeIn text-danger" ng-show="!showFillinSuccess && showFillinError && !showFillinAnswer">填写错误, 请重新填写!</div>
+                        <div class="fillin-info font-oblique font-bold animated fadeIn text-navy" ng-show="!showFillinSuccess && !showFillinError && showFillinAnswer">正确答案如下</div>
+
+                        <!-- Not check -->
+                        <div class="fillin-content text-white animated fadeIn" ng-show="!showFillinSuccess && !showFillinError && !showFillinAnswer">
+                            <form name="fillin_form" role="form" novalidate>
+                                <slick dots=true touch-move=true infinite=false>
+                                    <div class="p-lg fillin-item" ng-repeat="fillin in task.topic_content">
+                                        <div class="fillin-title font-oblique font-bold text-white">
+                                            <div class="text-center">{{ $index + 1 }}/{{ task.topic_content.length }}</div>
+                                            <pre><code ng-repeat="content in fillin.content.split('____')"><input tabindex="-1" type="text" class="fillin-input" style="width: {{ task.topic_content[$parent.$parent.$index].answer[$index - 1] | setFillinInputWidth }};" ng-class="{'error': fillin_form.fillin_input_{{ $parent.$parent.$index }}_{{ $index - 1 }}.$invalid && fillin_form.submitted}" ng-if="$index !== 0" name="fillin_input_{{ $parent.$parent.$index }}_{{ $index - 1 }}" ng-model="FillinData[$parent.$parent.$index][$index - 1]" autofocus required>{{ content }}</code></pre>
+                                        </div>
+                                    </div>
+                                </slick>
+                            </form>
+                        </div>
+
+                        <!-- Has the errors -->
+                        <div class="fillin-content text-white animated fadeIn" ng-show="!showFillinSuccess && showFillinError && !showFillinAnswer">
+                            <form name="fillin_form" role="form" novalidate>
+                                <slick dots=true touch-move=true infinite=false init-onload=true slides-to-show=2>
+                                    <div class="p-lg fillin-item" ng-repeat="fillin in task.topic_content" ng-class="{'error': FillinErrorList[$index].length !== 0, 'success': FillinErrorList[$index].length == 0}">
+                                        <div class="fillin-title font-oblique font-bold text-white">
+                                            <div class="text-center">{{ $index + 1 }}/{{ task.topic_content.length }}</div>
+                                            <pre><code ng-repeat="content in fillin.content.split('____')"><input type="text" class="fillin-input success" style="width: {{ task.topic_content[$parent.$parent.$index].answer[$index - 1] | setFillinInputWidth }};" ng-class="{'error': fillin_form.fillin_input_{{ $parent.$parent.$index }}_{{ $index - 1 }}.$invalid && fillin_form.submitted || FillinErrorList[$parent.$parent.$index].indexOf($index - 1) !== -1}" ng-if="$index !== 0" name="fillin_input_{{ $parent.$parent.$index }}_{{ $index - 1 }}" ng-model="FillinData[$parent.$parent.$index][$index - 1]" autofocus required>{{ content }}</code></pre>
+                                        </div>
+                                    </div>
+                                </slick>
+                            </form>
+                        </div>
+
+                        <!-- All the right -->
+                        <div class="fillin-content text-white animated fadeIn" ng-show="showFillinSuccess && !showFillinError && !showFillinAnswer">
+                            <slick dots=true touch-move=true infinite=false init-onload=true slides-to-show=2>
+                                <div class="p-lg fillin-item success" ng-repeat="fillin in task.topic_content">
+                                    <div class="fillin-title font-oblique font-bold text-white">
+                                        <div class="text-center">{{ $index + 1 }}/{{ task.topic_content.length }}</div>
+                                        <pre><code ng-repeat="content in fillin.content.split('____')"><input type="text" class="fillin-input success" style="width: {{ task.topic_content[$parent.$parent.$index].answer[$index - 1] | setFillinInputWidth }};" ng-if="$index !== 0" disabled value="{{ FillinData[$parent.$parent.$index][$index - 1] }}">{{ content }}</code></pre>
+                                    </div>
+                                </div>
+                            </slick>
+                        </div>
+
+                        <!-- Show fillin answer -->
+                        <div class="fillin-content text-white animated fadeIn" ng-show="!showFillinSuccess && !showFillinError && showFillinAnswer">
+                            <slick dots=true touch-move=true infinite=false init-onload=true slides-to-show=2>
+                                <div class="p-lg fillin-item" ng-repeat="fillin in task.topic_content">
+                                    <div class="fillin-title font-oblique font-bold text-white">
+                                        <div class="text-center">{{ $index + 1 }}/{{ task.topic_content.length }}</div>
+                                        <pre><code ng-repeat="content in fillin.content.split('____')"><input type="text" class="fillin-input" style="width: {{ task.topic_content[$parent.$parent.$index].answer[$index - 1] | setFillinInputWidth }};" ng-if="$index !== 0" disabled value="{{ task.topic_content[$parent.$parent.$index].answer[$index - 1] }}">{{ content }}</code></pre>
+                                    </div>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'app/views/learn/study/trings/will-done.html'"></div>
+        </div>
+
+        <div class="study-footer-btn" ng-if="!showFillinSuccess && !showFillinError && !showFillinAnswer" ng-class="{'opacity-layer': !fillin_form.$valid || !task.topic_content}">
+            <button type="button" class="btn btn-w-m btn-primary animated fadeIn" ng-click="fillinCheck()" ng-disabled="!fillin_form.$valid || !task.topic_content">提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showFillinSuccess && showFillinError && !showFillinAnswer" ng-class="{'opacity-layer': fillinDisabledCheck()}">
+            <button type="button" class="btn btn-w-m btn-danger animated fadeIn" ng-click="fillinCheck()" ng-disabled="fillinDisabledCheck()">重新提交</button>
+        </div>
+        <div class="study-footer-btn" ng-if="!showFillinSuccess && !showFillinError && showFillinAnswer">
+            <button type="button" class="btn btn-circle btn-primary animated fadeIn" ng-click="fillinAnswerBack()"><i class="fa fa-angle-left"></i></button>
+        </div>
+        <div ng-include="'app/views/learn/study/trings/having-trouble.html'" ng-if="showTroubleHelp"></div>
+    </div>
+</div>
