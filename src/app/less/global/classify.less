@@ -1,0 +1,80 @@
+.section-global-classify {
+    border-bottom: 1px solid #edeff1;
+    nav {
+        background: #fff;
+        position: relative;
+        margin: 15px 0;
+        font-size: 15px;
+
+        .box {
+            max-width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+            margin: 0 auto;
+            padding: .625rem 1rem;
+        }
+        .item {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-flow: column wrap;
+            flex-flow: column wrap;
+        }
+        .title {
+            font-size: 15px;
+            line-height: 1.57;
+            color: #939598;
+            margin-top: 0;
+            margin-bottom: .6125rem;
+            text-transform: uppercase;
+        }
+        .items {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-flow: column wrap;
+            flex-flow: column wrap;
+            max-height: 6.25rem;
+            -ms-flex-line-pack: start;
+            align-content: flex-start;
+            .content {
+                width: 12rem;
+                margin-bottom: .3125rem;
+                a {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    color: @flat-color;
+                    transition: color 0.25s ease-out;
+                    cursor: pointer;
+                }
+            }
+            .content.current {
+                font-weight: bold;
+            }
+        }
+        @media screen and (max-width: 30.6875rem) {
+            .item:first-of-type {
+                margin-bottom: .625rem;
+            }
+        }
+        @media screen and (max-width: 43.75rem) {
+            .items {
+                max-height: none;
+                min-width: 14.375rem;
+                -ms-flex-flow: column nowrap;
+                flex-flow: column nowrap;
+            }
+        }
+    }
+}
+

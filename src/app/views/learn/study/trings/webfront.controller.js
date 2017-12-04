@@ -11,7 +11,7 @@
  * used in webfront.html view
  */
 function WebController($scope, $sce, $uibModal, $timeout, $window, RestFul, ipCookie) {
-    if (!$scope.task.topic_content || !$scope.task.topic_content.files.length) { return; }
+    if (!$scope.task || !$scope.task.topic_content || !$scope.task.topic_content.files.length) { return; }
     $scope.WebData = angular.copy($scope.task.extra_data);
     $scope.WebDefaultData = angular.copy($scope.task.topic_content);
     // $scope.filePath = "/storage/learn/online_course/" +

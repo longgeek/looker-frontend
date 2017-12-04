@@ -243,6 +243,30 @@
                     loginRequired: loginRequired
                 }
             })
+            // .state('home.labs', {
+            //     url: "labs",
+            //     templateUrl : "app/views/labs/labs.html",
+            //     data: { pageTitle: '实验室', specialClass: 'landing-page labs-page', pageDescription: description},
+            //     controller: LabsController,
+            // })
+            // .state('home.labs.detail', {
+            //     url: "/detail/:ud",
+            //     templateUrl : "app/views/labs/detail.html",
+            //     data: { pageTitle: '实验详情', specialClass: 'landing-page labs-page' },
+            //     controller: LabsDetailController,
+            // })
+            // .state('home.labs.my', {
+            //     url: "/my",
+            //     templateUrl : "app/views/labs/my.html",
+            //     data: { pageTitle: '我的实验', specialClass: 'landing-page labs-page' },
+            //     controller: LabsMyController,
+            // })
+            // .state('labs_workspace', {
+            //     url: "/labs/workspace/:ud",
+            //     templateUrl : "app/views/labs/workspace/workspace.html",
+            //     data: { pageTitle: '实验室控制台', specialClass: 'labs-ws_pages study-page' },
+            //     controller: LabsWorkspaceController,
+            // })
             .state('learn', {
                 url: "/learn",
                 templateUrl: "app/views/learn/learn.html",
@@ -276,12 +300,12 @@
                 data: { pageTitle: '项目实战', specialClass: 'landing-page learn-project', pageDescription: "项目实战提供真实的项目开发指导，包含了项目的介绍，分析，技术说明，环境创建，编码，测试，部署等完整过程，是在你完成必要的技术学习后，实践你的技能。" },
                 controller: ProjectListController,
             })
-            .state('learn.lab', {
-                url: "/lab",
-                templateUrl: "app/views/learn/lab/list.html",
-                data: { pageTitle: '实验室', specialClass: 'landing-page learn-course', pageDescription: "实验室提供一种环境，帮助你去深究一些知识，通过必要的指导，启发，在一种实验的环境下研究一个知识点。" },
-                controller: LabListController,
-            })
+            // .state('learn.lab', {
+            //     url: "/lab",
+            //     templateUrl: "app/views/learn/lab/list.html",
+            //     data: { pageTitle: '实验室', specialClass: 'landing-page learn-course', pageDescription: "实验室提供一种环境，帮助你去深究一些知识，通过必要的指导，启发，在一种实验的环境下研究一个知识点。" },
+            //     controller: LabListController,
+            // })
             .state('learn.quiz', {
                 url: "/quiz",
                 templateUrl: "app/views/learn/quiz/list.html",
@@ -315,13 +339,13 @@
                 data: { pageTitle: '项目实战详情', specialClass: 'landing-page learn-course-detail learn-project', pageDescription: description },
                 controller: ProjectDetailController,
             })
-            .state('learn.lab.detail', {
-                parent: 'learn',
-                url: "/lab/detail/?pd&&ud",
-                templateUrl: "app/views/learn/lab/detail.html",
-                data: { pageTitle: '实验室详情', specialClass: 'landing-page learn-course-detail learn-detail', pageDescription: description },
-                controller: LabDetailController,
-            })
+            // .state('learn.lab.detail', {
+            //     parent: 'learn',
+            //     url: "/lab/detail/?pd&&ud",
+            //     templateUrl: "app/views/learn/lab/detail.html",
+            //     data: { pageTitle: '实验室详情', specialClass: 'landing-page learn-course-detail learn-detail', pageDescription: description },
+            //     controller: LabDetailController,
+            // })
             .state('learn.quiz.detail', {
                 parent: 'learn',
                 url: "/quiz/detail/?pd&&ud",

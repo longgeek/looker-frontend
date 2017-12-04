@@ -518,6 +518,20 @@ function MainController($scope, $auth, $state, $stateParams, $location, $anchorS
         }
     }
 
+    $scope.studyRightbar = function() {
+        if ($scope.socketLayer) { return; }
+        var uibModalInstance = $uibModal.open({
+            templateUrl: 'app/views/learn/study/study-right-bar.html',
+            scope: $scope,
+            backdrop: 'false',
+            keyboard: false,
+            size: 'md',
+            windowClass: 'animated fadeInRight study-rightbar__modal',
+            backdropClass: 'study-rightbar__backdrop',
+            controller: StudyRightBarController,
+        });
+    }
+
     if ($scope.isAuthenticated()) {
         $scope.get_global_notification_historys();
         $timeout(function() { $scope.get_global_notifications(); }, 1000);

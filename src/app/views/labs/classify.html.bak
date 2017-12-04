@@ -1,0 +1,75 @@
+<div class="section-global-classify">
+    <div class="container">
+        <div class="row col-lg-12">
+            <nav>
+                <div class="box">
+                    <div class="item">
+                        <h3 class="title">实验分类</h3>
+                        <div class="items">
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/subject/web-development">Web 开发</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/subject/programming">人工智能</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/subject/data-science">Data Science</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/subject/partnerships">Partnerships</a>
+                              </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3 class="title">编程语言类</h3>
+                        <div class="items">
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/language/html-css">HTML &amp; CSS</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/language/python">Python</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/language/javascript">JavaScript</a>
+                              </div>
+                            </span>
+                            <span>
+                                <div class="content current">
+                                <a href="/catalog/language/java">Java</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/language/sql">SQL</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/language/bash">Bash/Shell</a>
+                              </div>
+                            </span>
+                            <span>
+                              <div class="content">
+                                <a href="/catalog/language/ruby">Ruby</a>
+                              </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

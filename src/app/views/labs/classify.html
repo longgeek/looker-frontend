@@ -1,0 +1,20 @@
+<div class="section-global-classify">
+    <div class="container">
+        <div class="row col-lg-12">
+            <nav>
+                <div class="box">
+                    <div class="item" ng-repeat="(k,v) in labs">
+                        <h3 class="title">{{ labs[k].name }}</h3>
+                        <div class="items">
+                            <span ng-repeat="n in labs[k].sorted">
+                              <div class="content">
+                                  <a>{{ labs[k].values[n].name }}</a>
+                              </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

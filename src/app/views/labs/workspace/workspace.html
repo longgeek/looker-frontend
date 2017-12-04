@@ -1,0 +1,36 @@
+<!-- Wrapper-->
+<div id="wrapper">
+    <!-- Top Navbar -->
+    <div ng-include="'app/views/global/workspace/topbar.html'"></div>
+
+    <!-- Wrapper Content -->
+    <div class="wrapper wrapper-content animated fadeIn full-height study-wrapper" fit-height>
+        <!-- study page -->
+        <div class="labs-ws">
+            <!-- study left navbar -->
+            <ng-include src="'app/views/global/workspace/leftbar.html'"></ng-include>
+            <!-- study left docs and checklists -->
+            <div id="study-left-box" class="study-left-box full-height" resizable r-directions="['right']" r-flex="true" ng-include="'app/views/learn/study/study-left-box.html'"></div>
+
+            <!-- study learn workspace -->
+            <div id="study-workspace-box" class="study-workspace-box full-height" ng-class="{'padding-left-bar': isFullScreen}">
+                <!-- Trings -->
+                <div class="full-height study-workspace" ng-include="'app/views/learn/study/trings/webserver.html'" ng-controller="TringController"></div>
+            </div>
+
+            <!-- study console window -->
+            <div ng-include="'app/views/learn/study/study-console.html'"></div>
+
+            <!-- study qa window -->
+            <div ng-include="'app/views/learn/study/qas/qas.html'"></div>
+        </div>
+        </div>
+        <!-- study boot load -->
+        <div class="study" ng-if="!BootingStatus">
+            <div class="study-boot" ng-include="'app/views/learn/study/study-boot.html'"></div>
+        </div>
+    </div>
+    <!-- End wrapper-content -->
+
+</div>
+<!-- End wrapper-->

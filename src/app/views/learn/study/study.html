@@ -3,7 +3,7 @@
     <div class="study-layer" ng-if="globalLayer"></div>
 
     <!-- Top Navbar -->
-    <div ng-if="BootingStatus" ng-include="'app/views/learn/study/study-topbar.html'"></div>
+    <div ng-if="BootingStatus" ng-include="'app/views/global/workspace/topbar.html'"></div>
 
     <!-- Wrapper Content -->
     <div class="wrapper wrapper-content animated fadeIn full-height" fit-height ng-class="{'study-wrapper': BootingStatus, 'no-paddings': !BootingStatus}">
@@ -18,19 +18,7 @@
                 </div>
             </div>
             <!-- study left navbar -->
-            <nav class="study-left-nav">
-                <ul class="study-left-nav__bar">
-                    <li ng-controller="StudyDetailController" ng-click="studyDetail()">
-                        <a><i class="fa fa-bars"></i></a>
-                    </li>
-                    <li>
-                        <a ng-click="showStudyQaBox()">
-                            <i class="fa fa-question-circle" ng-class="{'text-navy': showStudyQa}"></i>
-                            <span ng-if="MyAllMessages.qa.count !== 0" class="label label-warning reply-qa-count">{{ MyAllMessages.qa.count }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <ng-include src="'app/views/global/workspace/leftbar.html'"></ng-include>
             <!-- study left docs and checklists -->
             <div id="study-left-box" class="study-left-box full-height" ng-show="isFullScreen == false" resizable r-directions="['right']" r-flex="true" ng-include="'app/views/learn/study/study-left-box.html'"></div>
 

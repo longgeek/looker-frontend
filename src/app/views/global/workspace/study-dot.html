@@ -1,0 +1,23 @@
+<div class="study-dot text-center">
+    <ul class="study-dot-ul">
+        <li class="study-dot-li" ng-repeat="task in tasks" ng-class="{'current': taskSession.source.current_task_uuid === task.uuid, 'compluted': completed_tasks.indexOf(task.uuid) !== -1}">
+            <div class="study-layer" ng-class="{'scale': taskSession.source.current_task_uuid === task.uuid}" ng-if="studyLayer || socketLayer"></div>
+            <a ng-click="loadTask({'task': task.uuid})"
+               ng-if="task.tringtype !== 'webserver' && task.tringtype !== 'console' && task.tringtype !== 'coding'"
+               tooltip-placement='bottom'
+               uib-tooltip-html="'[{{ task.tringtype }}]</br><hr><span class=\'small\'>{{ $index + 1 }}. {{ task.name }}</span>' | toTrusted">
+               {{ task.name }}
+            </a>
+            <a ng-click="loadTask({'task': task.uuid})"
+               ng-if="task.tringtype === 'webserver' || task.tringtype === 'console' || task.tringtype === 'coding'"
+               tooltip-placement='bottom'
+               uib-tooltip-html="'[{{ task.topic_support }}]</br><hr><span class=\'small\'>{{ $index + 1 }}. {{ task.name }}</span>' | toTrusted">
+               {{ task.name }}
+            </a>
+        </li>
+        <li class="study-dot-progress" ng-if="tasks">
+            <div class="study-layer" ng-if="studyLayer || socketLayer"></div>
+            <uib-progressbar value="stageProgress" tooltip-placement='bottom' uib-tooltip="{{stageProgress}}%" ng-click="studyStatus()"></uib-progressbar>
+        </li>
+    </ul>
+</div>

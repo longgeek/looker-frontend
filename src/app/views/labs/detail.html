@@ -12,8 +12,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-                <button type="button" class="btn btn-w-m btn-block btn-primary" ng-click="goToStudy({'origin': 'lab', 'source': {'lab': lab.uuid}})" ng-if="labProgress.completed_percentage === 0 || !labProgress">Start Learn</button>
-                <button type="button" class="btn btn-w-m btn-block btn-primary" ng-click="goToStudy({'origin': 'lab', 'source': {'lab': lab.uuid}})" ng-if="labProgress.completed_percentage > 0">Continue</button>
+                <button type="button" class="btn btn-w-m btn-block btn-primary" ng-click="lab_start()">Start Learn</button>
             </div>
         </div>
     </div>
@@ -49,25 +48,8 @@
 <section class="course-detail-path">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-6 col-md-offset-3">
-                <div class="p-b-lg p-t-lg">
-                    <ul class="stage-list">
-                        <li ng-repeat="task in lab.tasks">
-                            <a ng-click="goToStudy({'origin': 'lab', 'source': {'lab': lab.uuid, 'part': part.uuid, 'stage': stage.uuid}})" ng-class="{'completed': labProgress.progress.stages_achievement[stage.uuid].is_completed}">
-                                <div class="row">
-                                    <div class="col-xs-11">
-                                        <h3><span class="text-gray">{{ $index + 1 }}. {{ task.tringtype }}</span>: {{ task.name }}</h3>
-                                    </div>
-                                    <div class="col-xs-1">
-                                        <div style="padding-top: 5px;">
-                                            <span class="fa fa-check text-navy"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-xs-12">
+                <pre><code>{{ lab | json}}</code></pre>
             </div>
         </div>
     </div>

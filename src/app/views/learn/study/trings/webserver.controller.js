@@ -12,7 +12,7 @@
  */
 function DjangoController($scope, $sce, $uibModal, $window, $timeout, RestFul, ipCookie) {
     var files = {};
-    if (!$scope.task.topic_support || !$scope.task.topic_content || !$scope.task.topic_content.files.length) { return; }
+    if (!$scope.task || !$scope.task.topic_support || !$scope.task.topic_content || !$scope.task.topic_content.files.length) { return; }
     $scope.DjangoContent = angular.copy($scope.task.extra_data);
     $scope.DjangoDefaultContent = {'files': []};
     for (i in $scope.task.topic_content.files) {

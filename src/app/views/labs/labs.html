@@ -1,0 +1,137 @@
+<div class="section-labs-header" labs-page-scroll>
+    <div class="container">
+        <nav role="navigation">
+            <a ng-class="{selected: $state.is('home.labs') || $state.is('home.labs.detail')}" ui-sref="home.labs" ng-click="labs_list()">
+                <i class="fa fa-flask m-r-sm"></i>所有实验
+            </a>
+            <a ng-class="{selected: $state.is('home.labs.my')}" ui-sref="home.labs.my" ng-click="labs_list('public')" ng-if="isAuthenticated()">
+                <i class="fa fa-cog m-r-sm"></i>我的实验
+            </a>
+        </nav>
+    </div>
+</div>
+<ng-include src="'app/views/labs/classify.html'" ng-if="$state.is('home.labs') && labs"></ng-include>
+<div class="section-labs-content">
+    <div class="container">
+        <div class="row col-lg-12">
+            <div ui-view>
+                <div ng-repeat="(k,v) in labs">
+                <div class="col-lg-3 col-sm-6" ng-repeat="i in labs[k].sorted">
+                    <div class="item">
+                        <a ui-sref="home.labs.detail({ud: i})">
+                            <div class="jSNTaU0BhA-s2LHYZmnnZ _1uBs4cDmYIs4Zgz5mxlI2S">
+                                <div class="_3jCScVqUlMklVcahA-Jopp"></div>
+                                <div class="rTF7Iy9yNLSXIL-oC7HVf">
+                                    <h3 class="_17j42wiWvJjJlaWS7xhjHm">{{ labs[k].values[i].name }}</h3>
+                                    <span class="_380gYRpPpC5PbmlF55T1Cb _35YQmjbu-Jwb3EsYJenkoU">Learn how to build and host your own Alexa Skill.</span>
+                                </div>
+                                <div class="_1XRkeRcO7hh1axYhmKiQMM _3xKAlkStuX4to1BOLRXILI">
+                                    <span>
+                                        <svg viewBox="0 0 20 20" version="1.1" width="16" height="16" fill="#000000" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" class="_3hoJQ1Yc4CKAdXRPSbViCH"><title>Clock Icon</title><g id="Cards" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.2"><g id="Cards-Layout" transform="translate(-491.000000, -2113.000000)" fill-rule="nonzero" fill="#000000"><g id="clock" transform="translate(491.000000, 2113.000000)"><path d="M10,18 C14.418278,18 18,14.418278 18,10 C18,5.581722 14.418278,2 10,2 C5.581722,2 2,5.581722 2,10 C2,14.418278 5.581722,18 10,18 L10,18 Z M10,-1.97215226e-31 C12.6521649,-2.22044605e-16 15.195704,1.0535684 17.0710678,2.92893219 C18.9464316,4.80429597 20,7.3478351 20,10 C20,15.5228475 15.5228475,20 10,20 C4.47,20 0,15.5 0,10 C-8.8817842e-16,4.4771525 4.4771525,8.8817842e-16 10,-4.4408921e-16 L10,-1.97215226e-31 Z M10.5,5 L10.5,10.25 L15,12.92 L14.25,14.15 L9,11 L9,5 L10.5,5 Z" id="Shape"></path></g></g></g></svg>
+                                        <span class="_21zzp21zOqkIZ1Zq1qJQ_4">4 hours</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                </div>
+
+
+                <!-- div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                        <a ui-sref="home.labs.detail({ud: 111})">
+                            <div class="jSNTaU0BhA-s2LHYZmnnZ _1uBs4cDmYIs4Zgz5mxlI2S">
+                                <div class="_3jCScVqUlMklVcahA-Jopp"></div>
+                                <div class="rTF7Iy9yNLSXIL-oC7HVf">
+                                    <h3 class="_17j42wiWvJjJlaWS7xhjHm">Introduction to Alexa</h3>
+                                    <span class="_380gYRpPpC5PbmlF55T1Cb _35YQmjbu-Jwb3EsYJenkoU">Learn how to build and host your own Alexa Skill.</span>
+                                </div>
+                                <div class="_1XRkeRcO7hh1axYhmKiQMM _3xKAlkStuX4to1BOLRXILI">
+                                    <span>
+                                        <svg viewBox="0 0 20 20" version="1.1" width="16" height="16" fill="#000000" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" class="_3hoJQ1Yc4CKAdXRPSbViCH"><title>Clock Icon</title><g id="Cards" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.2"><g id="Cards-Layout" transform="translate(-491.000000, -2113.000000)" fill-rule="nonzero" fill="#000000"><g id="clock" transform="translate(491.000000, 2113.000000)"><path d="M10,18 C14.418278,18 18,14.418278 18,10 C18,5.581722 14.418278,2 10,2 C5.581722,2 2,5.581722 2,10 C2,14.418278 5.581722,18 10,18 L10,18 Z M10,-1.97215226e-31 C12.6521649,-2.22044605e-16 15.195704,1.0535684 17.0710678,2.92893219 C18.9464316,4.80429597 20,7.3478351 20,10 C20,15.5228475 15.5228475,20 10,20 C4.47,20 0,15.5 0,10 C-8.8817842e-16,4.4771525 4.4771525,8.8817842e-16 10,-4.4408921e-16 L10,-1.97215226e-31 Z M10.5,5 L10.5,10.25 L15,12.92 L14.25,14.15 L9,11 L9,5 L10.5,5 Z" id="Shape"></path></g></g></g></svg>
+                                        <span class="_21zzp21zOqkIZ1Zq1qJQ_4">4 hours</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                        <a ui-sref="home.labs.detail({ud: 111})">
+                            <div class="jSNTaU0BhA-s2LHYZmnnZ _1uBs4cDmYIs4Zgz5mxlI2S">
+                                <div class="_3jCScVqUlMklVcahA-Jopp"></div>
+                                <div class="rTF7Iy9yNLSXIL-oC7HVf">
+                                    <h3 class="_17j42wiWvJjJlaWS7xhjHm">Learn the Watson API</h3>
+                                    <span class="_380gYRpPpC5PbmlF55T1Cb _35YQmjbu-Jwb3EsYJenkoU">Use IBM's Personality Insights API to analyze traits shared between two Twitter users.</span>
+                                </div>
+                                <div class="_1XRkeRcO7hh1axYhmKiQMM _3xKAlkStuX4to1BOLRXILI">
+                                    <svg width="40" height="40" viewBox="0 0 48 48"><g transform="rotate(-90 24 24)" fill="none" stroke-width="3"><circle r="22" cx="24" cy="24" stroke="#EBEAEA"></circle><circle r="22" cx="24" cy="24" stroke="#FFA000" fill="none" stroke-dasharray="150" stroke-dashoffset="122.4"></circle></g><text x="50%" y="60%" text-anchor="middle" font-size="14" fill="#4A4A4A" font-weight="bold">20%</text></svg>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                        <a ui-sref="home.labs.detail({ud: 111})">
+                            <div class="jSNTaU0BhA-s2LHYZmnnZ _1uBs4cDmYIs4Zgz5mxlI2S">
+                                <div class="_3jCScVqUlMklVcahA-Jopp"></div>
+                                <div class="rTF7Iy9yNLSXIL-oC7HVf">
+                                    <h3 class="_17j42wiWvJjJlaWS7xhjHm">SQL: Table Transformation</h3>
+                                    <span class="_380gYRpPpC5PbmlF55T1Cb _35YQmjbu-Jwb3EsYJenkoU">Practice more SQL in this course that covers how to manipulate and transform data.</span>
+                                </div>
+                                <div class="_1XRkeRcO7hh1axYhmKiQMM _3xKAlkStuX4to1BOLRXILI">
+                                    <span>
+                                        <svg viewBox="0 0 20 20" version="1.1" width="16" height="16" fill="#000000" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" class="_3hoJQ1Yc4CKAdXRPSbViCH"><title>Clock Icon</title><g id="Cards" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.2"><g id="Cards-Layout" transform="translate(-491.000000, -2113.000000)" fill-rule="nonzero" fill="#000000"><g id="clock" transform="translate(491.000000, 2113.000000)"><path d="M10,18 C14.418278,18 18,14.418278 18,10 C18,5.581722 14.418278,2 10,2 C5.581722,2 2,5.581722 2,10 C2,14.418278 5.581722,18 10,18 L10,18 Z M10,-1.97215226e-31 C12.6521649,-2.22044605e-16 15.195704,1.0535684 17.0710678,2.92893219 C18.9464316,4.80429597 20,7.3478351 20,10 C20,15.5228475 15.5228475,20 10,20 C4.47,20 0,15.5 0,10 C-8.8817842e-16,4.4771525 4.4771525,8.8817842e-16 10,-4.4408921e-16 L10,-1.97215226e-31 Z M10.5,5 L10.5,10.25 L15,12.92 L14.25,14.15 L9,11 L9,5 L10.5,5 Z" id="Shape"></path></g></g></g></svg>
+                                        <span class="_21zzp21zOqkIZ1Zq1qJQ_4">5 hours</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                        <a ui-sref="home.labs.detail({ud: 111})">
+                            <div class="jSNTaU0BhA-s2LHYZmnnZ bWI2nuugtf-DApqe8yxbF">
+                                <div class="_3jCScVqUlMklVcahA-Jopp"></div>
+                                <div class="rTF7Iy9yNLSXIL-oC7HVf">
+                                    <h3 class="_17j42wiWvJjJlaWS7xhjHm">SQL: Analyzing Business Metrics</h3>
+                                    <span class="_380gYRpPpC5PbmlF55T1Cb _35YQmjbu-Jwb3EsYJenkoU">Explore SQL further in this course focusing on how to analyze data.</span>
+                                </div>
+                                <div class="_1XRkeRcO7hh1axYhmKiQMM _3xKAlkStuX4to1BOLRXILI">
+                                    <span>
+                                        <svg viewBox="0 0 20 20" version="1.1" width="16" height="16" fill="#000000" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" class="_3hoJQ1Yc4CKAdXRPSbViCH"><title>Clock Icon</title><g id="Cards" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.2"><g id="Cards-Layout" transform="translate(-491.000000, -2113.000000)" fill-rule="nonzero" fill="#000000"><g id="clock" transform="translate(491.000000, 2113.000000)"><path d="M10,18 C14.418278,18 18,14.418278 18,10 C18,5.581722 14.418278,2 10,2 C5.581722,2 2,5.581722 2,10 C2,14.418278 5.581722,18 10,18 L10,18 Z M10,-1.97215226e-31 C12.6521649,-2.22044605e-16 15.195704,1.0535684 17.0710678,2.92893219 C18.9464316,4.80429597 20,7.3478351 20,10 C20,15.5228475 15.5228475,20 10,20 C4.47,20 0,15.5 0,10 C-8.8817842e-16,4.4771525 4.4771525,8.8817842e-16 10,-4.4408921e-16 L10,-1.97215226e-31 Z M10.5,5 L10.5,10.25 L15,12.92 L14.25,14.15 L9,11 L9,5 L10.5,5 Z" id="Shape"></path></g></g></g></svg>
+                                        <span class="_21zzp21zOqkIZ1Zq1qJQ_4">2 hours</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                        <a>
+                            <div class="jSNTaU0BhA-s2LHYZmnnZ _1uBs4cDmYIs4Zgz5mxlI2SS">
+                                <div class="_3jCScVqUlMklVcahA-Jopp"></div>
+                                <div class="rTF7Iy9yNLSXIL-oC7HVf">
+                                    <h3 class="_17j42wiWvJjJlaWS7xhjHm">陆续开放中..</h3>
+                                    <span class="_380gYRpPpC5PbmlF55T1Cb _35YQmjbu-Jwb3EsYJenkoU">Learn how to build and host your own Alexa Skill.</span>
+                                </div>
+                                <div class="_1XRkeRcO7hh1axYhmKiQMM _3xKAlkStuX4to1BOLRXILI">
+                                    <span>
+                                        <svg viewBox="0 0 20 20" version="1.1" width="16" height="16" fill="#000000" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" class="_3hoJQ1Yc4CKAdXRPSbViCH"><title>Clock Icon</title><g id="Cards" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.2"><g id="Cards-Layout" transform="translate(-491.000000, -2113.000000)" fill-rule="nonzero" fill="#000000"><g id="clock" transform="translate(491.000000, 2113.000000)"><path d="M10,18 C14.418278,18 18,14.418278 18,10 C18,5.581722 14.418278,2 10,2 C5.581722,2 2,5.581722 2,10 C2,14.418278 5.581722,18 10,18 L10,18 Z M10,-1.97215226e-31 C12.6521649,-2.22044605e-16 15.195704,1.0535684 17.0710678,2.92893219 C18.9464316,4.80429597 20,7.3478351 20,10 C20,15.5228475 15.5228475,20 10,20 C4.47,20 0,15.5 0,10 C-8.8817842e-16,4.4771525 4.4771525,8.8817842e-16 10,-4.4408921e-16 L10,-1.97215226e-31 Z M10.5,5 L10.5,10.25 L15,12.92 L14.25,14.15 L9,11 L9,5 L10.5,5 Z" id="Shape"></path></g></g></g></svg>
+                                        <span class="_21zzp21zOqkIZ1Zq1qJQ_4">4 hours</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+            </div>
+        </div>
+    </div>
+</div>

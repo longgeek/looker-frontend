@@ -8,7 +8,7 @@
                         <button class="btn btn-danger btn-lg btn-block" ui-sref="auth.signup">注册, 开启学习!</button>
                     </div>
                     <div ng-if="isAuthenticated()">
-                        <p>充值有优惠，充 100 送 150，<a ui-sref="home.account.recharge" style="color: #43aadc;">查看详情。</a></p>
+                        <p>充值有优惠，充 100 送 100，<a ui-sref="home.account.recharge" style="color: #43aadc;">查看详情。</a></p>
                         <button class="btn btn-primary btn-lg btn-block" ui-sref="learn.course">选课, 开始学习!</button>
                     </div>
                 </div>
@@ -60,6 +60,7 @@
                     <div class="footer-banner">
                         <h3 class="footer-title">联系我们</h3>
                         <ul class="unstyled">
+                            <li><a ui-sref="http://blog.fuvism.com/articles/" target="_blank">图谱志</a></li>
                             <li><a ui-sref="about">关于我们</a></li>
                             <li><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=1aa693ddeacf1382d18aa66ba01714aec5ebcd319cec0d22c44def7fd07fd69e">QQ 群：272551255</a></li>
                             <li><a><span class="fa fa-envelope-o"></span> contact@fuvism.com</a></li>
