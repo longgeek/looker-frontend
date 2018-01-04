@@ -8,13 +8,13 @@
 
 
 /**
- * ProjectListController - List All Projects
+ * ProjectListController - List All Project List
  * used in project list view
  */
 function ProjectListController($scope, $auth, $timeout, RestFul) {
     $scope.projectLoading = true;
     RestFul.response(
-        {"action": "OnlineLearning:Projects", "params": {}},
+        {"action": "OnlineLearning:ProjectList", "params": {}},
         function(response) {
             if (!response) { return; }
             if (response.hasOwnProperty('message') && response.hasOwnProperty('data') && response.data) {
@@ -25,7 +25,7 @@ function ProjectListController($scope, $auth, $timeout, RestFul) {
     )
     if ($auth.isAuthenticated()) {
         RestFul.global(
-            {"action": "LearningProgress:JoinedProjects", "params": {}},
+            {"action": "OnlineLearning:JoinedProjectList", "params": {}},
             function(response) {
                 if (!response) { return; }
                 if (response.hasOwnProperty('message') && response.hasOwnProperty('data') && response.data) {
@@ -69,7 +69,7 @@ function ProjectDetailController($scope, $auth, $timeout, $stateParams, RestFul)
                     // Get the Project learn progress
                     RestFul.error(
                         {
-                            "action": "LearningProgress:ProjectProgress",
+                            "action": "OnlineLearning:JoinedProjectDetail",
                             "params": {"project": $stateParams.ud}
                         },
                         function(response) {

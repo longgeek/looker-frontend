@@ -13,7 +13,7 @@
 function LabsController($scope, RestFul) {
     $scope.labs_list = function() {
         RestFul.error(
-            {"action": "OnlineLearning:Labs", "params": {}},
+            {"action": "OnlineLearning:LabList", "params": {}},
             function(response) {
                 if (response.hasOwnProperty('message')) {
                     $scope.labs = response.data;
