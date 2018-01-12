@@ -1,0 +1,22 @@
+<div ng-controller="ExercisesWorkspaceController">
+    <nav class="study-left-nav">
+        <ul class="study-left-nav__bar">
+            <li ng-click="studyDetail()">
+                <a><i class="fa fa-sliders"></i></a>
+            </li>
+            <li>
+                <a ng-click="popupCheckListDiff()">
+                    <i class="fa fa-eye"></i>
+                </a>
+            </li>
+            <li>
+                <a ng-click="showComments()">
+                    <i class="fa fa-comment-o" ng-class="{'text-navy': showExercisesComment}"></i>
+                    <span ng-if="MyAllMessages.qa.count !== 0" class="label label-warning reply-qa-count">{{ MyAllMessages.qa.count }}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- study qa window -->
+    <div ng-include="'app/views/exercises/workspace/comments.html'"></div>
+</div>

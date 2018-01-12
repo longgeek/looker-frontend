@@ -1,0 +1,88 @@
+<div ng-controller="ExercisesWorkspaceCommentsController" class="study-qa-container animated fadeInLeft" data-drag="true" jqyoui-draggable data-jqyoui-options="{containment: '.exercises-ws', handle: '.code-label', cursor: 'move'}" ng-if="showExercisesComment">
+    <div class="code-header">
+        <div class="code-header__controller">
+            <span class="pull-left">
+                <span class="study-console-close" ng-click="showComments()"><i class="fa fa-square text-danger"></i></span>
+            </span>
+            <div class="code-label"><span><i class="fa fa-comment-o m-r-8"></i>老师点评</span></div>
+        </div>
+    </div>
+    <div class="study-qa-list">
+        <h3 class="m-t-none">已完成该练习，需要老师点评?</h3>
+        <p>请在已有的问答列表中检索相近提问，快速获取答案。也可提交新的问题，系统将自动派发给专业相符的老师实时作答。</p>
+        <button type="submit" class="ladda btn btn-block btn-primary" ladda="newQaLoading">提交点评请求</button>
+
+
+        <div class="row m-t-md qas-content">
+            <div class="col-xs-12 animated fadeIn">
+                <div class="details">
+                    <h4 class="title"><i class="fa fa-question-circle m-r-8"></i>{{ qa.title }}</h4>
+                    <div btf-markdown="qa.content"></div>
+                </div>
+                <hr class="details-hr" />
+                <div class="font-oblique small m-t-md" ng-if="!detailLoading && qa.replies.length === 0">无回复记录。</div>
+                <div class="font-oblique small m-b-md" ng-if="detailLoading">正在加载...</div>
+                <div class="replies" ng-if="!detailLoading">
+                    <div class="chat-activity-list" ng-it="qa.replies.length !== 0">
+                        <div class="chat-element" ng-repeat="replie in qa.replies track by $index">
+                            <a class="pull-left" ui-sref="u.homepage({username: replie.created_by.uuid})" target="_blank">
+                                <img alt="image" class="img-circle" gravatar-src="replie.created_by.gravatar">
+                            </a>
+                            <div class="media-body">
+                                <span class="fa fa-circle text-warning pull-right" style="display: none;"></span>
+                                <strong>{{ replie.created_by.nickname }}</strong>
+                                <span class="text-muted small m-l-xs">
+                                    {{ replie.created_at | convertZone | date : 'yyyy-MM-dd HH:mm:ss' }}
+                                    （ {{ replie.created_at | convertZone | toChinaTime }} ）
+                                </span>
+                                <div class="replie" btf-markdown="replie.content" markdown-image-preview></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reply" ng-if="!qa.is_resolved">
+                        <uib-tabset>
+                            <uib-tab>
+                                <uib-tab-heading>
+                                    <span class="fa fa-edit"></span>回复
+                                </uib-tab-heading>
+                                <div class="write-content">
+                                    <textarea class="form-control"
+                                        rows="6"
+                                        ng-model="reply.content"
+                                        textarea-tab
+                                        textarea-image="qa"></textarea>
+                                    <p class="drag-and-drop">
+                                        <span class="default" ng-if="!qaUploadError">通过拖放、截图粘贴（仅支持chrome）来附加图片（jpeg, png, jpg, gif）。</span>
+                                        <span class="error" ng-if="qaUploadError">{{ qaUploadError }}</span>
+                                    </p>
+                                </div>
+                            </uib-tab>
+                            <uib-tab select="qa_reply_preview()">
+                                <uib-tab-heading>
+                                    <span class="fa fa-eye"></span>预览
+                                </uib-tab-heading>
+                                <div class="preview-content" btf-markdown="reply.content"></div>
+                            </uib-tab>
+                        </uib-tabset>
+                        <div class="reply-button">
+                            <button type="button" class="ladda btn btn-flat-dark" ng-click="qa_reply()" ng-disabled="!reply.content || reply.uploading" ladda="reply.loading">
+                                <span class="fa fa-reply m-r-8"></span>
+                                <span ng-if="reply.uploading">上传图片中，请等待</span>
+                                <span ng-if="!reply.uploading">回复该问题</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<style>
+    .study-qa-container {
+        right: 70.9%;
+    }
+</style>

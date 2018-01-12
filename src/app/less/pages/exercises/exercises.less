@@ -1,0 +1,100 @@
+@import "workspace/workspace.less";
+
+.exercises-page {
+    .modal-backdrop {
+        z-index: 10000 !important;
+    }
+    .modal.fade.in {
+        z-index: 10001 !important;
+    }
+}
+.section-exercises-header {
+    min-height: 60px;
+    background-color: #F1F2F3;
+    border-bottom: solid 1px #edeff1;
+    nav {
+        min-height: 59px;
+        display: table;
+        a {
+            display: table-cell;
+            padding-right: 20px;
+            padding-left: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #204056;
+            vertical-align: middle;
+            border-bottom: 2px solid transparent;
+            opacity: 0.5;
+        }
+        a.selected {
+            border-bottom-color: #00bfa5;
+            opacity: 1;
+        }
+        a:hover {
+            opacity: 1;
+        }
+    }
+}
+.section-exercises-header.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+    transition: 0.2s;
+}
+.section-exercises-content {
+    padding: 40px 0;
+    background: #fdfdfc;
+    border-bottom: 1px solid #edeff1;
+    .p-title {
+        font-size: 14px;
+        line-height: 1.57;
+        color: #939598;
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+	.item {
+	    margin: 0 0 2.5rem;
+	    a {
+	        color: #5a5b5e;
+	        text-decoration: none;
+            .item-box {
+                background: #fff;
+                padding: 20px;
+                border: 1px solid #edeff1;
+                h3 {
+                    margin: 0 0 20px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 1.2;
+                    color: #5a5b5e;
+                }
+                span {
+                    font-size: 12px;
+                    line-height: 1.2;
+                    margin-top: 5px;
+                }
+
+            }
+	    }
+	}
+    .item.last {
+        a {
+            color: #FFF;
+            .item-box {
+                background: @flat-color;
+                h3 {
+                    color: #FFF;
+                }
+            }
+        }
+    }
+    .item:hover {
+        .item-box {
+            background: #f1f2f3;
+        }
+    }
+}

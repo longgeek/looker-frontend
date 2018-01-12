@@ -4,7 +4,7 @@
         background: #fff;
         position: relative;
         margin: 15px 0;
-        font-size: 15px;
+        font-size: 14px;
 
         .box {
             max-width: 100%;
@@ -27,7 +27,7 @@
             flex-flow: column wrap;
         }
         .title {
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.57;
             color: #939598;
             margin-top: 0;
@@ -44,7 +44,7 @@
             -ms-flex-line-pack: start;
             align-content: flex-start;
             .content {
-                width: 12rem;
+                width: 16rem;
                 margin-bottom: .3125rem;
                 a {
                     display: -webkit-box;
@@ -53,9 +53,13 @@
                     -webkit-box-align: center;
                     -ms-flex-align: center;
                     align-items: center;
-                    color: @flat-color;
+                    color: #3e3e40;
                     transition: color 0.25s ease-out;
                     cursor: pointer;
+                }
+                a:hover {
+                    color: #34b3a0;
+                    text-decoration: none;
                 }
             }
             .content.current {
