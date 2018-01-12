@@ -267,6 +267,25 @@
             //     data: { pageTitle: '实验室控制台', specialClass: 'labs-ws_pages study-page' },
             //     controller: LabsWorkspaceController,
             // })
+
+            .state('home.exercises', {
+                url: "exercises",
+                templateUrl: "app/views/exercises/exercises.html",
+                data: { pageTitle: '练习题库', specialClass: 'landing-page labs-page', pageDescription: description},
+                controller: ExercisesController,
+            })
+            .state('home.exercises.my', {
+                url: "/my",
+                templateUrl : "app/views/exercises/my.html",
+                data: { pageTitle: '我的练习', specialClass: 'landing-page labs-page' },
+                controller: ExercisesMyController,
+            })
+            .state('exercises_workspace', {
+                url: "/exercises/workspace/:ud",
+                templateUrl : "app/views/exercises/workspace/workspace.html",
+                data: { pageTitle: '练习题库控制台', specialClass: 'workspace_page study-page' },
+                controller: ExercisesWorkspaceController,
+            })
             .state('learn', {
                 url: "/learn",
                 templateUrl: "app/views/learn/learn.html",

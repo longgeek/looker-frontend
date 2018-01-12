@@ -1,0 +1,47 @@
+<div id="study-left-nav__container" class="study-left-nav__container" du-scroll-container scroll-to-sticky>
+    <div class="study-layer docs" ng-if="studyLayer"></div>
+    <div id="study-docs-container" class="p-t-xl">
+        <section id="study-docs" ng-if="!isFullScreen">
+            <div class="ibox no-margins">
+                <div class="ibox-title study-fixed-docs" ng-click="toStudyDocs()">
+                    <h5><span class="fa fa-file-text-o"></span>练习说明</h5>
+                </div>
+                <div class="ibox-content p-lg">
+                    <div class="study-docs-content" ng-if="task.reference_material">
+                        <h3 class="m-t-none">{{ task.name }}</h3>
+                        <div class="m-b-md">
+                            <span class="m-r"><i class="fa fa-clock-o m-r-sm"></i>20</span>
+                            <span class="m-r"><i class="fa fa-star-o m-r-sm"></i>20</span>
+                            <span class="m-r"><i class="fa fa-tag m-r-sm"></i>Python 算法</span>
+                        </div>
+                        <div ng-bind-html="task.reference_material | toMarkDown| toTrusted"></div>
+                    </div>
+                    <div class="study-docs-content" ng-if="!task.reference_material">
+                        <h3 class="m-t-none">{{ task.name }}</h3>
+                        <p class="font-oblique small">这道题没有文档</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="study-task-container" class="p-t-xl" check-list-height>
+        <section id="study-task" ng-if="!isFullScreen">
+            <div class="ibox no-margins">
+                <div class="ibox-title" ng-click="toStudyTask()">
+                    <h5>
+                        <span class="fa fa-check-square-o"></span>分析说明
+                    </h5>
+                </div>
+                <div class="ibox-content p-lg">
+                    <div class="study-docs-content" ng-if="task.reference_material">
+                        <div ng-bind-html="task.reference_material | toMarkDown| toTrusted"></div>
+                    </div>
+                    <div class="study-docs-content" ng-if="!task.reference_material">
+                        <p class="font-oblique small">这道题没有文档</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

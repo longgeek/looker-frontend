@@ -3,7 +3,7 @@
     <div class="study-layer" ng-if="globalLayer"></div>
 
     <!-- Top Navbar -->
-    <div ng-if="BootingStatus" ng-include="'app/views/global/workspace/topbar.html'"></div>
+    <div ng-if="BootingStatus" ng-include="'app/views/global/workspace/topbar.html'" ng-if="!exercise"></div>
 
     <!-- Wrapper Content -->
     <div class="wrapper wrapper-content animated fadeIn full-height" fit-height ng-class="{'study-wrapper': BootingStatus, 'no-paddings': !BootingStatus}">
@@ -18,7 +18,8 @@
                 </div>
             </div>
             <!-- study left navbar -->
-            <ng-include src="'app/views/global/workspace/leftbar.html'"></ng-include>
+            <ng-include src="'app/views/global/workspace/leftbar.html'" ng-if="!exercise"></ng-include>
+            <ng-include src="'app/views/exercises/workspace/leftbar.html'" ng-if="exercise"></ng-include>
             <!-- study left docs and checklists -->
             <div id="study-left-box" class="study-left-box full-height" ng-show="isFullScreen == false" resizable r-directions="['right']" r-flex="true" ng-include="'app/views/learn/study/study-left-box.html'"></div>
 

@@ -97,7 +97,7 @@ function StudyQuitController($scope, $state, $timeout, $uibModalInstance, $locat
                 } else if (backCourseInfo.origin === 'quiz') {
                     url = "/learn/quiz/detail/?ud=" + backCourseInfo.source.quiz;
                 } else if (backCourseInfo.origin === 'exercise') {
-                    url = "/learn/exercise/detail/?ud=" + backCourseInfo.source.exercise;
+                    url = "/exercises";
                 }
             }
             $timeout(function() {

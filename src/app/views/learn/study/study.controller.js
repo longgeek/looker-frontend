@@ -107,6 +107,10 @@ function StudyController($rootScope, $scope, $q, $sce, $state, $auth, $uibModal,
         $scope.BootingStepsDetail = !$scope.BootingStepsDetail;
     }
     $scope.studyBootingBack = function() {
+        if (position.origin === "exercise") {
+            $location.url("/exercises");
+            return;
+        }
         url = "/learn/" + position.origin + "/detail/?ud=" + position.source[position.origin];
         $location.url(url);
     }
@@ -433,6 +437,10 @@ function StudyController($rootScope, $scope, $q, $sce, $state, $auth, $uibModal,
                         boot_check(false);
                         msgs = "你在其它浏览器或电脑上，有正在开启的学习，请退出后再次尝试。";
                         $scope.BootingError = {"status": true, "msgs": msgs, "goto": "ERR_CONNECTION_REFUSED"};
+                    } else {
+                        boot_check(false);
+                        msgs = response.warning;
+                        $scope.BootingError = {"status": true, "msgs": msgs, "goto": "ERR_CONNECTION_REFUSED"};
                     }
                 } else if (response.hasOwnProperty('error')) {
                     boot_check(false);
@@ -717,11 +725,11 @@ function StudyController($rootScope, $scope, $q, $sce, $state, $auth, $uibModal,
                                 }
                             } else {
                                 $scope.stageProgress = $scope.currentStudyProgress.completed_percentage;
-                                for (i in $scope.currentStudyProgress.progress.tasks_achievement) {
-                                    if ($scope.currentStudyProgress.progress.tasks_achievement[i].is_completed) {
-                                        $scope.completed_tasks.push(i);
-                                    }
-                                }
+                                // for (i in $scope.currentStudyProgress.progress.tasks_achievement) {
+                                //     if ($scope.currentStudyProgress.progress.tasks_achievement[i].is_completed) {
+                                //         $scope.completed_tasks.push(i);
+                                //     }
+                                // }
                             }
                         }
                     }
@@ -1146,7 +1154,11 @@ function StudyController($rootScope, $scope, $q, $sce, $state, $auth, $uibModal,
             if (!position.hasOwnProperty('origin') || !position.hasOwnProperty('source')) {
                 url = "/learn";
             } else {
-                url = "/learn/" + position.origin + "/detail/?ud=" + position.source[position.origin];
+                if (position.origin === "exercise") {
+                    url = "/exercises";
+                } else {
+                    url = "/learn/" + position.origin + "/detail/?ud=" + position.source[position.origin];
+                }
             }
 
             if ($rootScope.socket) {

@@ -17,9 +17,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav col-xs-12 col-sm-6">
-                    <ng-include src="'app/views/global/workspace/study-dot.html'" ng-if="$state.is('study')"></ng-include>
+                    <ng-include src="'app/views/global/workspace/study-dot.html'" ng-if="$state.is('study') && !exercise"></ng-include>
                     <div class="workspace-name" ng-if="$state.is('labs_workspace')">
                         <a><i class="fa fa-angle-left m-r-8"></i>AI 人工智能 - 在线实验室</a>
+                    </div>
+                    <div class="workspace-name" ng-if="exercise">
+                        <a class="m-l">练习题库 - {{ exercise.name }}</a>
                     </div>
                 </ul>
                 <div class="col-xs-12 col-sm-3">
