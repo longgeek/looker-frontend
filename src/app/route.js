@@ -331,12 +331,12 @@
                 data: { pageTitle: '阶段测评', specialClass: 'landing-page learn-course', pageDescription: "测评能评价你对某个技能的掌握情况，通过不同级别的在线的测验，评价你的技能掌握情况。 " },
                 controller: QuizListController,
             })
-            .state('learn.exercise', {
-                url: "/exercise",
-                templateUrl: "app/views/learn/exercise/list.html",
-                data: { pageTitle: '练习题库', specialClass: 'landing-page learn-course', pageDescription: '在完成必要的课程学习后，或者课外时间，做练习你能帮助你强化知识和技能，练习题也会被作为课程的 "课后作业"。' },
-                controller: ExerciseListController,
-            })
+            // .state('learn.exercise', {
+            //     url: "/exercise",
+            //     templateUrl: "app/views/learn/exercise/list.html",
+            //     data: { pageTitle: '练习题库', specialClass: 'landing-page learn-course', pageDescription: '在完成必要的课程学习后，或者课外时间，做练习你能帮助你强化知识和技能，练习题也会被作为课程的 "课后作业"。' },
+            //     controller: ExerciseListController,
+            // })
             .state('learn.plan.detail', {
                 parent: 'learn',
                 url: "/plan/detail/?ud",
@@ -372,13 +372,13 @@
                 data: { pageTitle: '阶段测评详情', specialClass: 'landing-page learn-course-detail learn-detail', pageDescription: description },
                 controller: QuizDetailController,
             })
-            .state('learn.exercise.detail', {
-                parent: 'learn',
-                url: "/exercise/detail/?pd&&ud",
-                templateUrl: "app/views/learn/exercise/detail.html",
-                data: { pageTitle: '练习题库详情', specialClass: 'landing-page learn-course-detail learn-detail', pageDescription: description },
-                controller: ExerciseDetailController,
-            })
+            // .state('learn.exercise.detail', {
+            //     parent: 'learn',
+            //     url: "/exercise/detail/?pd&&ud",
+            //     templateUrl: "app/views/learn/exercise/detail.html",
+            //     data: { pageTitle: '练习题库详情', specialClass: 'landing-page learn-course-detail learn-detail', pageDescription: description },
+            //     controller: ExerciseDetailController,
+            // })
             .state('study', {
                 url: "/learn/study",
                 templateUrl: "app/views/learn/study/study.html",

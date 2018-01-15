@@ -20,11 +20,11 @@
                     <div btf-markdown="qa.content"></div>
                 </div>
                 <hr class="details-hr" />
-                <div class="font-oblique small m-t-md" ng-if="!detailLoading && qa.replies.length === 0">无回复记录。</div>
+                <div class="font-oblique small m-t-md" ng-if="!detailLoading && qa.comments.length === 0">无回复记录。</div>
                 <div class="font-oblique small m-b-md" ng-if="detailLoading">正在加载...</div>
                 <div class="replies" ng-if="!detailLoading">
-                    <div class="chat-activity-list" ng-it="qa.replies.length !== 0">
-                        <div class="chat-element" ng-repeat="replie in qa.replies track by $index">
+                    <div class="chat-activity-list" ng-it="qa.comments.length !== 0">
+                        <div class="chat-element" ng-repeat="replie in qa.comments track by $index">
                             <a class="pull-left" ui-sref="u.homepage({username: replie.created_by.uuid})" target="_blank">
                                 <img alt="image" class="img-circle" gravatar-src="replie.created_by.gravatar">
                             </a>
@@ -51,10 +51,10 @@
                                         ng-model="reply.content"
                                         textarea-tab
                                         textarea-image="qa"></textarea>
-                                    <p class="drag-and-drop">
+                                    <!-- p class="drag-and-drop">
                                         <span class="default" ng-if="!qaUploadError">通过拖放、截图粘贴（仅支持chrome）来附加图片（jpeg, png, jpg, gif）。</span>
                                         <span class="error" ng-if="qaUploadError">{{ qaUploadError }}</span>
-                                    </p>
+                                    </p -->
                                 </div>
                             </uib-tab>
                             <uib-tab select="qa_reply_preview()">
